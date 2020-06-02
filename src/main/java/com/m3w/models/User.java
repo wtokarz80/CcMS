@@ -2,13 +2,13 @@ package com.m3w.models;
 
 public abstract class User {
 
-    private int id;
-    private int phone;
-    private String email;
-    private String password;
-    private String name;
-    private String surname;
-    private String userType;
+    private final int id;
+    private final int phone;
+    private final String email;
+    private final String password;
+    private final String name;
+    private final String surname;
+    private final String userType;
 
     public User(int id, String name, String surname, int phone, String email, String password, String userType) {
         this.id = id;
@@ -28,20 +28,29 @@ public abstract class User {
     public String getName() {
         return name;
     }
-
     public String getEmail() {
         return email;
     }
-
     public String getPassword() {
         return password;
     }
-
     public String getSurname() {
         return surname;
     }
-    public String usertype(){
+    public String getUserType(){
         return userType;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name=" + name +
+                ", surname='" + surname + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", userType='" + userType + '\'' +
+                '}';
+    }
 }
