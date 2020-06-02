@@ -4,22 +4,17 @@ public class UserFactory {
 
     public User createUser(int id, String name, String surname, int phone, String email, String password, String userType) {
 
-        UserType enumUserType = UserType.valueOf(userType);
+        UserType enumUserType = UserType.valueOf(userType.toUpperCase());
 
         switch (enumUserType){
             case STUDENT:
-                Student student = new Student(id, name, surname, phone, email, password, userType);
-                return student;
+                return new Student(id, name, surname, phone, email, password, userType);
             case MENTOR:
-                Mentor mentor = new Mentor(id, name, surname, phone, email, password, userType);
-                return mentor;
+                return new Mentor(id, name, surname, phone, email, password, userType);
             case EMPLOYEE:
-                Employee employee = new Employee(id, name, surname, phone, email, password, userType);
-                return employee;
+                return new Employee(id, name, surname, phone, email, password, userType);
             case MANAGER:
-                Manager manager = new Manager(id, name, surname, phone, email, password, userType);
-                return manager;
-
+                return new Manager(id, name, surname, phone, email, password, userType);
             default:
                 return null;
         }

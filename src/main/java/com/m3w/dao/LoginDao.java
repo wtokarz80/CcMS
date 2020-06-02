@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public class LoginDao extends ConnectionToDB{
 
     private User user;
-    private UserFactory userFactory;
+    private final UserFactory userFactory = new UserFactory();
 
     public User selectUser(String userEmail, String userPassword) throws IOException {
         try{
@@ -27,7 +27,7 @@ public class LoginDao extends ConnectionToDB{
                 String userType = rs.getString("user_type");
 
                 if(email != null & password != null){
-                    user = userFactory.createUser(id, name, surname, phone, email, password, userType);
+                    return userFactory.createUser(id, name, surname, phone, email, password, userType);
                 }
             }
             rs.close();
