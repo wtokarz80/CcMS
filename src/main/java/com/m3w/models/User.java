@@ -8,16 +8,16 @@ public abstract class User {
     private String password;
     private String name;
     private String surname;
-    private String usertype;
+    private String userType;
 
-    public User(int id, int phone, String email, String password, String name, String surname, String usertype) {
+    public User(int id, String name, String surname, int phone, String email, String password, String userType) {
         this.id = id;
         this.phone = phone;
         this.email = email;
         this.password = password;
         this.name = name;
         this.surname = surname;
-        this.usertype = usertype;
+        this.userType = userType;
     }
     public int getId() {
         return id;
@@ -41,7 +41,7 @@ public abstract class User {
         return surname;
     }
     public String usertype(){
-        return usertype;
+        return userType;
     }
 
 }

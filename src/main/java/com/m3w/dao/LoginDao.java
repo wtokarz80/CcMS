@@ -1,4 +1,40 @@
 package com.m3w.dao;
 
-public class LoginDao {
+import com.m3w.models.User;
+import com.m3w.models.UserFactory;
+
+import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class LoginDao extends ConnectionToDB{
+
+    private User user;
+    private UserFactory userFactory;
+
+    public User selectUser(String userEmail, String userPassword) throws IOException {
+        try{
+            connect();
+            connection.setAutoCommit(false);
+            ResultSet rs = statement.executeQuery( String.format("SELECT * FROM user_details WHERE email='%s'AND password='%s' ;", userEmail, userPassword) );
+            while ( rs.next() ) {
+                int id = rs.getInt("user_details_id");
+                String name = rs.getString("name");
+                String surname = rs.getString("surname");
+                int phone = rs.getInt("phone");
+                String email = rs.getString("email");
+                String password = rs.getString("password");
+                String userType = rs.getString("user_type");
+
+                if(email != null & password != null){
+                    user = userFactory.createUser(id, name, surname, phone, email, password, userType);
+                }
+            }
+            rs.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
 }
