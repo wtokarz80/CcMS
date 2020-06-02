@@ -12,10 +12,14 @@ public class Application {
     public static void main(String[] args) throws IOException {
 
 
+//
+//        LoginDao loginDao = new LoginDao();
+//        User user = loginDao.selectUser("wt@wt.pl", "dupa");
+//        System.out.println(user.toString());
 
-        LoginDao loginDao = new LoginDao();
-        User user = loginDao.selectUser("wt@wt.pl", "dupa");
-        System.out.println(user.toString());
+        MentorController mentorController = new MentorController();
+        System.out.println("new student (2):");
+        mentorController.mentorMenu();
 
     }
 }
