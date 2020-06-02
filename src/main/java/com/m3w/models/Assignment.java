@@ -6,6 +6,10 @@ public class Assignment {
     private int grade;
     private boolean submission;
 
+    public Assignment(){
+
+    }
+
     public int getId() {
         return id;
     }
