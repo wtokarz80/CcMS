@@ -21,7 +21,7 @@ public class Application {
 
 
         // ONLY FOR TESTING
-//
+
 //        LoginDao loginDao = new LoginDao();
 //        System.out.print("Enter email: ");
 //        userEmail = scanner.nextLine();
