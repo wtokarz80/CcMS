@@ -10,9 +10,9 @@ import java.util.Scanner;
 public class StudentController {
 
 
-    private InputProvider inputProvider = new InputProvider();
-    private MenuPrinting menuPrinting = new MenuPrinting();
-    private DataPrinting dataPrinting;
+    private final InputProvider inputProvider = new InputProvider();
+    private final MenuPrinting menuPrinting = new MenuPrinting();
+    private final DataPrinting dataPrinting = new DataPrinting();
 
     public void studentOptions() throws IOException {
 
@@ -26,6 +26,7 @@ public class StudentController {
             switch (userChoice) {
                 case 1:
                     System.out.println("Submit an assignment");
+                    submitAssignment();
                     break;
                 case 2:
                     System.out.println("View my grades");
@@ -34,11 +35,15 @@ public class StudentController {
                     System.out.println("Back to previous menu");
                     break;
                 default: {
-                    System.out.println("Wrong option");
                     studentOptions();
                     break;
                 }
             }
         }
     }
+
+    private void submitAssignment() {
+
+    }
+
 }

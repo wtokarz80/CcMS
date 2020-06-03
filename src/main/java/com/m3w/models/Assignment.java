@@ -3,10 +3,12 @@ package com.m3w.models;
 public class Assignment {
     private int id;
     private String name;
-    private int grade;
-    private boolean submission;
+    private String description;
 
-    public Assignment(){
+    public Assignment(int id, String name, String description){
+        this.id = id;
+        this.name = name;
+        this.description = description;
 
     }
 
@@ -14,27 +16,23 @@ public class Assignment {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
-    }
-
-    public boolean isSubmission() {
-        return submission;
-    }
-
-    public int getGrade() {
-        return grade;
-    }
-
-    public void setGrade(int grade) {
-        this.grade = grade;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setSubmission(boolean submission) {
-        this.submission = submission;
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

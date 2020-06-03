@@ -34,7 +34,8 @@ public class MenuController {
         User user = loginDao.selectUser(userEmail, userPassword);
 
         if (user instanceof Student) {
-            //StudentController studentController = new StudentController();
+            StudentController studentController = new StudentController();
+            studentController.studentOptions();
         } else if (user instanceof Employee) {
             //EmployeeController employeeController = new StudentController();
         } else if (user instanceof Mentor) {
