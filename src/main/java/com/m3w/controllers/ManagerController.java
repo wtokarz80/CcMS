@@ -20,7 +20,7 @@ public class ManagerController {
     public void managerMenu() throws IOException {
         boolean isRun = true;
         while (isRun) {
-            menu.printMentorMenu();
+            menu.printManagerMenu();
             int userChoice = input.takeIntegerInput("");
             switch (userChoice) {
                 case 1:
@@ -36,6 +36,7 @@ public class ManagerController {
                     getListOfMentors();
                     break;
                 case 5:
+
                     break;
 
 
