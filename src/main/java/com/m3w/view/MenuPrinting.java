@@ -13,10 +13,10 @@ public class MenuPrinting {
 
 
     public void printStudentMenu() {
-        System.out.println("StudetMenu: \n"
+        System.out.println("StudentMenu: \n"
 
                 + "1 - Submit an assignment\n"
-                + "2 - view my grades\n"
+                + "2 - View my grades\n"
                 + "0 - Back to previous menu\n");
     }
 

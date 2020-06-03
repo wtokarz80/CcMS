@@ -1,6 +1,7 @@
 package com.m3w.controllers;
 
 import com.m3w.dao.LoginDao;
+import com.m3w.models.Student;
 import com.m3w.models.User;
 
 import java.io.IOException;
@@ -22,6 +23,8 @@ public class Application {
 
         // ONLY FOR TESTING
 
+        StudentController studentController = new StudentController();
+
         LoginDao loginDao = new LoginDao();
         System.out.print("Enter email: ");
         userEmail = scanner.nextLine();
@@ -34,6 +37,10 @@ public class Application {
         } else {
             System.out.println();
             System.out.println(user.toString());
+            if (user instanceof Student){
+                studentController.studentOptions();
+            }
+
         }
 
 
