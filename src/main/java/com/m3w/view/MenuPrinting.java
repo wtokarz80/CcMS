@@ -9,8 +9,8 @@ public class MenuPrinting {
                 + "1 - log in\n"
                 + "2 - registration\n"
                 + "0 - EXIT\n");
-
     }
+
 
     public void printStudentMenu() {
         System.out.println("StudetMenu: \n"
@@ -24,9 +24,30 @@ public class MenuPrinting {
         System.out.println("MentorMenu: \n"
 
                 + "1 - See a list of students\n"
-                + "2 - view my grades\n"
+                + "2 - Add an assignment\n"
+                + "3 - Grade an assignment submitted by students\n"
+                + "4 - Check attendance of students\n"
+                + "5 - Add a student to a class\n"
+                + "6 - Remove a student from class\n"
+                + "7 - Edit student's data\n"
                 + "0 - Back to previous menu\n");
     }
 
+    public void printEmployeeMenu() {
+        System.out.println("EmployeeMenu: \n"
 
+                + "1 - See a list of students\n"
+                + "0 - Back to previous menu\n");
+    }
+
+    public void printManagerMenu() {
+        System.out.println("ManagerMenu: \n"
+
+                + "1 - Add a mentor\n"
+                + "2 - Remove a mentor\n"
+                + "3 - Edit mentor's data\n"
+                + "4 - See a list of mentors\n"
+                + "5 - See a list of students\n"
+                + "0 - Back to previous menu\n");
+    }
 }
