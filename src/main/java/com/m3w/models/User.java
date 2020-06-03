@@ -1,5 +1,7 @@
 package com.m3w.models;
 
+import java.io.IOException;
+
 public abstract class User {
 
     private final int id;
@@ -53,4 +55,6 @@ public abstract class User {
                 ", userType='" + userType + '\'' +
                 '}';
     }
+
+    public abstract void displayMenuOptions() throws IOException;
 }

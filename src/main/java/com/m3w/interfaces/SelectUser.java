@@ -4,7 +4,7 @@ import com.m3w.models.User;
 
 import java.io.IOException;
 
-public interface selectUserInterface {
+public interface SelectUser {
 
     public User selectUser(String userEmail, String userPassword) throws IOException;
 
