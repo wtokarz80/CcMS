@@ -1,16 +1,19 @@
 package com.m3w.dao;
 
-import com.m3w.interfaces.selectAll;
+import com.m3w.interfaces.SelectAll;
+import com.m3w.interfaces.SubmitAssignment;
 import com.m3w.models.Assignment;
+import com.m3w.models.StudentEvaluation;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentDao extends ConnectionToDB implements selectAll {
+public class StudentDao extends ConnectionToDB implements SelectAll, SubmitAssignment {
 
-    private  Assignment assignment;
+    private Assignment assignment;
+    private StudentEvaluation studentEvaluation;
 
     @Override
     public List<Assignment> selectAllObjects() {
@@ -33,5 +36,20 @@ public class StudentDao extends ConnectionToDB implements selectAll {
             e.printStackTrace();
         }
         return assignments;
+    }
+
+
+    @Override
+    public void submitAssignment(int studentId, int assignmentId, String submission, String date) {
+        try {
+            connect();
+            connection.setAutoCommit(false);
+            statement.executeUpdate("INSERT INTO student_evaluation (student_id, assignment_id, submission, date)" +
+                    String.format("VALUES ('%d', '%d', '%s', '%s')", studentId, assignmentId, submission, date));
+            statement.close();
+            connection.commit();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 }

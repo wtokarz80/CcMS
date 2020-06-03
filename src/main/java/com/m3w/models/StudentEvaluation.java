@@ -2,7 +2,7 @@ package com.m3w.models;
 
 import java.time.LocalDate;
 
-public class studentEvaluation {
+public class StudentEvaluation {
    private int evaluationId;
    private int studentId;
    private int assignmentId;
@@ -11,7 +11,7 @@ public class studentEvaluation {
    private LocalDate date;
    private int mentorId;
 
-    public studentEvaluation(int evaluationId, int studentId, int assignmentId, String status, String submission, LocalDate date, int mentorId) {
+    public StudentEvaluation(int evaluationId, int studentId, int assignmentId, String status, String submission, LocalDate date, int mentorId) {
         this.evaluationId = evaluationId;
         this.studentId = studentId;
         this.assignmentId = assignmentId;

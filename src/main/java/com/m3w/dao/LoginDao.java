@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import com.m3w.interfaces.*;
 
 
-public class LoginDao extends ConnectionToDB implements selectUserInterface {
+public class LoginDao extends ConnectionToDB implements SelectUserInterface {
 
     private User user;
     private final UserFactory userFactory = new UserFactory();
