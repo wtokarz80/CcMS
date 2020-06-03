@@ -7,7 +7,6 @@ public class MenuPrinting {
         System.out.println("Main menu:\n\n"
 
                 + "1 - log in\n"
-                + "2 - registration\n"
                 + "0 - EXIT\n");
     }
 
@@ -15,8 +14,9 @@ public class MenuPrinting {
     public void printStudentMenu() {
         System.out.println("StudentMenu: \n"
 
-                + "1 - Submit an assignment\n"
-                + "2 - View my grades\n"
+                + "1 - View all assignments\n"
+                + "2 - Submit an assignment\n"
+                + "3 - View my grades\n"
                 + "0 - Back to previous menu\n");
     }
 
