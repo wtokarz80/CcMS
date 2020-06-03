@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentDao extends ConnectionToDB {
+public class MentorDao extends ConnectionToDB {
 
     List<Student> students = new ArrayList<>();
     public List<Student> getStudentsDetail() {
@@ -45,7 +45,38 @@ public class StudentDao extends ConnectionToDB {
             statement.executeUpdate("INSERT INTO user_details (name, surname, phone, email, password, user_type)" +
                     String.format("VALUES ('%s', '%s', '%d', '%s', '%s', '%s')", name, surname, phone, email, password, userType));
             statement.close();
+
         } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteStudent(String email){
+        connect();
+        try{
+            statement.executeUpdate(String.format("DELETE FROM user_details WHERE email = '%s'", email));
+            statement.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void updateStudentDataInt(String data, int futureData, String email) {
+        connect();
+        try {
+            statement.executeUpdate(String.format("UPDATE user_details SET %s = '%d' WHERE email = '%s'", data, futureData, email));
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateStudentDataString(String data, String futureData, String email) {
+        connect();
+        try {
+            statement.executeUpdate(String.format("UPDATE user_details SET %s = '%s' WHERE email = '%s'", data, futureData, email));
+            statement.close();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
