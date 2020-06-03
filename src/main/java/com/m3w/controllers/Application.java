@@ -37,12 +37,7 @@ public class Application {
 //        }
 
 
-
-        System.out.println("View list of students (1): ");
         MentorController mentorController = new MentorController();
-        System.out.println("Enter new student to the system (5):");
-
-        System.out.println("(6) Remove student: ");
         mentorController.mentorMenu();
     }
 }

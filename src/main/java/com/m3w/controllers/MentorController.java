@@ -2,20 +2,24 @@ package com.m3w.controllers;
 
 import com.m3w.dao.MentorDao;
 import com.m3w.models.Student;
+import com.m3w.services.InputProvider;
+import com.m3w.view.MenuPrinting;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
 public class MentorController {
 
+    MenuPrinting menu = new MenuPrinting();
+   // Scanner input = new Scanner(System.in);
+    InputProvider input = new InputProvider();
 
-    Scanner input = new Scanner(System.in);
-
-    public void mentorMenu() {
+    public void mentorMenu() throws IOException {
         boolean isRun = true;
         while (isRun) {
-            // view.printMentorMenu
-            int userChoice = input.nextInt();
+            menu.printMentorMenu();
+            int userChoice = input.takeIntegerInput("");
             switch (userChoice) {
                 case 1:
                     getListOfStudents();
@@ -62,64 +66,53 @@ public class MentorController {
     private void checkAttendance() {
     }
 
-    private void addStudent() {
+    private void addStudent() throws IOException {
             MentorDao mentorDao = new MentorDao();
-            System.out.println("Provide name of the new student: ");
-            String newName = input.next();
-            System.out.println("Provide surname of the new student: ");
-            String newSurname = input.next();
-            System.out.println("Provide phone number of new student: ");
-            int newPhone = input.nextInt();
-            System.out.println("Provide e-mail adress of new student: ");
-            String newEmail = input.next();
-            System.out.println("Provide his password: ");
-            String newPassword = input.next();
+            String newName = input.takeStringInput("Provide name of the new student: ");
+            String newSurname = input.takeStringInput("Provide surname of the new student: ");
+            int newPhone = input.takeIntegerInput("Provide phone number of new student: ");
+            String newEmail = input.takeStringInput("Provide e-mail address of new student: ");
+            String newPassword = input.takeStringInput("Provide his password: ");
 
             mentorDao.createStudent(newName, newSurname, newPhone, newEmail, newPassword, "student");
     }
 
-   public void removeStudent() {
+   public void removeStudent() throws IOException {
         MentorDao mentorDao = new MentorDao();
         getListOfStudents();
-        System.out.println("Which student do You want to delete? (via E-mail) ");
-        String email = input.next();
+        String email = input.takeStringInput("Which student do You want to delete? (provide E-mail address)");
         mentorDao.deleteStudent(email);
 
     }
 
-    private void updateStudentData() {
+    private void updateStudentData() throws IOException {
         MentorDao mentorDao = new MentorDao();
         getListOfStudents();
-        System.out.println("Which student do You want to change details? ");
-        String email = input.next();
+        String email = input.takeStringInput("Which student do You want to change details? (provide E-mail address) ");
         System.out.println("Which data do You want to change? " +
                 "\n[1] Name" +
                 "\n[2] Surname" +
                 "\n[3] Phone number" +
-                "\n[4] E-mail adress");
+                "\n[4] E-mail address");
 
         boolean isRunning = true;
         while (isRunning){
-        int userChoice = input.nextInt();
+        int userChoice = input.takeIntegerInput("press '0' to exit: ");
         switch(userChoice){
             case 1:
-                System.out.println("Provide new name for the student: ");
-                String newName = input.next();
+                String newName = input.takeStringInput("Provide new name for the student: ");
                 mentorDao.updateStudentDataString("name", newName, email);
                 break;
             case 2:
-                System.out.println("Provide new surname for the student: ");
-                String newSurname = input.next();
+                String newSurname = input.takeStringInput("Provide new surname for the student: ");
                 mentorDao.updateStudentDataString("surname", newSurname, email);
                 break;
             case 3:
-                System.out.println("Provide student's new phone number: ");
-                int newPhone = input.nextInt();
+                int newPhone = input.takeIntegerInput("Provide student's new phone number: ");
                 mentorDao.updateStudentDataInt("phone", newPhone, email);
                 break;
             case 4:
-                System.out.println("Provide student's new E-mail adress:  ");
-                String newEmail = input.next();
+                String newEmail = input.takeStringInput("Provide student's new E-mail address:  ");
                 mentorDao.updateStudentDataString("email", newEmail, email);
                 break;
             case 0:
