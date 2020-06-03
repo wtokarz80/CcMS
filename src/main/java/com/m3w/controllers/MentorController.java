@@ -96,7 +96,7 @@ public class MentorController {
                 "\n[1] Name" +
                 "\n[2] Surname" +
                 "\n[3] Phone number" +
-                "\n[4] E-mail adress");
+                "\n[4] E-mail address");
 
         boolean isRunning = true;
         while (isRunning){
