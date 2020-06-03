@@ -30,7 +30,6 @@ public class StudentDao extends ConnectionToDB {
             }
             results.close();
             statement.close();
-            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -46,7 +45,6 @@ public class StudentDao extends ConnectionToDB {
             statement.executeUpdate("INSERT INTO user_details (name, surname, phone, email, password, user_type)" +
                     String.format("VALUES ('%s', '%s', '%d', '%s', '%s', '%s')", name, surname, phone, email, password, userType));
             statement.close();
-            connection.close();
         } catch (SQLException e){
             e.printStackTrace();
         }
