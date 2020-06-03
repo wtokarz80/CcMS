@@ -7,11 +7,15 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class LoginDao extends ConnectionToDB{
+import com.m3w.interfaces.*;
+
+
+public class LoginDao extends ConnectionToDB implements selectUserInterface {
 
     private User user;
     private final UserFactory userFactory = new UserFactory();
 
+    @Override
     public User selectUser(String userEmail, String userPassword) throws IOException {
         try{
             connect();
@@ -35,6 +39,6 @@ public class LoginDao extends ConnectionToDB{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return user;
+        return null;
     }
 }

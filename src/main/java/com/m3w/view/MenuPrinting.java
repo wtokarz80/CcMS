@@ -11,4 +11,22 @@ public class MenuPrinting {
                 + "0 - EXIT\n");
 
     }
+
+    public void printStudentMenu() {
+        System.out.println("StudetMenu: \n"
+
+                + "1 - Submit an assignment\n"
+                + "2 - view my grades\n"
+                + "0 - Back to previous menu\n");
+    }
+
+    public void printMentorMenu() {
+        System.out.println("MentorMenu: \n"
+
+                + "1 - See a list of students\n"
+                + "2 - view my grades\n"
+                + "0 - Back to previous menu\n");
+    }
+
+
 }
