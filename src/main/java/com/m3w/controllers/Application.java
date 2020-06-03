@@ -1,23 +1,13 @@
 package com.m3w.controllers;
 
-import com.m3w.dao.LoginDao;
-import com.m3w.models.User;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 public class Application {
 
-    // ONLY FOR TESTING
-
-    public static Scanner scanner = new Scanner(System.in);
-    public static String userEmail;
-    public static String userPassword;
-
-    // ..............
-
 
     public static void main(String[] args) throws IOException {
+
 
 
         // ONLY FOR TESTING
@@ -38,11 +28,7 @@ public class Application {
 
 
 
-        System.out.println("View list of students (1): ");
-        MentorController mentorController = new MentorController();
-        System.out.println("Enter new student to the system (5):");
-
-        System.out.println("(6) Remove student: ");
-        mentorController.mentorMenu();
+        MenuController menuController = new MenuController();
+        menuController.mainMenu();
     }
 }
