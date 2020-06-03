@@ -91,4 +91,14 @@ public class MentorDao extends ConnectionToDB {
             e.printStackTrace();
         }
     }
+
+    public void evaluateStudent(int evaluationID, int mentorID, String status){
+        connect();
+        try {
+            statement.executeUpdate(String.format("UPDATE student_evaluation SET mentor_id = '%d', status = '%s' WHERE evaluation_id = '%s'", mentorID, status, evaluationID));
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

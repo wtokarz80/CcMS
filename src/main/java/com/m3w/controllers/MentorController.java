@@ -1,6 +1,7 @@
 package com.m3w.controllers;
 
 import com.m3w.dao.MentorDao;
+import com.m3w.models.Mentor;
 import com.m3w.models.Student;
 import com.m3w.services.InputProvider;
 import com.m3w.view.MenuPrinting;
@@ -62,11 +63,23 @@ public class MentorController {
         mentorDao.createAssignment(newAssignment, description);
     }
 
-    private void gradeAssignment() {
-
+    private void gradeAssignment() throws IOException {
+        MentorDao mentorDao = new MentorDao();
+        int mentorID = 1;
+        int evaluationID = input.takeIntegerInput("Which assignment do You want to grade? (via Assignment's ID) ");
+        String pass = input.takeStringInput("Does student's assignment deserves passing? (y/n)");
+        switch(pass) {
+            case "y":
+                mentorDao.evaluateStudent(evaluationID, mentorID, "Passed");
+                break;
+            case "n":
+                mentorDao.evaluateStudent(evaluationID, mentorID, "Rejected");
+                break;
+        }
     }
 
     private void checkAttendance() {
+
     }
 
     private void addStudent() throws IOException {
