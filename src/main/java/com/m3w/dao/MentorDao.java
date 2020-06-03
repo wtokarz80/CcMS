@@ -81,4 +81,14 @@ public class MentorDao extends ConnectionToDB {
         }
     }
 
+    public void createAssignment(String newAssignment) {
+        connect();
+        try {
+            statement.executeUpdate("INSERT INTO assignment (assignment_name)" +
+                    String.format("VALUES ('%s')", newAssignment));
+            statement.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 }

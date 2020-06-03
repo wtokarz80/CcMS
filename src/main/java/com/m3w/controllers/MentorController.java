@@ -7,12 +7,10 @@ import com.m3w.view.MenuPrinting;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Scanner;
 
 public class MentorController {
 
     MenuPrinting menu = new MenuPrinting();
-   // Scanner input = new Scanner(System.in);
     InputProvider input = new InputProvider();
 
     public void mentorMenu() throws IOException {
@@ -57,10 +55,14 @@ public class MentorController {
         }
     }
 
-    private void addAssignment() {
+    private void addAssignment() throws IOException {
+        MentorDao mentorDao = new MentorDao();
+        String newAssignment = input.takeStringInput("Provide new assignment's name: ");
+        mentorDao.createAssignment(newAssignment);
     }
 
     private void gradeAssignment() {
+
     }
 
     private void checkAttendance() {
