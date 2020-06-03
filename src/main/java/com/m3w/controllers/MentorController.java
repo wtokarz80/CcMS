@@ -58,7 +58,8 @@ public class MentorController {
     private void addAssignment() throws IOException {
         MentorDao mentorDao = new MentorDao();
         String newAssignment = input.takeStringInput("Provide new assignment's name: ");
-        mentorDao.createAssignment(newAssignment);
+        String description = input.takeStringInput("Describe task for students: ");
+        mentorDao.createAssignment(newAssignment, description);
     }
 
     private void gradeAssignment() {
