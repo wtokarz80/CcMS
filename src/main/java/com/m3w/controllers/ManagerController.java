@@ -4,6 +4,7 @@ import com.m3w.dao.ManagerDao;
 import com.m3w.dao.MentorDao;
 import com.m3w.models.Manager;
 import com.m3w.models.Mentor;
+import com.m3w.models.Student;
 import com.m3w.services.InputProvider;
 import com.m3w.view.MenuPrinting;
 import java.lang.reflect.Method;
@@ -33,15 +34,18 @@ public class ManagerController {
                     addMentor();
                     break;
                 case 2:
-                    removeMentor();
+                    addManager();
                     break;
                 case 3:
-                    updateMentorData();
+                    removeMentor();
                     break;
                 case 4:
-                    getListOfMentors();
+                    updateMentorData();
                     break;
                 case 5:
+                    getListOfMentors();
+                    break;
+                case 6:
                     MentorController mentorController = new MentorController((com.m3w.models.Mentor) Mentor);
                     mentorController.getListOfStudents();
                     break;
@@ -54,14 +58,25 @@ public class ManagerController {
 
         private void addMentor() throws IOException {
             ManagerDao managerDao = new ManagerDao();
-            String newName = input.takeStringInput("Provide name of the new student: ");
-            String newSurname = input.takeStringInput("Provide surname of the new student: ");
-            int newPhone = input.takeIntegerInput("Provide phone number of new student: ");
-            String newEmail = input.takeStringInput("Provide e-mail address of new student: ");
+            String newName = input.takeStringInput("Provide name of the new mentor: ");
+            String newSurname = input.takeStringInput("Provide surname of the new mentor: ");
+            int newPhone = input.takeIntegerInput("Provide phone number of new mentor: ");
+            String newEmail = input.takeStringInput("Provide e-mail address of new mentor: ");
             String newPassword = input.takeStringInput("Provide his password: ");
 
             managerDao.createMentor(newName, newSurname, newPhone, newEmail, newPassword, "mentor");
         }
+    private void addManager() throws IOException {
+        ManagerDao managerDao = new ManagerDao();
+        String newName = input.takeStringInput("Provide name of the new manager: ");
+        String newSurname = input.takeStringInput("Provide surname of the new manager: ");
+        int newPhone = input.takeIntegerInput("Provide phone number of new manager: ");
+        String newEmail = input.takeStringInput("Provide e-mail address of new manager: ");
+        String newPassword = input.takeStringInput("Provide his password: ");
+
+        managerDao.createManager(newName, newSurname, newPhone, newEmail, newPassword, "manager");
+        System.out.println("no jest");
+    }
     public void removeMentor() throws IOException {
         MentorDao mentorDao = new MentorDao();
         getListOfMentors();
@@ -70,6 +85,7 @@ public class ManagerController {
 
     }
 
+
     private void getListOfMentors() {
         ManagerDao managerDao = new ManagerDao();
         List<Mentor> mentors = managerDao.getMentorDetail();
@@ -77,6 +93,7 @@ public class ManagerController {
             System.out.println("[" + s.getId() +"]  "+ s.getName() +" "+ s.getSurname()  + "  |Phone number: " + s.getPhone() + " |E-mail: " + s.getEmail());
         }
     }
+
     private void updateMentorData() throws IOException {
         ManagerDao managerDao = new ManagerDao();
         getListOfMentors();

@@ -44,10 +44,11 @@ public class MenuPrinting {
         System.out.println("ManagerMenu: \n"
 
                 + "1 - Add a mentor\n"
-                + "2 - Remove a mentor\n"
-                + "3 - Edit mentor's data\n"
-                + "4 - See a list of mentors\n"
-                + "5 - See a list of students\n"
+                + "2 - Add a Manager\n"
+                + "3 - Remove a mentor\n"
+                + "4 - Edit mentor's data\n"
+                + "5 - See a list of mentors\n"
+                + "6 - See a list of students\n"
                 + "0 - Back to previous menu\n");
     }
 }

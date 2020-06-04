@@ -51,6 +51,20 @@ public class ManagerDao extends ConnectionToDB {
             e.printStackTrace();
         }
     }
+    public void createManager(String name, String surname, int phone, String email, String password, String userType) {
+
+        connect();
+
+        try {
+
+            statement.executeUpdate("INSERT INTO user_details (name, surname, phone, email, password, user_type)" +
+                    String.format("VALUES ('%s', '%s', '%d', '%s', '%s', '%s')", name, surname, phone, email, password, userType));
+            statement.close();
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
     public void updateMentorDataInt(String data, int futureData, String email) {
         connect();
         try {
