@@ -1,5 +1,7 @@
 package com.m3w.models;
 
+import com.m3w.controllers.ManagerController;
+
 import java.io.IOException;
 
 public class Manager extends User{
@@ -9,6 +11,7 @@ public class Manager extends User{
 
     @Override
     public void displayMenuOptions() throws IOException {
-
+        ManagerController managerController = new ManagerController();
+        managerController.managerMenu();
     }
 }

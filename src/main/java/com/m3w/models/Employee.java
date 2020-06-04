@@ -1,5 +1,7 @@
 package com.m3w.models;
 
+import com.m3w.controllers.EmployeeController;
+
 import java.io.IOException;
 
 public class Employee extends User{
@@ -9,6 +11,7 @@ public class Employee extends User{
 
     @Override
     public void displayMenuOptions() throws IOException {
-
+        EmployeeController employeeController = new EmployeeController(this);
+        employeeController.employeeOptions();
     }
 }
