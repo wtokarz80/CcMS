@@ -18,6 +18,7 @@ public class ManagerController {
     InputProvider input = new InputProvider();
 
     public void managerMenu() throws IOException {
+
         boolean isRun = true;
         while (isRun) {
             menu.printManagerMenu();
