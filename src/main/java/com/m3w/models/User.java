@@ -55,5 +55,5 @@ public abstract class User {
                 ", userType='" + userType + '\'' +
                 '}';
     }
-    public abstract void displayMenuOptions() throws IOException;
+    public abstract void displayMenuOptions() throws Exception;
 }

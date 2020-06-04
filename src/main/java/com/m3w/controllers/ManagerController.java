@@ -2,6 +2,7 @@ package com.m3w.controllers;
 
 import com.m3w.dao.ManagerDao;
 import com.m3w.dao.MentorDao;
+import com.m3w.models.Manager;
 import com.m3w.models.Mentor;
 import com.m3w.services.InputProvider;
 import com.m3w.view.MenuPrinting;
@@ -15,9 +16,14 @@ public class ManagerController {
 
     MenuPrinting menu = new MenuPrinting();
     InputProvider input = new InputProvider();
+    private final Manager manager;
+    private Object Mentor;
+
+    public ManagerController(Manager manager) {
+        this.manager = manager;
+    }
 
     public void managerMenu() throws Exception {
-
         boolean isRun = true;
         while (isRun) {
             menu.printManagerMenu();
@@ -36,7 +42,7 @@ public class ManagerController {
                     getListOfMentors();
                     break;
                 case 5:
-                    MentorController mentorController = new MentorController();
+                    MentorController mentorController = new MentorController((com.m3w.models.Mentor) Mentor);
                     mentorController.getListOfStudents();
                     break;
 

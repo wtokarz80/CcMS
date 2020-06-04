@@ -6,7 +6,7 @@ import com.m3w.services.InputProvider;
 import com.m3w.view.DataPrinting;
 import com.m3w.view.MenuPrinting;
 
-import java.io.IOException;
+
 
 public class MenuController {
     private InputProvider inputProvider = new InputProvider();
@@ -14,7 +14,7 @@ public class MenuController {
     private DataPrinting dataPrinting;
     User user;
 
-    public void mainMenu() throws IOException {
+    public void mainMenu() throws Exception {
         menuPrinting.printMenu();
         int useOption = inputProvider.takeIntegerInput("Enter option: ");
         switch (useOption){
@@ -28,7 +28,7 @@ public class MenuController {
         }
     }
 
-    private void loginToSystem() throws IOException {
+    private void loginToSystem() throws Exception {
         LoginDao loginDao = new LoginDao();
         String userEmail = inputProvider.takeStringInput("Enter e-mail: ");
         String userPassword = inputProvider.takeStringInput("Enter password: ");

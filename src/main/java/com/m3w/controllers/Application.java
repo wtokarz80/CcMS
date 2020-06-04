@@ -1,10 +1,8 @@
 package com.m3w.controllers;
 
-import java.io.IOException;
-
 public class Application {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         MenuController menuController = new MenuController();
         menuController.mainMenu();
     }

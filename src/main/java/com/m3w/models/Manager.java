@@ -10,8 +10,8 @@ public class Manager extends User{
     }
 
     @Override
-    public void displayMenuOptions() throws IOException {
-        ManagerController managerController = new ManagerController();
+    public void displayMenuOptions() throws Exception {
+        ManagerController managerController = new ManagerController(this);
         managerController.managerMenu();
     }
 }
