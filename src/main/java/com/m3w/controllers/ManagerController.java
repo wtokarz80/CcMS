@@ -2,11 +2,10 @@ package com.m3w.controllers;
 
 import com.m3w.dao.ManagerDao;
 import com.m3w.dao.MentorDao;
-
 import com.m3w.models.Mentor;
-
 import com.m3w.services.InputProvider;
 import com.m3w.view.MenuPrinting;
+import java.lang.reflect.Method;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,7 +16,7 @@ public class ManagerController {
     MenuPrinting menu = new MenuPrinting();
     InputProvider input = new InputProvider();
 
-    public void managerMenu() throws IOException {
+    public void managerMenu() throws Exception {
 
         boolean isRun = true;
         while (isRun) {
@@ -37,7 +36,12 @@ public class ManagerController {
                     getListOfMentors();
                     break;
                 case 5:
-
+                    System.out.println("Mentors: ");
+                    Class c = Class.forName("com/m3w/controllers/MenuController");
+                    MentorController t = (MentorController)c.newInstance();
+                    Method m = c.getDeclaredMethod("getListOfStudents", null);
+                    m.setAccessible(true);
+                    m.invoke(t, null);
                     break;
 
 
