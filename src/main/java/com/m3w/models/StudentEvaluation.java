@@ -5,20 +5,22 @@ import java.time.LocalDate;
 public class StudentEvaluation {
    private int evaluationId;
    private int studentId;
-   private int assignmentId;
+   private String assignmentName;
    private String status;
    private String submission;
-   private LocalDate date;
-   private int mentorId;
+   private String date;
+   private String mentorName;
+   private String mentorSurname;
 
-    public StudentEvaluation(int evaluationId, int studentId, int assignmentId, String status, String submission, LocalDate date, int mentorId) {
+    public StudentEvaluation(int evaluationId, int studentId, String assignmentName, String status, String submission, String date, String mentorName, String mentorSurname) {
         this.evaluationId = evaluationId;
         this.studentId = studentId;
-        this.assignmentId = assignmentId;
+        this.assignmentName = assignmentName;
         this.status = status;
         this.submission = submission;
         this.date = date;
-        this.mentorId = mentorId;
+        this.mentorName = mentorName;
+        this.mentorSurname = mentorSurname;
     }
 
     public int getEvaluationId() {
@@ -37,12 +39,12 @@ public class StudentEvaluation {
         this.studentId = studentId;
     }
 
-    public int getAssignmentId() {
-        return assignmentId;
+    public String getAssignmentName() {
+        return assignmentName;
     }
 
-    public void setAssignmentId(int assignmentId) {
-        this.assignmentId = assignmentId;
+    public void setAssignmentName(String assignmentName) {
+        this.assignmentName = assignmentName;
     }
 
     public String getStatus() {
@@ -61,32 +63,35 @@ public class StudentEvaluation {
         this.submission = submission;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public int getMentorId() {
-        return mentorId;
+    public String getMentorName() {
+        return mentorName;
     }
 
-    public void setMentorId(int mentorId) {
-        this.mentorId = mentorId;
+    public String getMentorSurname() {
+        return mentorSurname;
     }
+
+
 
     @Override
     public String toString() {
         return "studentEvaluation{" +
-                "evaluationId=" + evaluationId +
-                ", studentId=" + studentId +
-                ", assignmentId=" + assignmentId +
-                ", status='" + status + '\'' +
-                ", submission='" + submission + '\'' +
-                ", date=" + date +
-                ", mentorId=" + mentorId +
+                "evaluationId=" + evaluationId + "\n" +
+                ", studentId=" + studentId +"\n" +
+                ", assignmentName=" + assignmentName +"\n" +
+                ", status='" + status + '\'' +"\n" +
+                ", submission='" + submission + '\'' +"\n" +
+                ", date=" + date +"\n" +
+                ", mentorId=" + mentorName +"\n" +
+                ", mentorId=" + mentorSurname +"\n" +
                 '}';
     }
 }

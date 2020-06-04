@@ -3,6 +3,7 @@ package com.m3w.controllers;
 import com.m3w.dao.StudentDao;
 import com.m3w.models.Assignment;
 import com.m3w.models.Student;
+import com.m3w.models.StudentEvaluation;
 import com.m3w.services.InputProvider;
 import com.m3w.view.DataPrinting;
 import com.m3w.view.MenuPrinting;
@@ -44,6 +45,7 @@ public class StudentController {
                     break;
                 case 3:
                     System.out.println("View my grades");
+                    viewGrades();
                     break;
                 case 0:
                     System.out.println("Back to previous menu");
@@ -53,6 +55,12 @@ public class StudentController {
                     break;
             }
         }
+    }
+
+    private void viewGrades() {
+        List<StudentEvaluation> studentsEvaluations;
+        studentsEvaluations = studentDao.viewStudentGrades(student.getId());
+        System.out.println(studentsEvaluations.toString());
     }
 
     private void viewAllAssignments() {
