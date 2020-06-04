@@ -11,10 +11,11 @@ import java.util.List;
 public class MentorDao extends ConnectionToDB {
 
 
-    List<Student> students = new ArrayList<>();
+
 
 
     public List<Student> getStudentsDetail() {
+        List<Student> students = new ArrayList<>();
         connect();
 
         try {

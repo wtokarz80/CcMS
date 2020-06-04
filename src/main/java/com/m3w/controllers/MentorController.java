@@ -1,9 +1,11 @@
 package com.m3w.controllers;
 
 import com.m3w.dao.MentorDao;
+import com.m3w.dao.StudentDao;
 import com.m3w.models.Attendance;
 import com.m3w.models.Mentor;
 import com.m3w.models.Student;
+import com.m3w.models.StudentEvaluation;
 import com.m3w.services.InputProvider;
 import com.m3w.view.MenuPrinting;
 
@@ -74,9 +76,11 @@ public class MentorController {
         mentorDao.createAssignment(newAssignment, description);
     }
 
+
     private void gradeAssignment() throws IOException {
         int mentorID = mentor.getId();
         int evaluationID = input.takeIntegerInput("Which evaluation do You want to grade? (via evaluation's ID) ");
+
         String pass = input.takeStringInput("Does student's assignment deserves passing? (y/n)");
         switch(pass) {
             case "y":
