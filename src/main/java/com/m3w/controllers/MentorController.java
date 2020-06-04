@@ -1,9 +1,11 @@
 package com.m3w.controllers;
 
 import com.m3w.dao.MentorDao;
+import com.m3w.dao.StudentDao;
 import com.m3w.models.Attendance;
 import com.m3w.models.Mentor;
 import com.m3w.models.Student;
+import com.m3w.models.StudentEvaluation;
 import com.m3w.services.InputProvider;
 import com.m3w.view.MenuPrinting;
 
@@ -51,6 +53,9 @@ public class MentorController {
                 case 7:
                     updateStudentData();
                     break;
+                case 8:
+                    viewAttendance();
+                    break;
                 case 0:
                     isRun = false;
 
@@ -59,7 +64,6 @@ public class MentorController {
     }
 
     public void getListOfStudents() {
-        MentorDao mentorDao = new MentorDao();
         List<Student> students = mentorDao.getStudentsDetail();
         for (Student s: students){
             System.out.println("[" + s.getId() +"]  "+ s.getName() +" "+ s.getSurname()  + "  |Phone number: " + s.getPhone() + " |E-mail: " + s.getEmail());
@@ -67,16 +71,16 @@ public class MentorController {
     }
 
     private void addAssignment() throws IOException {
-        MentorDao mentorDao = new MentorDao();
         String newAssignment = input.takeStringInput("Provide new assignment's name: ");
         String description = input.takeStringInput("Describe task for students: ");
         mentorDao.createAssignment(newAssignment, description);
     }
 
+
     private void gradeAssignment() throws IOException {
-        MentorDao mentorDao = new MentorDao();
         int mentorID = mentor.getId();
         int evaluationID = input.takeIntegerInput("Which evaluation do You want to grade? (via evaluation's ID) ");
+
         String pass = input.takeStringInput("Does student's assignment deserves passing? (y/n)");
         switch(pass) {
             case "y":
@@ -98,10 +102,10 @@ public class MentorController {
             String isPresent = input.takeStringInput("Is this student present? ");
             switch(isPresent){
                 case "y":
-                    mentorDao.fillAttendance(s.getId(), "present", stringDate);
+                    mentorDao.fillAttendance(s.getId(), 1, stringDate);
                     break;
                 case "n":
-                    mentorDao.fillAttendance(s.getId(), "absent", stringDate);
+                    mentorDao.fillAttendance(s.getId(), 0, stringDate);
                     break;
 
             }
@@ -109,19 +113,26 @@ public class MentorController {
 
     }
 
+    public void viewAttendance() throws IOException {
+        getListOfStudents();
+        int studentID = input.takeIntegerInput("Which student do You want see attendance? ");
+        List<Attendance> attendances = mentorDao.viewListStudentAttendance(studentID);
+        for (Attendance a: attendances){
+            System.out.println(a.getAttendanceID() + " |" + a.getStudentName() + " " + a.getStudentSurname() + " |Present status: " + a.getIsPresent() + " |Date: " + a.getDate());
+        }
+    }
+
     private void addStudent() throws IOException {
-            MentorDao mentorDao = new MentorDao();
             String newName = input.takeStringInput("Provide name of the new student: ");
             String newSurname = input.takeStringInput("Provide surname of the new student: ");
             int newPhone = input.takeIntegerInput("Provide phone number of new student: ");
             String newEmail = input.takeStringInput("Provide e-mail address of new student: ");
             String newPassword = input.takeStringInput("Provide his password: ");
 
-            mentorDao.createStudent(newName, newSurname, newPhone, newEmail, newPassword, "student");
+            mentorDao.createStudentDetails(newName, newSurname, newPhone, newEmail, newPassword, "student");
     }
 
    public void removeStudent() throws IOException {
-        MentorDao mentorDao = new MentorDao();
         getListOfStudents();
         String email = input.takeStringInput("Which student do You want to delete? (provide E-mail address)");
         mentorDao.deleteStudent(email);
@@ -129,7 +140,6 @@ public class MentorController {
     }
 
     private void updateStudentData() throws IOException {
-        MentorDao mentorDao = new MentorDao();
         getListOfStudents();
         String email = input.takeStringInput("Which student do You want to change details? (provide E-mail address) ");
         System.out.println("Which data do You want to change? " +
