@@ -36,12 +36,8 @@ public class ManagerController {
                     getListOfMentors();
                     break;
                 case 5:
-                    System.out.println("Mentors: ");
-                    Class c = Class.forName("com/m3w/controllers/MenuController");
-                    MentorController t = (MentorController)c.newInstance();
-                    Method m = c.getDeclaredMethod("getListOfStudents", null);
-                    m.setAccessible(true);
-                    m.invoke(t, null);
+                    MentorController mentorController = new MentorController();
+                    mentorController.getListOfStudents();
                     break;
 
 
