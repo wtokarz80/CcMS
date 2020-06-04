@@ -101,4 +101,15 @@ public class MentorDao extends ConnectionToDB {
             e.printStackTrace();
         }
     }
+
+    public void fillAttendance(int studentID, String isPresent, String date) {
+        connect();
+        try {
+            statement.executeUpdate("INSERT INTO attendance (student_id, is_present, date)" +
+                    String.format("VALUES (%d, '%s', '%s')",studentID, isPresent, date));
+            statement.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 }
