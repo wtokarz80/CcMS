@@ -27,7 +27,7 @@ public class ManagerController {
         boolean isRun = true;
         while (isRun) {
             menu.printManagerMenu();
-            int userChoice = input.takeIntegerInput("");
+            int userChoice = input.getNumberFromUser("");
             if(userChoice == 0) {
                 isRun = false;
             }

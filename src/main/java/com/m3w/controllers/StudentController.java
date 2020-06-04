@@ -30,7 +30,7 @@ public class StudentController {
         boolean isRunning  = true;
         while (isRunning) {
             menuPrinting.printStudentMenu();
-            int userChoice = inputProvider.takeIntegerInput("What do you want to do right now?\n");
+            int userChoice = inputProvider.getNumberFromUser("What do you want to do right now?\n");
             if(userChoice == 0) {
                 isRunning = false;
             }
