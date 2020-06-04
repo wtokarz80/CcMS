@@ -1,12 +1,15 @@
 package com.m3w.controllers;
 
 import com.m3w.dao.MentorDao;
+import com.m3w.models.Attendance;
 import com.m3w.models.Mentor;
 import com.m3w.models.Student;
 import com.m3w.services.InputProvider;
 import com.m3w.view.MenuPrinting;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class MentorController {
@@ -14,6 +17,7 @@ public class MentorController {
     MenuPrinting menu = new MenuPrinting();
     InputProvider input = new InputProvider();
     private final Mentor mentor;
+    MentorDao mentorDao = new MentorDao();
 
     public MentorController(Mentor mentor) {
         this.mentor = mentor;
@@ -84,8 +88,24 @@ public class MentorController {
         }
     }
 
-    private void checkAttendance() {
+    private void checkAttendance() throws IOException {
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String stringDate = date.format(formatter);
+        List<Student> students = mentorDao.getStudentsDetail();
+        for (Student s: students){
+            System.out.println(" |" +s.getName() + " |" + s.getSurname() +" |"+ s.getEmail());
+            String isPresent = input.takeStringInput("Is this student present? ");
+            switch(isPresent){
+                case "y":
+                    mentorDao.fillAttendance(s.getId(), "present", stringDate);
+                    break;
+                case "n":
+                    mentorDao.fillAttendance(s.getId(), "absent", stringDate);
+                    break;
 
+            }
+        }
 
     }
 
