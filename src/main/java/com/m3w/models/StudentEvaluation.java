@@ -12,7 +12,8 @@ public class StudentEvaluation {
    private String mentorName;
    private String mentorSurname;
 
-    public StudentEvaluation(int evaluationId, int studentId, String assignmentName, String status, String submission, String date, String mentorName, String mentorSurname) {
+    public StudentEvaluation(int evaluationId, int studentId, String assignmentName, String status, String submission,
+                             String date, String mentorName, String mentorSurname) {
         this.evaluationId = evaluationId;
         this.studentId = studentId;
         this.assignmentName = assignmentName;
@@ -83,15 +84,14 @@ public class StudentEvaluation {
 
     @Override
     public String toString() {
-        return "studentEvaluation{" +
-                "evaluationId=" + evaluationId + "\n" +
-                ", studentId=" + studentId +"\n" +
-                ", assignmentName=" + assignmentName +"\n" +
-                ", status='" + status + '\'' +"\n" +
-                ", submission='" + submission + '\'' +"\n" +
-                ", date=" + date +"\n" +
-                ", mentorId=" + mentorName +"\n" +
-                ", mentorId=" + mentorSurname +"\n" +
+        return "\nevaluationId: " + evaluationId + "\n" +
+                ", studentId: " + studentId +"\n" +
+                ", assignmentName: " + assignmentName +"\n" +
+                ", status: " + status + '\'' +"\n" +
+                ", submission: " + submission + '\'' +"\n" +
+                ", date of submission: " + date +"\n" +
+                ", mentorName: " + mentorName +"\n" +
+                ", mentorSurname: " + mentorSurname +"\n" +
                 '}';
     }
 }

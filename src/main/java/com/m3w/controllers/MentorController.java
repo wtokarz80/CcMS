@@ -30,7 +30,7 @@ public class MentorController {
         boolean isRun = true;
         while (isRun) {
             menu.printMentorMenu();
-            int userChoice = input.takeIntegerInput("");
+            int userChoice = input.getNumberFromUser("");
             switch (userChoice) {
                 case 1:
                     getListOfStudents();
