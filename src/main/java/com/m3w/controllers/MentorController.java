@@ -13,6 +13,12 @@ public class MentorController {
 
     MenuPrinting menu = new MenuPrinting();
     InputProvider input = new InputProvider();
+    private final Mentor mentor;
+
+    public MentorController(Mentor mentor) {
+        this.mentor = mentor;
+    }
+
 
     public void mentorMenu() throws IOException {
         boolean isRun = true;
@@ -65,8 +71,8 @@ public class MentorController {
 
     private void gradeAssignment() throws IOException {
         MentorDao mentorDao = new MentorDao();
-        int mentorID = 1;
-        int evaluationID = input.takeIntegerInput("Which assignment do You want to grade? (via Assignment's ID) ");
+        int mentorID = mentor.getId();
+        int evaluationID = input.takeIntegerInput("Which evaluation do You want to grade? (via evaluation's ID) ");
         String pass = input.takeStringInput("Does student's assignment deserves passing? (y/n)");
         switch(pass) {
             case "y":
@@ -79,6 +85,7 @@ public class MentorController {
     }
 
     private void checkAttendance() {
+
 
     }
 

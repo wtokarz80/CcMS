@@ -11,7 +11,7 @@ public class Mentor extends User{
 
     @Override
     public void displayMenuOptions() throws IOException {
-        MentorController mentorController = new MentorController();
+        MentorController mentorController = new MentorController(this);
         mentorController.mentorMenu();
     }
 }
