@@ -37,17 +37,5 @@ public class MenuController {
             dataPrinting.printString("\n\nThere is no user in database\n\n");
         }
         user.displayMenuOptions();
-
-//        if (user instanceof Student) {
-//            StudentController studentController = new StudentController();
-//            studentController.studentOptions();
-//        } else if (user instanceof Employee) {
-//            //EmployeeController employeeController = new StudentController();
-//        } else if (user instanceof Mentor) {
-//            MentorController mentorController = new MentorController();
-//            mentorController.mentorMenu();
-//        } else if (user instanceof Manager) {
-//            //ManagerController managerController = new ManagerController();
-//        }
     }
 }
