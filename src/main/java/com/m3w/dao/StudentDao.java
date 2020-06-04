@@ -57,7 +57,9 @@ public class StudentDao extends ConnectionToDB implements SelectAll, SubmitAssig
         List<StudentEvaluation> studentEvaluations = new ArrayList<>();
         connect();
         try{
-            ResultSet rs = statement.executeQuery( String.format("SELECT student_evaluation.evaluation_id, student_evaluation.student_id, assignment.assignment_name, student_evaluation.status, student_evaluation.submission, student_evaluation.date, user_details.name, user_details.surname\n" +
+            ResultSet rs = statement.executeQuery( String.format("SELECT student_evaluation.evaluation_id, student_evaluation.student_id," +
+                    " assignment.assignment_name, student_evaluation.status, student_evaluation.submission, student_evaluation.date," +
+                    " user_details.name, user_details.surname\n" +
                     "FROM student_evaluation\n" +
                     "INNER JOIN assignment ON student_evaluation.assignment_id = assignment.assignment_id\n" +
                     "INNER JOIN user_details ON student_evaluation.mentor_id = user_details.user_details_id\n" +
