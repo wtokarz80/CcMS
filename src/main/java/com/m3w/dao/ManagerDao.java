@@ -38,6 +38,7 @@ public class ManagerDao extends ConnectionToDB {
         return mentors;
     }
     public void createMentor(String name, String surname, int phone, String email, String password, String userType) {
+
         connect();
 
         try {
