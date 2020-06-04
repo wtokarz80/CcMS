@@ -51,6 +51,9 @@ public class MentorController {
                 case 7:
                     updateStudentData();
                     break;
+                case 8:
+                    viewAttendance();
+                    break;
                 case 0:
                     isRun = false;
 
@@ -98,15 +101,24 @@ public class MentorController {
             String isPresent = input.takeStringInput("Is this student present? ");
             switch(isPresent){
                 case "y":
-                    mentorDao.fillAttendance(s.getId(), "present", stringDate);
+                    mentorDao.fillAttendance(s.getId(), 1, stringDate);
                     break;
                 case "n":
-                    mentorDao.fillAttendance(s.getId(), "absent", stringDate);
+                    mentorDao.fillAttendance(s.getId(), 0, stringDate);
                     break;
 
             }
         }
 
+    }
+
+    public void viewAttendance() throws IOException {
+        getListOfStudents();
+        int studentID = input.takeIntegerInput("Which student do You want see attendance? ");
+        List<Attendance> attendances = mentorDao.viewListStudentAttendance(studentID);
+        for (Attendance a: attendances){
+            System.out.println(a.getAttendanceID() + " |" + a.getStudentName() + " " + a.getStudentSurname() + " |Present status: " + a.getIsPresent() + " |Date: " + a.getDate());
+        }
     }
 
     private void addStudent() throws IOException {
@@ -117,7 +129,7 @@ public class MentorController {
             String newEmail = input.takeStringInput("Provide e-mail address of new student: ");
             String newPassword = input.takeStringInput("Provide his password: ");
 
-            mentorDao.createStudent(newName, newSurname, newPhone, newEmail, newPassword, "student");
+            mentorDao.createStudentDetails(newName, newSurname, newPhone, newEmail, newPassword, "student");
     }
 
    public void removeStudent() throws IOException {

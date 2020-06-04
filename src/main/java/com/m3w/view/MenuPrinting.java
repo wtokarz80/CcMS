@@ -30,6 +30,7 @@ public class MenuPrinting {
                 + "5 - Add a student to a class\n"
                 + "6 - Remove a student from class\n"
                 + "7 - Edit student's data\n"
+                + "8 - View student's attendance \n"
                 + "0 - Back to previous menu\n");
     }
 

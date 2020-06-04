@@ -1,5 +1,6 @@
 package com.m3w.dao;
 
+import com.m3w.models.Attendance;
 import com.m3w.models.Student;
 
 import java.sql.ResultSet;
@@ -9,9 +10,11 @@ import java.util.List;
 
 public class MentorDao extends ConnectionToDB {
 
-    List<Student> students = new ArrayList<>();
-    public List<Student> getStudentsDetail() {
 
+    List<Student> students = new ArrayList<>();
+
+
+    public List<Student> getStudentsDetail() {
         connect();
 
         try {
@@ -37,7 +40,7 @@ public class MentorDao extends ConnectionToDB {
         return students;
     }
 
-    public void createStudent(String name, String surname, int phone, String email, String password, String userType) {
+    public void createStudentDetails(String name, String surname, int phone, String email, String password, String userType) {
         connect();
 
         try {
@@ -46,9 +49,11 @@ public class MentorDao extends ConnectionToDB {
                     String.format("VALUES ('%s', '%s', '%d', '%s', '%s', '%s')", name, surname, phone, email, password, userType));
             statement.close();
 
+
         } catch (SQLException e){
             e.printStackTrace();
         }
+
     }
 
     public void deleteStudent(String email){
@@ -102,14 +107,38 @@ public class MentorDao extends ConnectionToDB {
         }
     }
 
-    public void fillAttendance(int studentID, String isPresent, String date) {
+    public void fillAttendance(int studentID, int isPresent, String date) {
         connect();
         try {
             statement.executeUpdate("INSERT INTO attendance (student_id, is_present, date)" +
-                    String.format("VALUES (%d, '%s', '%s')",studentID, isPresent, date));
+                    String.format("VALUES (%d, '%d', '%s')",studentID, isPresent, date));
             statement.close();
         } catch (SQLException e){
             e.printStackTrace();
         }
+    }
+
+    public List<Attendance> viewListStudentAttendance(int chosenStudentID) {
+        List<Attendance> getAttendance = new ArrayList<>();
+            connect();
+            try {
+                ResultSet result = statement.executeQuery(String.format("SELECT * FROM attendance JOIN user_details ON attendance.student_id = user_details.user_details_id WHERE user_details_id = '%d'", chosenStudentID));
+                while (result.next()) {
+                    String name = result.getString("name");
+                    String surname = result.getString("surname");
+                    int attendanceID = result.getInt("attendance_id");
+                    int studentID = result.getInt("student_id");
+                    int isPresent = result.getInt("is_present");
+                    String date = result.getString("date");
+                    Attendance attendance = new Attendance(attendanceID, studentID, name, surname, isPresent, date);
+                    getAttendance.add(attendance);
+                }
+                result.close();
+                statement.close();
+            } catch (SQLException e){
+                e.printStackTrace();
+            }
+
+        return getAttendance;
     }
 }
