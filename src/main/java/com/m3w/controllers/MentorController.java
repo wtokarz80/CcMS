@@ -62,7 +62,6 @@ public class MentorController {
     }
 
     public void getListOfStudents() {
-        MentorDao mentorDao = new MentorDao();
         List<Student> students = mentorDao.getStudentsDetail();
         for (Student s: students){
             System.out.println("[" + s.getId() +"]  "+ s.getName() +" "+ s.getSurname()  + "  |Phone number: " + s.getPhone() + " |E-mail: " + s.getEmail());
@@ -70,14 +69,12 @@ public class MentorController {
     }
 
     private void addAssignment() throws IOException {
-        MentorDao mentorDao = new MentorDao();
         String newAssignment = input.takeStringInput("Provide new assignment's name: ");
         String description = input.takeStringInput("Describe task for students: ");
         mentorDao.createAssignment(newAssignment, description);
     }
 
     private void gradeAssignment() throws IOException {
-        MentorDao mentorDao = new MentorDao();
         int mentorID = mentor.getId();
         int evaluationID = input.takeIntegerInput("Which evaluation do You want to grade? (via evaluation's ID) ");
         String pass = input.takeStringInput("Does student's assignment deserves passing? (y/n)");
@@ -122,7 +119,6 @@ public class MentorController {
     }
 
     private void addStudent() throws IOException {
-            MentorDao mentorDao = new MentorDao();
             String newName = input.takeStringInput("Provide name of the new student: ");
             String newSurname = input.takeStringInput("Provide surname of the new student: ");
             int newPhone = input.takeIntegerInput("Provide phone number of new student: ");
@@ -133,7 +129,6 @@ public class MentorController {
     }
 
    public void removeStudent() throws IOException {
-        MentorDao mentorDao = new MentorDao();
         getListOfStudents();
         String email = input.takeStringInput("Which student do You want to delete? (provide E-mail address)");
         mentorDao.deleteStudent(email);
@@ -141,7 +136,6 @@ public class MentorController {
     }
 
     private void updateStudentData() throws IOException {
-        MentorDao mentorDao = new MentorDao();
         getListOfStudents();
         String email = input.takeStringInput("Which student do You want to change details? (provide E-mail address) ");
         System.out.println("Which data do You want to change? " +
