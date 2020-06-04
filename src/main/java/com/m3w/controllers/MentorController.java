@@ -48,7 +48,7 @@ public class MentorController {
         }
     }
 
-    private void getListOfStudents() {
+    public void getListOfStudents() {
         MentorDao mentorDao = new MentorDao();
         List<Student> students = mentorDao.getStudentsDetail();
         for (Student s: students){
