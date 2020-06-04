@@ -52,4 +52,34 @@ public class StudentDao extends ConnectionToDB implements SelectAll, SubmitAssig
             e.printStackTrace();
         }
     }
+
+    public List<StudentEvaluation> viewStudentGrades(int studentDetailId) {
+        List<StudentEvaluation> studentEvaluations = new ArrayList<>();
+        connect();
+        try{
+            ResultSet rs = statement.executeQuery( String.format("SELECT student_evaluation.evaluation_id, student_evaluation.student_id, assignment.assignment_name, student_evaluation.status, student_evaluation.submission, student_evaluation.date, user_details.name, user_details.surname\n" +
+                    "FROM student_evaluation\n" +
+                    "INNER JOIN assignment ON student_evaluation.assignment_id = assignment.assignment_id\n" +
+                    "INNER JOIN user_details ON student_evaluation.mentor_id = user_details.user_details_id\n" +
+                    "WHERE student_evaluation.student_id = %d;", studentDetailId) );
+            while ( rs.next() ) {
+                int evaluation_id = rs.getInt("evaluation_id");
+                int studentId = rs.getInt("student_id");
+                String assignmentName = rs.getString("assignment_name");
+                String status = rs.getString("status");
+                String submission = rs.getString("submission");
+                String date = rs.getString("date");
+                String mentorName = rs.getString("name");
+                String mentorSurname = rs.getString("surname");
+                studentEvaluation = new StudentEvaluation(evaluation_id, studentId, assignmentName, status, submission, date, mentorName, mentorSurname);
+                studentEvaluations.add(studentEvaluation);
+            }
+            rs.close();
+            statement.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return studentEvaluations;
+    }
 }

@@ -28,6 +28,9 @@ public class ManagerController {
         while (isRun) {
             menu.printManagerMenu();
             int userChoice = input.takeIntegerInput("");
+            if(userChoice == 0) {
+                isRun = false;
+            }
             switch (userChoice) {
                 case 1:
                     addMentor();
@@ -45,8 +48,11 @@ public class ManagerController {
                     MentorController mentorController = new MentorController((com.m3w.models.Mentor) Mentor);
                     mentorController.getListOfStudents();
                     break;
-
-
+                case 0:
+                    System.out.println("Back to previous menu");
+                    break;
+                default:
+                    break;
             }
         }
     }
@@ -54,10 +60,10 @@ public class ManagerController {
 
         private void addMentor() throws IOException {
             ManagerDao managerDao = new ManagerDao();
-            String newName = input.takeStringInput("Provide name of the new student: ");
-            String newSurname = input.takeStringInput("Provide surname of the new student: ");
-            int newPhone = input.takeIntegerInput("Provide phone number of new student: ");
-            String newEmail = input.takeStringInput("Provide e-mail address of new student: ");
+            String newName = input.takeStringInput("Provide name of the new mentor: ");
+            String newSurname = input.takeStringInput("Provide surname of the new mentor: ");
+            int newPhone = input.takeIntegerInput("Provide phone number of new mentor: ");
+            String newEmail = input.takeStringInput("Provide e-mail address of new mentor: ");
             String newPassword = input.takeStringInput("Provide his password: ");
 
             managerDao.createMentor(newName, newSurname, newPhone, newEmail, newPassword, "mentor");

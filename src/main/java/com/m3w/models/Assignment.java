@@ -38,10 +38,10 @@ public class Assignment {
 
     @Override
     public String toString() {
-        return "Assignment{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+        return "Assignment{" + "\n" +
+                "id=" + id + "\n" +
+                ", name='" + name + '\'' + "\n" +
                 ", description='" + description + '\'' +
-                '}';
+                '}' + "\n";
     }
 }
