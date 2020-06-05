@@ -1,62 +1,78 @@
 package com.m3w.view;
 
+import com.jakewharton.fliptables.FlipTable;
+import com.jakewharton.fliptables.FlipTableConverters;
+
 public class MenuPrinting {
 
     public void printMenu() {
-
-        System.out.println("Main menu:\n\n"
-
-                + "1 - log in\n"
-                + "0 - EXIT\n");
+        String[] headers = { "Num", "Option" };
+        String[][] data = {
+                { "1", "log in" },
+                { "0", "EXIT" },
+        };
+        System.out.println(FlipTable.of(headers, data));
     }
 
 
     public void printStudentMenu() {
-        System.out.println("StudentMenu: \n"
-
-                + "1 - View all assignments\n"
-                + "2 - Submit an assignment\n"
-                + "3 - View my grades\n"
-                + "0 - Back to previous menu\n");
+        String[] headers = { "Test", "Header" };
+        String[][] data = {
+                { "1", "View all assignments" },
+                { "2", "Submit an assignment" },
+                { "3", "View my grades" },
+                { "0", "Back to previous menu" },
+        };
+        System.out.println(FlipTable.of(headers, data));
     }
 
     public void printMentorMenu() {
-        System.out.println("MentorMenu: \n"
+        String[] headers = { "Num", "Option" };
+        String[][] data = {
+                { "1", "See a list of students" },
+                { "2", "Add an assignment" },
+                { "3", "Grade an assignment submitted by students" },
+                { "4", "Check attendance of students" },
+                { "5", "Add a student to a class" },
+                { "6", "Remove a student from class" },
+                { "7", "Edit student's data" },
+                { "8", "View student's attendance" },
+                { "0", "Back to previous menu" },
+        };
+        System.out.println(FlipTable.of(headers, data));
 
-                + "1 - See a list of students\n"
-                + "2 - Add an assignment\n"
-                + "3 - Grade an assignment submitted by students\n"
-                + "4 - Check attendance of students\n"
-                + "5 - Add a student to a class\n"
-                + "6 - Remove a student from class\n"
-                + "7 - Edit student's data\n"
-                + "8 - View student's attendance \n"
-                + "0 - Back to previous menu\n");
     }
 
     public void printEmployeeMenu() {
-        System.out.println("EmployeeMenu: \n"
-
-                + "1 - See a list of students\n"
-                + "0 - Back to previous menu\n");
+        String[] headers = { "Num", "Option" };
+        String[][] data = {
+                { "1", "See a list of students" },
+                { "2", "Back to previous menu" },
+        };
+        System.out.println(FlipTable.of(headers, data));
     }
 
     public void printManagerMenu() {
-        System.out.println("ManagerMenu: \n"
-
-                + "1 - Add a mentor\n"
-                + "2 - Remove a mentor\n"
-                + "3 - Edit mentor's data\n"
-                + "4 - See a list of mentors\n"
-                + "5 - See a list of students\n"
-                + "0 - Back to previous menu\n");
+        String[] headers = { "Num", "Option" };
+        String[][] data = {
+                { "1", "Add a mentor" },
+                { "2", "Remove a mentor" },
+                { "3", "Edit mentor's data" },
+                { "4", "See a list of mentors" },
+                { "5", "See a list of students" },
+                { "0", "Back to previous menu" },
+        };
+        System.out.println(FlipTable.of(headers, data));
     }
 
     public void printUpdateMentor(){
-        System.out.println("Which data do You want to change? " +
-                "\n[1] Name" +
-                "\n[2] Surname" +
-                "\n[3] Phone number" +
-                "\n[4] E-mail address");
+        String[] headers = { "Num", "Option" };
+        String[][] data = {
+                { "1", "Name" },
+                { "2", "Surname" },
+                { "3", "Phone number" },
+                { "4", "E-mail address" },
+        };
+        System.out.println(FlipTable.of(headers, data));
     }
 }

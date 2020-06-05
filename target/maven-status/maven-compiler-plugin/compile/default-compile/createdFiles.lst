@@ -4,8 +4,8 @@ com/m3w/controllers/MentorController.class
 com/m3w/models/StudentEvaluation.class
 com/m3w/view/DataPrinting.class
 com/m3w/dao/MentorDao.class
-com/m3w/models/Mentor.class
 com/m3w/services/InputProvider.class
+com/m3w/models/Mentor.class
 com/m3w/models/Manager.class
 com/m3w/interfaces/SelectUserInterface.class
 com/m3w/models/UserFactory.class
@@ -20,6 +20,5 @@ com/m3w/models/Attendance.class
 com/m3w/models/User.class
 com/m3w/view/MenuPrinting.class
 com/m3w/models/Student.class
-com/m3w/dao/ConnectionToDB.class
 com/m3w/dao/LoginDao.class
-com/m3w/interfaces/SelectAll.class
+com/m3w/dao/ConnectionToDB.class
