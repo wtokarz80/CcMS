@@ -16,6 +16,8 @@ public class ManagerController {
 
     MenuPrinting menu = new MenuPrinting();
     InputProvider input = new InputProvider();
+    ManagerDao managerDao = new ManagerDao();
+    MentorDao mentorDao = new MentorDao();
     private final Manager manager;
     private Object Mentor;
 
@@ -59,7 +61,6 @@ public class ManagerController {
 
 
         private void addMentor() throws IOException {
-            ManagerDao managerDao = new ManagerDao();
             String newName = input.takeStringInput("Provide name of the new mentor: ");
             String newSurname = input.takeStringInput("Provide surname of the new mentor: ");
             int newPhone = input.takeIntegerInput("Provide phone number of new mentor: ");
@@ -69,7 +70,6 @@ public class ManagerController {
             managerDao.createMentor(newName, newSurname, newPhone, newEmail, newPassword, "mentor");
         }
     public void removeMentor() throws IOException {
-        MentorDao mentorDao = new MentorDao();
         getListOfMentors();
         String email = input.takeStringInput("Which mentor do You want to delete? (provide E-mail address)");
         mentorDao.deleteStudent(email);
@@ -77,22 +77,15 @@ public class ManagerController {
     }
 
     private void getListOfMentors() {
-        ManagerDao managerDao = new ManagerDao();
         List<Mentor> mentors = managerDao.getMentorDetail();
         for (Mentor s: mentors){
             System.out.println("[" + s.getId() +"]  "+ s.getName() +" "+ s.getSurname()  + "  |Phone number: " + s.getPhone() + " |E-mail: " + s.getEmail());
         }
     }
     private void updateMentorData() throws IOException {
-        ManagerDao managerDao = new ManagerDao();
         getListOfMentors();
         String email = input.takeStringInput("Which mentor do You want to change details? (provide E-mail address) ");
-        System.out.println("Which data do You want to change? " +
-                "\n[1] Name" +
-                "\n[2] Surname" +
-                "\n[3] Phone number" +
-                "\n[4] E-mail address");
-
+        menu.printUpdateMentor();
         boolean isRunning = true;
         while (isRunning){
             int userChoice = input.takeIntegerInput("press '0' to exit: ");

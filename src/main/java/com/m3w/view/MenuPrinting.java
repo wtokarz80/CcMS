@@ -51,4 +51,12 @@ public class MenuPrinting {
                 + "5 - See a list of students\n"
                 + "0 - Back to previous menu\n");
     }
+
+    public void printUpdateMentor(){
+        System.out.println("Which data do You want to change? " +
+                "\n[1] Name" +
+                "\n[2] Surname" +
+                "\n[3] Phone number" +
+                "\n[4] E-mail address");
+    }
 }
