@@ -2,7 +2,7 @@ package com.m3w.interfaces;
 
 import java.util.List;
 
-public interface SelectAll {
+public interface ListAll {
 
     public List<?> selectAllObjects();
 }
