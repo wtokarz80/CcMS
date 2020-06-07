@@ -14,6 +14,5 @@ public class Student extends User{
     public void displayMenuOptions() throws IOException {
         StudentController studentController = new StudentController(this);
         studentController.studentOptions();
-
     }
 }

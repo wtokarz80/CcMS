@@ -4,7 +4,7 @@ public class MenuPrinting {
 
     public void printMenu() {
 
-        System.out.println("Main menu:\n\n"
+        System.out.println("\nMain menu:\n\n"
 
                 + "1 - log in\n"
                 + "0 - EXIT\n");
@@ -12,7 +12,7 @@ public class MenuPrinting {
 
 
     public void printStudentMenu() {
-        System.out.println("StudentMenu: \n"
+        System.out.println("\nStudentMenu: \n"
 
                 + "1 - View all assignments\n"
                 + "2 - Submit an assignment\n"
@@ -21,7 +21,7 @@ public class MenuPrinting {
     }
 
     public void printMentorMenu() {
-        System.out.println("MentorMenu: \n"
+        System.out.println("\nMentorMenu: \n"
 
                 + "1 - See a list of students\n"
                 + "2 - Add an assignment\n"
@@ -35,14 +35,14 @@ public class MenuPrinting {
     }
 
     public void printEmployeeMenu() {
-        System.out.println("EmployeeMenu: \n"
+        System.out.println("\nEmployeeMenu: \n"
 
                 + "1 - See a list of students\n"
                 + "0 - Back to previous menu\n");
     }
 
     public void printManagerMenu() {
-        System.out.println("ManagerMenu: \n"
+        System.out.println("\nManagerMenu: \n"
 
                 + "1 - Add a mentor\n"
                 + "2 - Remove a mentor\n"
@@ -53,7 +53,7 @@ public class MenuPrinting {
     }
 
     public void printUpdateMentor(){
-        System.out.println("Which data do You want to change? " +
+        System.out.println("\nWhich data do You want to change? " +
                 "\n[1] Name" +
                 "\n[2] Surname" +
                 "\n[3] Phone number" +

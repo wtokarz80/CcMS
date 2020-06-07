@@ -99,7 +99,7 @@ public class MentorController {
         List<Student> students = mentorDao.getStudentsDetail();
         for (Student s: students){
             System.out.println(" |" +s.getName() + " |" + s.getSurname() +" |"+ s.getEmail());
-            String isPresent = input.takeStringInput("Is this student present? ");
+            String isPresent = input.takeStringInput("Is this student present? (y/n) ");
             switch(isPresent){
                 case "y":
                     mentorDao.fillAttendance(s.getId(), 1, stringDate);
