@@ -139,7 +139,6 @@ public class MentorDao extends ConnectionToDB {
             } catch (SQLException e){
                 e.printStackTrace();
             }
-
         return getAttendance;
     }
 }

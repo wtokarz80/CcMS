@@ -9,14 +9,13 @@ import com.m3w.view.MenuPrinting;
 
 
 public class MenuController {
-    private InputProvider inputProvider = new InputProvider();
-    private MenuPrinting menuPrinting = new MenuPrinting();
-    private DataPrinting dataPrinting;
+    private final InputProvider inputProvider = new InputProvider();
+    private final MenuPrinting menuPrinting = new MenuPrinting();
+    private final DataPrinting dataPrinting = new DataPrinting();
     User user;
 
     public void mainMenu() throws Exception {
         menuPrinting.printMenu();
-//        int useOption = inputProvider.takeIntegerInput("Enter option: ");
         int userOption = inputProvider.getNumberFromUser("Enter option: ");
         switch (userOption){
             case 1:
@@ -31,12 +30,21 @@ public class MenuController {
 
     private void loginToSystem() throws Exception {
         LoginDao loginDao = new LoginDao();
-        String userEmail = inputProvider.takeStringInput("Enter e-mail: ");
-        String userPassword = inputProvider.takeStringInput("Enter password: ");
-        user = loginDao.selectUser(userEmail, userPassword);
-        if (user == null) {
-            dataPrinting.printString("\n\nThere is no user in database\n\n");
+        boolean validUser = false;
+        while (!validUser){
+            String userEmail = inputProvider.takeStringInput("Enter e-mail: ");
+            if (userEmail.equalsIgnoreCase("exit")){
+                break;
+            }
+            String userPassword = inputProvider.takeStringInput("Enter password: ");
+            System.out.println(userPassword);
+            user = loginDao.selectUser(userEmail, userPassword);
+            if (user == null) {
+                dataPrinting.printString("\n\nThere is no user in database, try again or EXIT (type 'exit').\n\n");
+            } else {
+                user.displayMenuOptions();
+                validUser = true;
+            }
         }
-        user.displayMenuOptions();
     }
 }

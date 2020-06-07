@@ -1,3 +1,33 @@
+<<<<<<< HEAD
+/home/dell/my-projects/java/CcMS2/src/main/java/com/m3w/dao/LoginDao.java
+/home/dell/my-projects/java/CcMS2/src/main/java/com/m3w/controllers/MenuController.java
+/home/dell/my-projects/java/CcMS2/src/main/java/com/m3w/models/StudentEvaluation.java
+/home/dell/my-projects/java/CcMS2/src/main/java/com/m3w/models/User.java
+/home/dell/my-projects/java/CcMS2/src/main/java/com/m3w/dao/StudentDao.java
+/home/dell/my-projects/java/CcMS2/src/main/java/com/m3w/dao/ConnectionToDB.java
+/home/dell/my-projects/java/CcMS2/src/main/java/com/m3w/models/Assignment.java
+/home/dell/my-projects/java/CcMS2/src/main/java/com/m3w/models/Mentor.java
+/home/dell/my-projects/java/CcMS2/src/main/java/com/m3w/view/DataPrinting.java
+/home/dell/my-projects/java/CcMS2/src/main/java/com/m3w/controllers/Application.java
+/home/dell/my-projects/java/CcMS2/src/main/java/com/m3w/services/InputProvider.java
+/home/dell/my-projects/java/CcMS2/src/main/java/com/m3w/dao/ManagerDao.java
+/home/dell/my-projects/java/CcMS2/src/main/java/com/m3w/models/UserFactory.java
+/home/dell/my-projects/java/CcMS2/src/main/java/com/m3w/interfaces/SelectUserInterface.java
+/home/dell/my-projects/java/CcMS2/src/main/java/com/m3w/view/MenuPrinting.java
+/home/dell/my-projects/java/CcMS2/src/main/java/com/m3w/dao/MentorDao.java
+/home/dell/my-projects/java/CcMS2/src/main/java/com/m3w/dao/EmployeeDAO.java
+/home/dell/my-projects/java/CcMS2/src/main/java/com/m3w/controllers/ManagerController.java
+/home/dell/my-projects/java/CcMS2/src/main/java/com/m3w/models/Employee.java
+/home/dell/my-projects/java/CcMS2/src/main/java/com/m3w/interfaces/SubmitAssignment.java
+/home/dell/my-projects/java/CcMS2/src/main/java/com/m3w/controllers/EmployeeController.java
+/home/dell/my-projects/java/CcMS2/src/main/java/com/m3w/models/Manager.java
+/home/dell/my-projects/java/CcMS2/src/main/java/com/m3w/models/Student.java
+/home/dell/my-projects/java/CcMS2/src/main/java/com/m3w/controllers/MentorController.java
+/home/dell/my-projects/java/CcMS2/src/main/java/com/m3w/controllers/StudentController.java
+/home/dell/my-projects/java/CcMS2/src/main/java/com/m3w/models/UserType.java
+/home/dell/my-projects/java/CcMS2/src/main/java/com/m3w/models/Attendance.java
+/home/dell/my-projects/java/CcMS2/src/main/java/com/m3w/interfaces/ListAll.java
+=======
 /home/mikolaj/IdeaProjects/CcMS/src/main/java/com/m3w/models/Manager.java
 /home/mikolaj/IdeaProjects/CcMS/src/main/java/com/m3w/controllers/ManagerController.java
 /home/mikolaj/IdeaProjects/CcMS/src/main/java/com/m3w/dao/MentorDao.java
@@ -26,3 +56,4 @@
 /home/mikolaj/IdeaProjects/CcMS/src/main/java/com/m3w/view/MenuPrinting.java
 /home/mikolaj/IdeaProjects/CcMS/src/main/java/com/m3w/dao/LoginDao.java
 /home/mikolaj/IdeaProjects/CcMS/src/main/java/com/m3w/models/Assignment.java
+>>>>>>> 4e12badd569e23a73d9d7728e67e628ab8451536

@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 public class InputProvider {
 
-    private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     public int takeIntegerInput(String messageForUser) throws IOException {
         System.out.print(messageForUser);
@@ -14,10 +14,17 @@ public class InputProvider {
     }
 
     public String takeStringInput(String messageForUser) throws IOException {
-        System.out.print(messageForUser);
-        return reader.readLine();
+        String input = "";
+        boolean validInput = false;
+        while(!validInput) {
+            System.out.println(messageForUser);
+            input = reader.readLine();
+            if (input.replaceAll("\\s+", "").length() > 0) {
+                validInput = true;
+            }
+        }
+        return input;
     }
-
 
     private String readNextLine(BufferedReader in) throws IOException{
         return in.readLine();
@@ -43,5 +50,6 @@ public class InputProvider {
             }
         }
     }
+
 
 }
