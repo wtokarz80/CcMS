@@ -24,7 +24,6 @@ public class EmployeeController {
     }
 
     public void employeeOptions() throws IOException {
-        dataPrinting.clearScreen();
         menuPrinting.printEmployeeMenu();
         int userChoice = inputProvider.getNumberFromUser("Enter option: ");
         dataPrinting.clearScreen();

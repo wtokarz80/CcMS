@@ -17,7 +17,7 @@ public class InputProvider {
         String input = "";
         boolean validInput = false;
         while(!validInput) {
-            System.out.println(messageForUser);
+            System.out.print(messageForUser);
             input = reader.readLine();
             if (input.replaceAll("\\s+", "").length() > 0) {
                 validInput = true;
