@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Scanner;
 
 public class StudentController {
 
@@ -31,6 +30,7 @@ public class StudentController {
         while (isRunning) {
             menuPrinting.printStudentMenu();
             int userChoice = inputProvider.getNumberFromUser("What do you want to do right now?\n");
+            dataPrinting.clearScreen();
             if(userChoice == 0) {
                 isRunning = false;
             }

@@ -45,10 +45,11 @@ public class MentorDao extends ConnectionToDB {
         connect();
 
         try {
-
+            connection.setAutoCommit(false);
             statement.executeUpdate("INSERT INTO user_details (name, surname, phone, email, password, user_type)" +
                     String.format("VALUES ('%s', '%s', '%d', '%s', '%s', '%s')", name, surname, phone, email, password, userType));
             statement.close();
+            connection.commit();
 
 
         } catch (SQLException e){
@@ -60,8 +61,10 @@ public class MentorDao extends ConnectionToDB {
     public void deleteStudent(String email){
         connect();
         try{
+            connection.setAutoCommit(false);
             statement.executeUpdate(String.format("DELETE FROM user_details WHERE email = '%s'", email));
             statement.close();
+            connection.commit();
         } catch (SQLException e){
             e.printStackTrace();
         }
@@ -70,8 +73,10 @@ public class MentorDao extends ConnectionToDB {
     public void updateStudentDataInt(String data, int futureData, String email) {
         connect();
         try {
+            connection.setAutoCommit(false);
             statement.executeUpdate(String.format("UPDATE user_details SET %s = '%d' WHERE email = '%s'", data, futureData, email));
             statement.close();
+            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -80,8 +85,10 @@ public class MentorDao extends ConnectionToDB {
     public void updateStudentDataString(String data, String futureData, String email) {
         connect();
         try {
+            connection.setAutoCommit(false);
             statement.executeUpdate(String.format("UPDATE user_details SET %s = '%s' WHERE email = '%s'", data, futureData, email));
             statement.close();
+            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -90,9 +97,11 @@ public class MentorDao extends ConnectionToDB {
     public void createAssignment(String newAssignment, String description) {
         connect();
         try {
+            connection.setAutoCommit(false);
             statement.executeUpdate("INSERT INTO assignment (assignment_name, description)" +
                     String.format("VALUES ('%s', '%s')", newAssignment, description));
             statement.close();
+            connection.commit();
         } catch (SQLException e){
             e.printStackTrace();
         }
@@ -101,8 +110,10 @@ public class MentorDao extends ConnectionToDB {
     public void evaluateStudent(int evaluationID, int mentorID, String status){
         connect();
         try {
+            connection.setAutoCommit(false);
             statement.executeUpdate(String.format("UPDATE student_evaluation SET mentor_id = '%d', status = '%s' WHERE evaluation_id = '%s'", mentorID, status, evaluationID));
             statement.close();
+            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -111,9 +122,11 @@ public class MentorDao extends ConnectionToDB {
     public void fillAttendance(int studentID, int isPresent, String date) {
         connect();
         try {
-            statement.executeUpdate("INSERT INTO attendance (student_id, is_present, date)" +
+            connection.setAutoCommit(false);
+            statement.executeUpdate("INSERT INTO attendance (user_id, is_present, date)" +
                     String.format("VALUES (%d, '%d', '%s')",studentID, isPresent, date));
             statement.close();
+            connection.commit();
         } catch (SQLException e){
             e.printStackTrace();
         }
@@ -123,12 +136,12 @@ public class MentorDao extends ConnectionToDB {
         List<Attendance> getAttendance = new ArrayList<>();
             connect();
             try {
-                ResultSet result = statement.executeQuery(String.format("SELECT * FROM attendance JOIN user_details ON attendance.student_id = user_details.user_details_id WHERE user_details_id = '%d'", chosenStudentID));
+                ResultSet result = statement.executeQuery(String.format("SELECT * FROM attendance JOIN user_details ON attendance.user_id = user_details.user_details_id WHERE user_details_id = '%d'", chosenStudentID));
                 while (result.next()) {
                     String name = result.getString("name");
                     String surname = result.getString("surname");
                     int attendanceID = result.getInt("attendance_id");
-                    int studentID = result.getInt("student_id");
+                    int studentID = result.getInt("user_id");
                     int isPresent = result.getInt("is_present");
                     String date = result.getString("date");
                     Attendance attendance = new Attendance(attendanceID, studentID, name, surname, isPresent, date);
