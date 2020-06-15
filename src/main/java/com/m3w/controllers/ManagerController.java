@@ -74,7 +74,7 @@ public class ManagerController {
         }
     public void removeMentor() throws IOException {
         getListOfMentors();
-        String email = input.takeStringInput("Which mentor do You want to delete? (provide E-mail address)");
+        String email = input.takeStringInput("Which mentor do You want to delete? (provide E-mail address): ");
         mentorDao.deleteStudent(email);
 
     }
@@ -87,26 +87,26 @@ public class ManagerController {
     }
     private void updateMentorData() throws IOException {
         getListOfMentors();
-        String email = input.takeStringInput("Which mentor do You want to change details? (provide E-mail address) ");
+        String email = input.takeStringInput("Which mentor do You want to change details? (provide E-mail address): ");
         menu.printUpdateMentor();
         boolean isRunning = true;
         while (isRunning){
             int userChoice = input.takeIntegerInput("press '0' to exit: ");
             switch(userChoice){
                 case 1:
-                    String newName = input.takeStringInput("Provide new name for the student: ");
+                    String newName = input.takeStringInput("Provide new name for the mentor: ");
                     managerDao.updateMentorDataString("name", newName, email);
                     break;
                 case 2:
-                    String newSurname = input.takeStringInput("Provide new surname for the student: ");
+                    String newSurname = input.takeStringInput("Provide new surname for the mentor: ");
                     managerDao.updateMentorDataString("surname", newSurname, email);
                     break;
                 case 3:
-                    int newPhone = input.takeIntegerInput("Provide student's new phone number: ");
+                    int newPhone = input.takeIntegerInput("Provide mentor's new phone number: ");
                     managerDao.updateMentorDataInt("phone", newPhone, email);
                     break;
                 case 4:
-                    String newEmail = input.takeStringInput("Provide student's new E-mail address:  ");
+                    String newEmail = input.takeStringInput("Provide mentor's new E-mail address:  ");
                     managerDao.updateMentorDataString("email", newEmail, email);
                     break;
                 case 0:
