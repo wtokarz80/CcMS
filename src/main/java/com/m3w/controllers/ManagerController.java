@@ -5,6 +5,7 @@ import com.m3w.dao.MentorDao;
 import com.m3w.models.Manager;
 import com.m3w.models.Mentor;
 import com.m3w.services.InputProvider;
+import com.m3w.view.DataPrinting;
 import com.m3w.view.MenuPrinting;
 import java.lang.reflect.Method;
 
@@ -14,10 +15,11 @@ import java.util.List;
 
 public class ManagerController {
 
-    MenuPrinting menu = new MenuPrinting();
-    InputProvider input = new InputProvider();
-    ManagerDao managerDao = new ManagerDao();
-    MentorDao mentorDao = new MentorDao();
+    private MenuPrinting menu = new MenuPrinting();
+    private InputProvider input = new InputProvider();
+    private ManagerDao managerDao = new ManagerDao();
+    private MentorDao mentorDao = new MentorDao();
+    private DataPrinting dataPrinting = new DataPrinting();
     private final Manager manager;
     private Object Mentor;
 
@@ -28,6 +30,7 @@ public class ManagerController {
     public void managerMenu() throws Exception {
         boolean isRun = true;
         while (isRun) {
+            dataPrinting.clearScreen();
             menu.printManagerMenu();
             int userChoice = input.getNumberFromUser("");
             if(userChoice == 0) {

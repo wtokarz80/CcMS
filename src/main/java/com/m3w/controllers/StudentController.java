@@ -29,6 +29,7 @@ public class StudentController {
     public void studentOptions() throws IOException {
         boolean isRunning  = true;
         while (isRunning) {
+            dataPrinting.clearScreen();
             menuPrinting.printStudentMenu();
             int userChoice = inputProvider.getNumberFromUser("What do you want to do right now?\n");
             if(userChoice == 0) {

@@ -7,6 +7,7 @@ import com.m3w.models.Mentor;
 import com.m3w.models.Student;
 import com.m3w.models.StudentEvaluation;
 import com.m3w.services.InputProvider;
+import com.m3w.view.DataPrinting;
 import com.m3w.view.MenuPrinting;
 
 import java.io.IOException;
@@ -16,10 +17,11 @@ import java.util.List;
 
 public class MentorController {
 
-    MenuPrinting menu = new MenuPrinting();
-    InputProvider input = new InputProvider();
+    private MenuPrinting menu = new MenuPrinting();
+    private InputProvider input = new InputProvider();
     private final Mentor mentor;
-    MentorDao mentorDao = new MentorDao();
+    private MentorDao mentorDao = new MentorDao();
+    private DataPrinting dataPrinting = new DataPrinting();
 
     public MentorController(Mentor mentor) {
         this.mentor = mentor;
@@ -29,6 +31,7 @@ public class MentorController {
     public void mentorMenu() throws IOException {
         boolean isRun = true;
         while (isRun) {
+            dataPrinting.clearScreen();
             menu.printMentorMenu();
             int userChoice = input.getNumberFromUser("");
             switch (userChoice) {
