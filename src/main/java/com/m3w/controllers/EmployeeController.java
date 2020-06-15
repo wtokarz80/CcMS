@@ -31,6 +31,7 @@ public class EmployeeController {
             case 1:
                 System.out.println("\nShow list of students\n");
                 showAllStudents();
+                employeeOptions();
                 break;
             case 0:
                 System.out.println("Back to previous menu");
