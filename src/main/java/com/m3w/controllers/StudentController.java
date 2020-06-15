@@ -29,9 +29,9 @@ public class StudentController {
     public void studentOptions() throws IOException {
         boolean isRunning  = true;
         while (isRunning) {
-            dataPrinting.clearScreen();
             menuPrinting.printStudentMenu();
             int userChoice = inputProvider.getNumberFromUser("What do you want to do right now?\n");
+            dataPrinting.clearScreen();
             if(userChoice == 0) {
                 isRunning = false;
             }

@@ -15,9 +15,9 @@ public class MenuController {
     private User user;
 
     public void mainMenu() throws Exception {
-        dataPrinting.clearScreen();
         menuPrinting.printMenu();
         int userOption = inputProvider.getNumberFromUser("Enter option: ");
+        dataPrinting.clearScreen();
         switch (userOption){
             case 1:
                 loginToSystem();

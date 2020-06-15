@@ -27,6 +27,7 @@ public class EmployeeController {
         dataPrinting.clearScreen();
         menuPrinting.printEmployeeMenu();
         int userChoice = inputProvider.getNumberFromUser("Enter option: ");
+        dataPrinting.clearScreen();
 
         switch (userChoice) {
             case 1:
@@ -44,7 +45,7 @@ public class EmployeeController {
 
 
     private void showAllStudents() {
-        List<Student> studentList = new ArrayList<>();
+        List<Student> studentList;
         studentList = employeeDAO.getStudentDetail();
         for (Student student : studentList){
             System.out.println("[" + student.getId() +"]  "+ student.getName() +" "+ student.getSurname()  + "  |Phone number: " + student.getPhone() + " |E-mail: " + student.getEmail());

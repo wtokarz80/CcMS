@@ -31,9 +31,9 @@ public class MentorController {
     public void mentorMenu() throws IOException {
         boolean isRun = true;
         while (isRun) {
-            dataPrinting.clearScreen();
             menu.printMentorMenu();
-            int userChoice = input.getNumberFromUser("");
+            int userChoice = input.getNumberFromUser("Enter option: ");
+            dataPrinting.clearScreen();
             switch (userChoice) {
                 case 1:
                     getListOfStudents();

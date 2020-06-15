@@ -30,9 +30,9 @@ public class ManagerController {
     public void managerMenu() throws Exception {
         boolean isRun = true;
         while (isRun) {
-            dataPrinting.clearScreen();
             menu.printManagerMenu();
-            int userChoice = input.getNumberFromUser("");
+            int userChoice = input.getNumberFromUser("Enter option: ");
+            dataPrinting.clearScreen();
             if(userChoice == 0) {
                 isRun = false;
             }
