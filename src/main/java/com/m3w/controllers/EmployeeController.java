@@ -34,7 +34,6 @@ public class EmployeeController {
                 employeeOptions();
                 break;
             case 0:
-                System.out.println("Back to previous menu");
                 break;
             default:
                 employeeOptions();
