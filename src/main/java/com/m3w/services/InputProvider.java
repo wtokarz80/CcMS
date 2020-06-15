@@ -46,10 +46,9 @@ public class InputProvider {
             } catch (IOException ex) {
                 System.err.println("could not acquire next line from system input: " + ex.getMessage());
             } catch (NumberFormatException ex) {
-                System.err.println("could not convert input string: " + ex.getMessage());
+//                System.err.println("could not convert input string: " + ex.getMessage());
+                System.err.println("Invalid input, please try again.");
             }
         }
     }
-
-
 }
