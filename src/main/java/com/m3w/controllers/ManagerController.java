@@ -6,9 +6,8 @@ import com.m3w.models.Manager;
 import com.m3w.models.Mentor;
 import com.m3w.models.Student;
 import com.m3w.services.InputProvider;
-import com.m3w.view.DataPrinting;
-import com.m3w.view.MenuPrinting;
-import java.lang.reflect.Method;
+import com.m3w.view.DataPrinter;
+import com.m3w.view.MenuPrinter;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,11 +15,11 @@ import java.util.List;
 
 public class ManagerController {
 
-    private MenuPrinting menu = new MenuPrinting();
+    private MenuPrinter menu = new MenuPrinter();
     private InputProvider input = new InputProvider();
     private ManagerDao managerDao = new ManagerDao();
     private MentorDao mentorDao = new MentorDao();
-    private DataPrinting dataPrinting = new DataPrinting();
+    private DataPrinter dataPrinter = new DataPrinter();
     private final Manager manager;
 
     public ManagerController(Manager manager) {
@@ -30,10 +29,10 @@ public class ManagerController {
     public void managerMenu() throws Exception {
         boolean isRun = true;
         while (isRun) {
-            dataPrinting.printLogInfo(manager);
+            dataPrinter.printLogInfo(manager);
             menu.printManagerMenu();
             int userChoice = input.getNumberFromUser("Enter option: ");
-            dataPrinting.clearScreen();
+            dataPrinter.clearScreen();
             switch (userChoice) {
                 case 1:
                     addMentor();
@@ -63,7 +62,7 @@ public class ManagerController {
         List<Student> studentList;
         studentList = mentorDao.getStudentsDetail();
         for (Student student : studentList){
-            dataPrinting.printUser(student);
+            dataPrinter.printUser(student);
         }
     }
 
@@ -86,7 +85,7 @@ public class ManagerController {
     private void getListOfMentors() {
         List<Mentor> mentors = managerDao.getMentorDetail();
         for (Mentor s: mentors){
-            dataPrinting.printUser(s);
+            dataPrinter.printUser(s);
         }
     }
     private void updateMentorData() throws IOException {
