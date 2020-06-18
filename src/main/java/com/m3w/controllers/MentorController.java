@@ -67,7 +67,7 @@ public class MentorController {
     }
 
     public void getListOfStudents() {
-        List<Student> students = mentorDao.selectAllUsers();
+        List<Student> students = mentorDao.selectAllObjects();
         for (Student s : students) {
             dataPrinter.printUser(s);
         }
@@ -101,7 +101,7 @@ public class MentorController {
         LocalDate date = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String stringDate = date.format(formatter);
-        List<Student> students = mentorDao.selectAllUsers();
+        List<Student> students = mentorDao.selectAllObjects();
         for (Student s : students) {
             System.out.println(" |" + s.getName() + " |" + s.getSurname() + " |" + s.getEmail());
             String isPresent = input.takeStringInput("Is this student present? (y/n) ").toLowerCase();
@@ -122,7 +122,7 @@ public class MentorController {
     public void viewAttendance() throws IOException {
         getListOfStudents();
         int studentID = input.getNumberFromUser("Which student do You want see attendance? (enter id): ");
-        List<Attendance> attendances = mentorDao.viewListStudentAttendance(studentID);
+        List<Attendance> attendances = mentorDao.viewById(studentID);
         for (Attendance a : attendances) {
             dataPrinter.printAttendance(a);
         }
@@ -134,13 +134,13 @@ public class MentorController {
         int newPhone = input.getNumberFromUser("Provide phone number of new student: ");
         String newEmail = input.takeStringInput("Provide e-mail address of new student: ");
         String newPassword = input.takeStringInput("Provide his password: ");
-        mentorDao.createStudentDetails(newName, newSurname, newPhone, newEmail, newPassword, "student");
+        mentorDao.createUserDetails(newName, newSurname, newPhone, newEmail, newPassword, "student");
     }
 
     public void removeStudent() throws IOException {
         getListOfStudents();
         String email = input.takeStringInput("Which student do You want to delete? (provide E-mail address): ");
-        mentorDao.deleteStudent(email);
+        mentorDao.removeUser(email);
 
     }
 
@@ -154,19 +154,19 @@ public class MentorController {
             switch (userChoice) {
                 case 1:
                     String newName = input.takeStringInput("Provide new name for the student: ");
-                    mentorDao.updateStudentDataString("name", newName, email);
+                    mentorDao.updateUserDataString("name", newName, email);
                     break;
                 case 2:
                     String newSurname = input.takeStringInput("Provide new surname for the student: ");
-                    mentorDao.updateStudentDataString("surname", newSurname, email);
+                    mentorDao.updateUserDataString("surname", newSurname, email);
                     break;
                 case 3:
                     int newPhone = input.getNumberFromUser("Provide student's new phone number: ");
-                    mentorDao.updateStudentDataInt("phone", newPhone, email);
+                    mentorDao.updateUserDataInt("phone", newPhone, email);
                     break;
                 case 4:
                     String newEmail = input.takeStringInput("Provide student's new E-mail address:  ");
-                    mentorDao.updateStudentDataString("email", newEmail, email);
+                    mentorDao.updateUserDataString("email", newEmail, email);
                     break;
                 case 0:
                     isRunning = false;

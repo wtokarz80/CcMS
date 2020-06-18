@@ -44,7 +44,7 @@ public class EmployeeController {
 
     private void showAllStudents() {
         List<Student> studentList;
-        studentList = employeeDAO.selectAllUsers();
+        studentList = employeeDAO.selectAllObjects();
         for (Student student : studentList){
             dataPrinter.printUser(student);
         }

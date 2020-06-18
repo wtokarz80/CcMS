@@ -60,7 +60,7 @@ public class ManagerController {
 
     private void getListOfStudents() {
         List<Student> studentList;
-        studentList = mentorDao.selectAllUsers();
+        studentList = mentorDao.selectAllObjects();
         for (Student student : studentList){
             dataPrinter.printUser(student);
         }
@@ -73,17 +73,17 @@ public class ManagerController {
             int newPhone = input.getNumberFromUser("Provide phone number of new mentor: ");
             String newEmail = input.takeStringInput("Provide e-mail address of new mentor: ");
             String newPassword = input.takeStringInput("Provide his password: ");
-            managerDao.createMentor(newName, newSurname, newPhone, newEmail, newPassword, "mentor");
+            managerDao.createUserDetails(newName, newSurname, newPhone, newEmail, newPassword, "mentor");
         }
     public void removeMentor() throws IOException {
         getListOfMentors();
         String email = input.takeStringInput("Which mentor do You want to delete? (provide E-mail address): ");
-        mentorDao.deleteStudent(email);
+        mentorDao.removeUser(email);
 
     }
 
     private void getListOfMentors() {
-        List<Mentor> mentors = managerDao.selectAllUsers();
+        List<Mentor> mentors = managerDao.selectAllObjects();
         for (Mentor s: mentors){
             dataPrinter.printUser(s);
         }
@@ -98,19 +98,19 @@ public class ManagerController {
             switch(userChoice){
                 case 1:
                     String newName = input.takeStringInput("Provide new name for the mentor: ");
-                    managerDao.updateMentorDataString("name", newName, email);
+                    managerDao.updateUserDataString("name", newName, email);
                     break;
                 case 2:
                     String newSurname = input.takeStringInput("Provide new surname for the mentor: ");
-                    managerDao.updateMentorDataString("surname", newSurname, email);
+                    managerDao.updateUserDataString("surname", newSurname, email);
                     break;
                 case 3:
                     int newPhone = input.getNumberFromUser("Provide mentor's new phone number: ");
-                    managerDao.updateMentorDataInt("phone", newPhone, email);
+                    managerDao.updateUserDataInt("phone", newPhone, email);
                     break;
                 case 4:
                     String newEmail = input.takeStringInput("Provide mentor's new E-mail address:  ");
-                    managerDao.updateMentorDataString("email", newEmail, email);
+                    managerDao.updateUserDataString("email", newEmail, email);
                     break;
                 case 0:
                     isRunning = false;

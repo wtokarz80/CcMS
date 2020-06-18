@@ -12,7 +12,7 @@ public class EmployeeDAO extends ConnectionToDB implements IEmployeeDAO {
 
 
     @Override
-    public List<Student> selectAllUsers() {
+    public List<Student> selectAllObjects() {
         connect();
         List<Student> students = new ArrayList<>();
         try {

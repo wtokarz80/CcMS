@@ -56,13 +56,13 @@ public class StudentController {
 
     private void viewGrades() {
         List<StudentEvaluation> studentsEvaluations;
-        studentsEvaluations = studentDao.viewStudentGrades(student.getId());
+        studentsEvaluations = studentDao.viewById(student.getId());
         dataPrinter.printString(studentsEvaluations.toString());
     }
 
     private void viewAllAssignments() {
         List<Assignment> assignments;
-        assignments = studentDao.selectAllUsers();
+        assignments = studentDao.selectAllObjects();
         dataPrinter.printString(assignments.toString());
     }
 

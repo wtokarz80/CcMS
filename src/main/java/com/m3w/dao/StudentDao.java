@@ -1,8 +1,6 @@
 package com.m3w.dao;
 
 import com.m3w.interfaces.IStudentDAO;
-import com.m3w.interfaces.Listable;
-import com.m3w.interfaces.SubmitAssignment;
 import com.m3w.models.Assignment;
 import com.m3w.models.StudentEvaluation;
 
@@ -17,7 +15,7 @@ public class StudentDao extends ConnectionToDB implements IStudentDAO {
     private StudentEvaluation studentEvaluation;
 
     @Override
-    public List<Assignment> selectAllUsers() {
+    public List<Assignment> selectAllObjects() {
 
         List<Assignment> assignments = new ArrayList<>();
         connect();
@@ -54,7 +52,8 @@ public class StudentDao extends ConnectionToDB implements IStudentDAO {
         }
     }
 
-    public List<StudentEvaluation> viewStudentGrades(int studentDetailId) {
+    @Override
+    public List<StudentEvaluation> viewById(int studentDetailId) {
         List<StudentEvaluation> studentEvaluations = new ArrayList<>();
         connect();
         try{
