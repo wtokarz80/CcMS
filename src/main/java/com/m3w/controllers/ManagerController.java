@@ -30,6 +30,7 @@ public class ManagerController {
     public void managerMenu() throws Exception {
         boolean isRun = true;
         while (isRun) {
+            dataPrinting.printLogInfo(manager);
             menu.printManagerMenu();
             int userChoice = input.getNumberFromUser("Enter option: ");
             dataPrinting.clearScreen();
@@ -51,7 +52,6 @@ public class ManagerController {
                     break;
                 case 0:
                     isRun = false;
-                    dataPrinting.printString("Back to previous menu");
                     break;
                 default:
                     break;
@@ -115,6 +115,8 @@ public class ManagerController {
                     break;
                 case 0:
                     isRunning = false;
+                default:
+                    break;
             }
 
         }

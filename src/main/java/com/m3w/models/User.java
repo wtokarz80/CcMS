@@ -1,7 +1,5 @@
 package com.m3w.models;
 
-import java.io.IOException;
-
 public abstract class User {
 
     private final int id;
@@ -11,7 +9,6 @@ public abstract class User {
     private final String name;
     private final String surname;
     private final String userType;
-    private final String ble = "ksjd";
 
     public User(int id, String name, String surname, int phone, String email, String password, String userType) {
         this.id = id;

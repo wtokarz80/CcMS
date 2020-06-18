@@ -20,7 +20,6 @@ public class ConnectionToDB {
                 connection = DriverManager.getConnection(CONNECTION_STRING);
             }
             this.statement = connection.createStatement();
-//            System.out.println("Connected");
         } catch (ClassNotFoundException e) {
             e.getStackTrace();
         } catch (SQLException e) {

@@ -10,10 +10,6 @@ import java.util.List;
 
 public class MentorDao extends ConnectionToDB {
 
-
-
-
-
     public List<Student> getStudentsDetail() {
         List<Student> students = new ArrayList<>();
         connect();
@@ -55,7 +51,6 @@ public class MentorDao extends ConnectionToDB {
         } catch (SQLException e){
             e.printStackTrace();
         }
-
     }
 
     public void deleteStudent(String email){

@@ -22,7 +22,7 @@ public class EmployeeController {
     }
 
     public void employeeOptions() {
-        dataPrinting.printUserName(employee);
+        dataPrinting.printLogInfo(employee);
         menuPrinting.printEmployeeMenu();
         int userChoice = inputProvider.getNumberFromUser("Enter option: ");
         dataPrinting.clearScreen();
