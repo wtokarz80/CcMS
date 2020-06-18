@@ -1,6 +1,6 @@
 package com.m3w.dao;
 
-import com.m3w.interfaces.Listable;
+import com.m3w.interfaces.IEmployeeDAO;
 import com.m3w.models.Student;
 
 import java.sql.ResultSet;
@@ -8,11 +8,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmployeeDAO extends ConnectionToDB implements Listable<Student> {
+public class EmployeeDAO extends ConnectionToDB implements IEmployeeDAO {
 
 
     @Override
-    public List<Student> selectAllUsers() {
+    public List<Student> selectAllObjects() {
         connect();
         List<Student> students = new ArrayList<>();
         try {

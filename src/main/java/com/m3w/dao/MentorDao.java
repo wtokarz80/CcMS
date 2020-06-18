@@ -1,5 +1,6 @@
 package com.m3w.dao;
 
+import com.m3w.interfaces.IMentorDAO;
 import com.m3w.models.Attendance;
 import com.m3w.models.Student;
 
@@ -8,9 +9,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MentorDao extends ConnectionToDB {
+public class MentorDao extends ConnectionToDB implements IMentorDAO {
 
-    public List<Student> getStudentsDetail() {
+    @Override
+    public List<Student> selectAllObjects() {
         List<Student> students = new ArrayList<>();
         connect();
 
@@ -37,7 +39,8 @@ public class MentorDao extends ConnectionToDB {
         return students;
     }
 
-    public void createStudentDetails(String name, String surname, int phone, String email, String password, String userType) {
+    @Override
+    public void createUserDetails(String name, String surname, int phone, String email, String password, String userType) {
         connect();
 
         try {
@@ -53,7 +56,8 @@ public class MentorDao extends ConnectionToDB {
         }
     }
 
-    public void deleteStudent(String email){
+    @Override
+    public void removeUser(String email){
         connect();
         try{
             connection.setAutoCommit(false);
@@ -65,7 +69,8 @@ public class MentorDao extends ConnectionToDB {
         }
     }
 
-    public void updateStudentDataInt(String data, int futureData, String email) {
+    @Override
+    public void updateUserDataInt(String data, int futureData, String email) {
         connect();
         try {
             connection.setAutoCommit(false);
@@ -77,7 +82,8 @@ public class MentorDao extends ConnectionToDB {
         }
     }
 
-    public void updateStudentDataString(String data, String futureData, String email) {
+    @Override
+    public void updateUserDataString(String data, String futureData, String email) {
         connect();
         try {
             connection.setAutoCommit(false);
@@ -89,6 +95,7 @@ public class MentorDao extends ConnectionToDB {
         }
     }
 
+    @Override
     public void createAssignment(String newAssignment, String description) {
         connect();
         try {
@@ -102,6 +109,7 @@ public class MentorDao extends ConnectionToDB {
         }
     }
 
+    @Override
     public void evaluateStudent(int evaluationID, int mentorID, String status){
         connect();
         try {
@@ -114,6 +122,7 @@ public class MentorDao extends ConnectionToDB {
         }
     }
 
+    @Override
     public void fillAttendance(int studentID, int isPresent, String date) {
         connect();
         try {
@@ -127,7 +136,8 @@ public class MentorDao extends ConnectionToDB {
         }
     }
 
-    public List<Attendance> viewListStudentAttendance(int chosenStudentID) {
+    @Override
+    public List<Attendance> viewById(int chosenStudentID) {
         List<Attendance> getAttendance = new ArrayList<>();
             connect();
             try {

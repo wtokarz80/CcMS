@@ -55,26 +55,25 @@ public class StudentController {
     }
 
     private void viewGrades() {
-        List<StudentEvaluation> studentsEvaluations = studentDao.viewStudentGrades(student.getId());
+        List<StudentEvaluation> studentsEvaluations = studentDao.viewById(student.getId());
         menuPrinter.printSpecificWindow(menuPrinter.printStudentMenu(), dataPrinter.viewGrades(studentsEvaluations));
     }
 
     private void viewAllAssignments() {
-        List<Assignment> assignments = studentDao.selectAllUsers();
+        List<Assignment> assignments = studentDao.selectAllObjects();
         menuPrinter.printSpecificWindow(menuPrinter.printStudentMenu(), dataPrinter.printAssigments(assignments));
-
     }
 
-    private void submitAssignment() throws IOException {
-        viewAllAssignments();
-        LocalDate date = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String stringDate = date.format(formatter);
-        int studentId = student.getId();
-        int assignmentId = inputProvider.getNumberFromUser("Enter Id of assignment you want to submit: ");
-        String submission = inputProvider.takeStringInput("Enter submission: ");
-        studentDao.submitAssignment(studentId, assignmentId, submission, stringDate);
+        private void submitAssignment () throws IOException {
+            viewAllAssignments();
+            LocalDate date = LocalDate.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String stringDate = date.format(formatter);
+            int studentId = student.getId();
+            int assignmentId = inputProvider.getNumberFromUser("Enter Id of assignment you want to submit: ");
+            String submission = inputProvider.takeStringInput("Enter submission: ");
+            studentDao.submitAssignment(studentId, assignmentId, submission, stringDate);
+
+        }
 
     }
-
-}

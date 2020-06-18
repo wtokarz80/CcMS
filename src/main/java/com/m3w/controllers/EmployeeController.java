@@ -43,9 +43,12 @@ public class EmployeeController {
     }
 
     private void showAllStudents() {
-        List<Student> studentList = new ArrayList<>();
+
+        List<Student> studentList =  employeeDAO.selectAllObjects();
         String listOfStudents = dataPrinter.printUsers(studentList);
         menuPrinter.printSpecificWindow(menuPrinter.printEmployeeMenu(), listOfStudents);
-    }
+
+        }
 
 }
+

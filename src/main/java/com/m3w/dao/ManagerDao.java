@@ -1,5 +1,6 @@
 package com.m3w.dao;
 
+import com.m3w.interfaces.IManagerDAO;
 import com.m3w.models.Mentor;
 
 import java.sql.ResultSet;
@@ -7,9 +8,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ManagerDao extends ConnectionToDB {
+public class ManagerDao extends ConnectionToDB implements IManagerDAO {
 
-    public List<Mentor> getMentorDetail() {
+    @Override
+    public List<Mentor> selectAllObjects() {
 
         List<Mentor> mentors = new ArrayList<>();
 
@@ -37,7 +39,8 @@ public class ManagerDao extends ConnectionToDB {
         return mentors;
     }
 
-    public void createMentor(String name, String surname, int phone, String email, String password, String userType) {
+    @Override
+    public void createUserDetails(String name, String surname, int phone, String email, String password, String userType) {
 
         connect();
 
@@ -53,7 +56,8 @@ public class ManagerDao extends ConnectionToDB {
         }
     }
 
-    public void updateMentorDataInt(String data, int futureData, String email) {
+    @Override
+    public void updateUserDataInt(String data, int futureData, String email) {
         connect();
         try {
             connection.setAutoCommit(false);
@@ -65,7 +69,8 @@ public class ManagerDao extends ConnectionToDB {
         }
     }
 
-    public void updateMentorDataString(String data, String futureData, String email) {
+    @Override
+    public void updateUserDataString(String data, String futureData, String email) {
         connect();
         try {
             connection.setAutoCommit(false);
