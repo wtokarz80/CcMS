@@ -1,5 +1,6 @@
 package com.m3w.dao;
 
+import com.m3w.interfaces.IManagerDAO;
 import com.m3w.models.Mentor;
 
 import java.sql.ResultSet;
@@ -7,9 +8,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ManagerDao extends ConnectionToDB {
+public class ManagerDao extends ConnectionToDB implements IManagerDAO {
 
-    public List<Mentor> getMentorDetail() {
+    @Override
+    public List<Mentor> selectAllUsers() {
 
         List<Mentor> mentors = new ArrayList<>();
 
