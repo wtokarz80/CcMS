@@ -7,6 +7,7 @@ import com.m3w.services.InputProvider;
 import com.m3w.view.DataPrinter;
 import com.m3w.view.MenuPrinter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeController {
@@ -23,7 +24,7 @@ public class EmployeeController {
 
     public void employeeOptions() {
         dataPrinter.printLogInfo(employee);
-        menuPrinter.printEmployeeMenu();
+        menuPrinter.printSpecificWindow(menuPrinter.printEmployeeMenu(), "                           ");
         int userChoice = inputProvider.getNumberFromUser("Enter option: ");
         dataPrinter.clearScreen();
 
@@ -41,12 +42,13 @@ public class EmployeeController {
         }
     }
 
-
     private void showAllStudents() {
-        List<Student> studentList;
-        studentList = employeeDAO.selectAllObjects();
-        for (Student student : studentList){
-            dataPrinter.printUser(student);
+
+        List<Student> studentList =  employeeDAO.selectAllObjects();
+        String listOfStudents = dataPrinter.printUsers(studentList);
+        menuPrinter.printSpecificWindow(menuPrinter.printEmployeeMenu(), listOfStudents);
+
         }
-    }
+
 }
+
