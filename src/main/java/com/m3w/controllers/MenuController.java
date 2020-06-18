@@ -12,11 +12,12 @@ public class MenuController {
     private final InputProvider inputProvider = new InputProvider();
     private final MenuPrinting menuPrinting = new MenuPrinting();
     private final DataPrinting dataPrinting = new DataPrinting();
-    User user;
+    private User user;
 
     public void mainMenu() throws Exception {
         menuPrinting.printMenu();
         int userOption = inputProvider.getNumberFromUser("Enter option: ");
+        dataPrinting.clearScreen();
         switch (userOption){
             case 1:
                 loginToSystem();

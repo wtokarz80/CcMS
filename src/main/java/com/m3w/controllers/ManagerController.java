@@ -5,6 +5,7 @@ import com.m3w.dao.MentorDao;
 import com.m3w.models.Manager;
 import com.m3w.models.Mentor;
 import com.m3w.services.InputProvider;
+import com.m3w.view.DataPrinting;
 import com.m3w.view.MenuPrinting;
 import java.lang.reflect.Method;
 
@@ -14,10 +15,11 @@ import java.util.List;
 
 public class ManagerController {
 
-    MenuPrinting menu = new MenuPrinting();
-    InputProvider input = new InputProvider();
-    ManagerDao managerDao = new ManagerDao();
-    MentorDao mentorDao = new MentorDao();
+    private MenuPrinting menu = new MenuPrinting();
+    private InputProvider input = new InputProvider();
+    private ManagerDao managerDao = new ManagerDao();
+    private MentorDao mentorDao = new MentorDao();
+    private DataPrinting dataPrinting = new DataPrinting();
     private final Manager manager;
     private Object Mentor;
 
@@ -29,7 +31,8 @@ public class ManagerController {
         boolean isRun = true;
         while (isRun) {
             menu.printManagerMenu();
-            int userChoice = input.getNumberFromUser("");
+            int userChoice = input.getNumberFromUser("Enter option: ");
+            dataPrinting.clearScreen();
             if(userChoice == 0) {
                 isRun = false;
             }
@@ -71,7 +74,7 @@ public class ManagerController {
         }
     public void removeMentor() throws IOException {
         getListOfMentors();
-        String email = input.takeStringInput("Which mentor do You want to delete? (provide E-mail address)");
+        String email = input.takeStringInput("Which mentor do You want to delete? (provide E-mail address): ");
         mentorDao.deleteStudent(email);
 
     }
@@ -84,26 +87,26 @@ public class ManagerController {
     }
     private void updateMentorData() throws IOException {
         getListOfMentors();
-        String email = input.takeStringInput("Which mentor do You want to change details? (provide E-mail address) ");
+        String email = input.takeStringInput("Which mentor do You want to change details? (provide E-mail address): ");
         menu.printUpdateMentor();
         boolean isRunning = true;
         while (isRunning){
             int userChoice = input.takeIntegerInput("press '0' to exit: ");
             switch(userChoice){
                 case 1:
-                    String newName = input.takeStringInput("Provide new name for the student: ");
+                    String newName = input.takeStringInput("Provide new name for the mentor: ");
                     managerDao.updateMentorDataString("name", newName, email);
                     break;
                 case 2:
-                    String newSurname = input.takeStringInput("Provide new surname for the student: ");
+                    String newSurname = input.takeStringInput("Provide new surname for the mentor: ");
                     managerDao.updateMentorDataString("surname", newSurname, email);
                     break;
                 case 3:
-                    int newPhone = input.takeIntegerInput("Provide student's new phone number: ");
+                    int newPhone = input.takeIntegerInput("Provide mentor's new phone number: ");
                     managerDao.updateMentorDataInt("phone", newPhone, email);
                     break;
                 case 4:
-                    String newEmail = input.takeStringInput("Provide student's new E-mail address:  ");
+                    String newEmail = input.takeStringInput("Provide mentor's new E-mail address:  ");
                     managerDao.updateMentorDataString("email", newEmail, email);
                     break;
                 case 0:

@@ -7,6 +7,7 @@ import com.m3w.models.Mentor;
 import com.m3w.models.Student;
 import com.m3w.models.StudentEvaluation;
 import com.m3w.services.InputProvider;
+import com.m3w.view.DataPrinting;
 import com.m3w.view.MenuPrinting;
 
 import java.io.IOException;
@@ -16,10 +17,11 @@ import java.util.List;
 
 public class MentorController {
 
-    MenuPrinting menu = new MenuPrinting();
-    InputProvider input = new InputProvider();
+    private MenuPrinting menu = new MenuPrinting();
+    private InputProvider input = new InputProvider();
     private final Mentor mentor;
-    MentorDao mentorDao = new MentorDao();
+    private MentorDao mentorDao = new MentorDao();
+    private DataPrinting dataPrinting = new DataPrinting();
 
     public MentorController(Mentor mentor) {
         this.mentor = mentor;
@@ -30,7 +32,8 @@ public class MentorController {
         boolean isRun = true;
         while (isRun) {
             menu.printMentorMenu();
-            int userChoice = input.getNumberFromUser("");
+            int userChoice = input.getNumberFromUser("Enter option: ");
+            dataPrinting.clearScreen();
             switch (userChoice) {
                 case 1:
                     getListOfStudents();
@@ -115,7 +118,7 @@ public class MentorController {
 
     public void viewAttendance() throws IOException {
         getListOfStudents();
-        int studentID = input.takeIntegerInput("Which student do You want see attendance? ");
+        int studentID = input.takeIntegerInput("Which student do You want see attendance? (enter id): ");
         List<Attendance> attendances = mentorDao.viewListStudentAttendance(studentID);
         for (Attendance a: attendances){
             System.out.println(a.getAttendanceID() + " |" + a.getStudentName() + " " + a.getStudentSurname() + " |Present status: " + a.getIsPresent() + " |Date: " + a.getDate());
@@ -134,14 +137,14 @@ public class MentorController {
 
    public void removeStudent() throws IOException {
         getListOfStudents();
-        String email = input.takeStringInput("Which student do You want to delete? (provide E-mail address)");
+        String email = input.takeStringInput("Which student do You want to delete? (provide E-mail address): ");
         mentorDao.deleteStudent(email);
 
     }
 
     private void updateStudentData() throws IOException {
         getListOfStudents();
-        String email = input.takeStringInput("Which student do You want to change details? (provide E-mail address) ");
+        String email = input.takeStringInput("Which student details you want to change? (provide E-mail address): ");
         System.out.println("Which data do You want to change? " +
                 "\n[1] Name" +
                 "\n[2] Surname" +

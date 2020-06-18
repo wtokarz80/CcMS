@@ -26,14 +26,15 @@ public class EmployeeController {
     public void employeeOptions() throws IOException {
         menuPrinting.printEmployeeMenu();
         int userChoice = inputProvider.getNumberFromUser("Enter option: ");
+        dataPrinting.clearScreen();
 
         switch (userChoice) {
             case 1:
                 System.out.println("\nShow list of students\n");
                 showAllStudents();
+                employeeOptions();
                 break;
             case 0:
-                System.out.println("Back to previous menu");
                 break;
             default:
                 employeeOptions();
@@ -43,7 +44,7 @@ public class EmployeeController {
 
 
     private void showAllStudents() {
-        List<Student> studentList = new ArrayList<>();
+        List<Student> studentList;
         studentList = employeeDAO.getStudentDetail();
         for (Student student : studentList){
             System.out.println("[" + student.getId() +"]  "+ student.getName() +" "+ student.getSurname()  + "  |Phone number: " + student.getPhone() + " |E-mail: " + student.getEmail());

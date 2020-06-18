@@ -42,10 +42,11 @@ public class ManagerDao extends ConnectionToDB {
         connect();
 
         try {
-
+            connection.setAutoCommit(false);
             statement.executeUpdate("INSERT INTO user_details (name, surname, phone, email, password, user_type)" +
                     String.format("VALUES ('%s', '%s', '%d', '%s', '%s', '%s')", name, surname, phone, email, password, userType));
             statement.close();
+            connection.commit();
 
         } catch (SQLException e){
             e.printStackTrace();
@@ -54,8 +55,10 @@ public class ManagerDao extends ConnectionToDB {
     public void updateMentorDataInt(String data, int futureData, String email) {
         connect();
         try {
+            connection.setAutoCommit(false);
             statement.executeUpdate(String.format("UPDATE user_details SET %s = '%d' WHERE email = '%s'", data, futureData, email));
             statement.close();
+            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -63,8 +66,10 @@ public class ManagerDao extends ConnectionToDB {
     public void updateMentorDataString(String data, String futureData, String email) {
         connect();
         try {
+            connection.setAutoCommit(false);
             statement.executeUpdate(String.format("UPDATE user_details SET %s = '%s' WHERE email = '%s'", data, futureData, email));
             statement.close();
+            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }

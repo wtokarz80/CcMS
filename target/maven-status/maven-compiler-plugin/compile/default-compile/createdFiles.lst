@@ -1,27 +1,24 @@
 com/m3w/interfaces/SubmitAssignment.class
 com/m3w/models/Employee.class
 com/m3w/controllers/MentorController.class
-com/m3w/view/DataPrinting.class
 com/m3w/models/StudentEvaluation.class
+com/m3w/view/DataPrinting.class
 com/m3w/dao/MentorDao.class
-com/m3w/services/InputProvider.class
 com/m3w/models/Mentor.class
+com/m3w/services/InputProvider.class
 com/m3w/models/Manager.class
 com/m3w/interfaces/SelectUserInterface.class
 com/m3w/models/UserFactory.class
 com/m3w/models/UserType.class
 com/m3w/controllers/MenuController.class
 com/m3w/controllers/Application.class
-com/m3w/controllers/StudentController.class
 com/m3w/models/Assignment.class
+com/m3w/controllers/StudentController.class
 com/m3w/dao/StudentDao.class
 com/m3w/models/UserFactory$1.class
 com/m3w/models/Attendance.class
 com/m3w/models/User.class
 com/m3w/view/MenuPrinting.class
 com/m3w/models/Student.class
-com/m3w/dao/LoginDao.class
-<<<<<<< HEAD
-=======
 com/m3w/dao/ConnectionToDB.class
->>>>>>> 4e12badd569e23a73d9d7728e67e628ab8451536
+com/m3w/dao/LoginDao.class

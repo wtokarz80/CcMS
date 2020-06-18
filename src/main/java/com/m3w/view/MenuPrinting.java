@@ -1,12 +1,11 @@
 package com.m3w.view;
 
 import com.jakewharton.fliptables.FlipTable;
-import com.jakewharton.fliptables.FlipTableConverters;
 
 public class MenuPrinting {
 
     public void printMenu() {
-        String[] headers = { "Num", "Option" };
+        String[] headers = { "Number", "Option" };
         String[][] data = {
                 { "1", "log in" },
                 { "0", "EXIT" },
@@ -16,7 +15,7 @@ public class MenuPrinting {
 
 
     public void printStudentMenu() {
-        String[] headers = { "Test", "Header" };
+        String[] headers = { "Number", "Option" };
         String[][] data = {
                 { "1", "View all assignments" },
                 { "2", "Submit an assignment" },
@@ -27,7 +26,7 @@ public class MenuPrinting {
     }
 
     public void printMentorMenu() {
-        String[] headers = { "Num", "Option" };
+        String[] headers = { "Number", "Option" };
         String[][] data = {
                 { "1", "See a list of students" },
                 { "2", "Add an assignment" },
@@ -44,16 +43,16 @@ public class MenuPrinting {
     }
 
     public void printEmployeeMenu() {
-        String[] headers = { "Num", "Option" };
+        String[] headers = { "Number", "Option" };
         String[][] data = {
                 { "1", "See a list of students" },
-                { "2", "Back to previous menu" },
+                { "0", "Back to previous menu" },
         };
         System.out.println(FlipTable.of(headers, data));
     }
 
     public void printManagerMenu() {
-        String[] headers = { "Num", "Option" };
+        String[] headers = { "Number", "Option" };
         String[][] data = {
                 { "1", "Add a mentor" },
                 { "2", "Remove a mentor" },
@@ -66,7 +65,7 @@ public class MenuPrinting {
     }
 
     public void printUpdateMentor(){
-        String[] headers = { "Num", "Option" };
+        String[] headers = { "Number", "Option" };
         String[][] data = {
                 { "1", "Name" },
                 { "2", "Surname" },
