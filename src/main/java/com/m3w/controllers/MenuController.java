@@ -1,21 +1,20 @@
 package com.m3w.controllers;
 
-import com.m3w.dao.LoginDao;
+import com.m3w.dao.LoginDAO;
 import com.m3w.models.*;
 import com.m3w.services.InputProvider;
+import com.m3w.services.ToolsCreator;
 import com.m3w.view.DataPrinter;
 import com.m3w.view.MenuPrinter;
 
 public class MenuController {
-    private final InputProvider inputProvider = new InputProvider();
-    private final MenuPrinter menuPrinter = new MenuPrinter();
-    private final DataPrinter dataPrinter = new DataPrinter();
+    final ToolsCreator toolsCreator = new ToolsCreator();
     private User user;
 
     public void mainMenu() throws Exception {
-        menuPrinter.printMenu();
-        int userOption = inputProvider.getNumberFromUser("Enter option: ");
-        dataPrinter.clearScreen();
+        toolsCreator.getMenuPrinter().printMenu();
+        int userOption = toolsCreator.getInputProvider().getNumberFromUser("Enter option: ");
+        toolsCreator.getDataPrinter().clearScreen();
         switch (userOption){
             case 1:
                 loginToSystem();
@@ -30,19 +29,19 @@ public class MenuController {
     }
 
     private void loginToSystem() throws Exception {
-        LoginDao loginDao = new LoginDao();
+        LoginDAO loginDao = new LoginDAO();
         boolean validUser = false;
         while (!validUser){
-            String userEmail = inputProvider.takeStringInput("Enter e-mail: ");
+            String userEmail = toolsCreator.getInputProvider().takeStringInput("Enter e-mail: ");
             if (userEmail.equalsIgnoreCase("exit")){
                 break;
             }
-            String userPassword = inputProvider.takeStringInput("Enter password: ");
+            String userPassword = toolsCreator.getInputProvider().takeStringInput("Enter password: ");
             user = loginDao.selectUser(userEmail, userPassword);
             if (user == null) {
-                dataPrinter.printString("\n\nThere is no user in database, try again or EXIT (type 'exit').\n\n");
+                toolsCreator.getDataPrinter().printString("\n\nThere is no user in database, try again or EXIT (type 'exit').\n\n");
             } else {
-                user.displayMenuOptions();
+                user.displayMenuOptions(toolsCreator);
                 validUser = true;
             }
         }

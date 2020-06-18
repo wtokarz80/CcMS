@@ -1,11 +1,14 @@
 package com.m3w.controllers;
 
-import com.m3w.dao.ManagerDao;
-import com.m3w.dao.MentorDao;
+import com.m3w.dao.ManagerDAO;
+import com.m3w.dao.MentorDAO;
+import com.m3w.interfaces.IManagerDAO;
+import com.m3w.interfaces.IMentorDAO;
 import com.m3w.models.Manager;
 import com.m3w.models.Mentor;
 import com.m3w.models.Student;
 import com.m3w.services.InputProvider;
+import com.m3w.services.ToolsCreator;
 import com.m3w.view.DataPrinter;
 import com.m3w.view.MenuPrinter;
 
@@ -15,16 +18,20 @@ import java.util.List;
 
 public class ManagerController {
 
-    private MenuPrinter menu = new MenuPrinter();
-    private InputProvider input = new InputProvider();
-    private ManagerDao managerDao = new ManagerDao();
-    private MentorDao mentorDao = new MentorDao();
-    private DataPrinter dataPrinter = new DataPrinter();
+    private MenuPrinter menu;
+    private InputProvider input;
+    private DataPrinter dataPrinter;
+    private IManagerDAO managerDao = new ManagerDAO();
+    private IMentorDAO mentorDao = new MentorDAO();
     private final Manager manager;
-    private final String managerMenu = menu.printMentorMenu();
+    private final String managerMenu;
 
-    public ManagerController(Manager manager) {
+    public ManagerController(Manager manager, ToolsCreator toolsCreator) {
         this.manager = manager;
+        this.menu = toolsCreator.getMenuPrinter();
+        this.input = toolsCreator.getInputProvider();
+        this.dataPrinter = toolsCreator.getDataPrinter();
+        this.managerMenu = menu.printMentorMenu();
     }
 
     public void managerMenu() throws Exception {
@@ -61,7 +68,7 @@ public class ManagerController {
     }
 
 
-    public void getListOfStudents() throws IOException {
+    public void getListOfStudents() {
         List<Student> students = mentorDao.selectAllObjects();
         String listOfStudents = dataPrinter.printUsers(students);
         menu.printSpecificWindow(managerMenu, listOfStudents);

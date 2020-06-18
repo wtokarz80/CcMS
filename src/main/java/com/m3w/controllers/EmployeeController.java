@@ -1,25 +1,29 @@
 package com.m3w.controllers;
 
 import com.m3w.dao.EmployeeDAO;
+import com.m3w.interfaces.IEmployeeDAO;
 import com.m3w.models.Employee;
 import com.m3w.models.Student;
 import com.m3w.services.InputProvider;
+import com.m3w.services.ToolsCreator;
 import com.m3w.view.DataPrinter;
 import com.m3w.view.MenuPrinter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeController {
 
-    private InputProvider inputProvider = new InputProvider();
-    private MenuPrinter menuPrinter = new MenuPrinter();
-    private DataPrinter dataPrinter = new DataPrinter();
-    private EmployeeDAO employeeDAO = new EmployeeDAO();
+    private InputProvider inputProvider;
+    private MenuPrinter menuPrinter;
+    private DataPrinter dataPrinter;
+    private IEmployeeDAO employeeDAO = new EmployeeDAO();
     private Employee employee;
 
-    public EmployeeController(Employee employee) {
+    public EmployeeController(Employee employee, ToolsCreator toolsCreator) {
         this.employee = employee;
+        this.inputProvider = toolsCreator.getInputProvider();
+        this.menuPrinter = toolsCreator.getMenuPrinter();
+        this.dataPrinter = toolsCreator.getDataPrinter();
     }
 
     public void employeeOptions() {

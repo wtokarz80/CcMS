@@ -1,6 +1,7 @@
 package com.m3w.models;
 
 import com.m3w.controllers.StudentController;
+import com.m3w.services.ToolsCreator;
 
 import java.io.IOException;
 
@@ -13,8 +14,8 @@ public class Student extends User{
 
 
     @Override
-    public void displayMenuOptions() throws IOException {
-        StudentController studentController = new StudentController(this);
+    public void displayMenuOptions(ToolsCreator toolsCreator) throws IOException {
+        StudentController studentController = new StudentController(this, toolsCreator);
         studentController.studentOptions();
     }
 }
