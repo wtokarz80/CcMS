@@ -122,6 +122,7 @@ public class MentorDao extends ConnectionToDB implements IMentorDAO {
         }
     }
 
+    @Override
     public void fillAttendance(int studentID, int isPresent, String date) {
         connect();
         try {
@@ -135,7 +136,8 @@ public class MentorDao extends ConnectionToDB implements IMentorDAO {
         }
     }
 
-    public List<Attendance> viewListStudentAttendance(int chosenStudentID) {
+    @Override
+    public List<Attendance> viewById(int chosenStudentID) {
         List<Attendance> getAttendance = new ArrayList<>();
             connect();
             try {

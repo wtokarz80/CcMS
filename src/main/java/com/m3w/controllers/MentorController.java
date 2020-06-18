@@ -122,7 +122,7 @@ public class MentorController {
     public void viewAttendance() throws IOException {
         getListOfStudents();
         int studentID = input.getNumberFromUser("Which student do You want see attendance? (enter id): ");
-        List<Attendance> attendances = mentorDao.viewListStudentAttendance(studentID);
+        List<Attendance> attendances = mentorDao.viewById(studentID);
         for (Attendance a : attendances) {
             dataPrinter.printAttendance(a);
         }

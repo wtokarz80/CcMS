@@ -53,7 +53,7 @@ public class StudentDao extends ConnectionToDB implements IStudentDAO {
     }
 
     @Override
-    public List<StudentEvaluation> viewStudentGrades(int studentDetailId) {
+    public List<StudentEvaluation> viewById(int studentDetailId) {
         List<StudentEvaluation> studentEvaluations = new ArrayList<>();
         connect();
         try{
