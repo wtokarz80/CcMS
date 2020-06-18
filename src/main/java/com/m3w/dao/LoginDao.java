@@ -12,11 +12,10 @@ import com.m3w.interfaces.*;
 
 public class LoginDao extends ConnectionToDB implements SelectUserInterface {
 
-    private User user;
     private final UserFactory userFactory = new UserFactory();
 
     @Override
-    public User selectUser(String userEmail, String userPassword) throws IOException {
+    public User selectUser(String userEmail, String userPassword) {
         try{
             connect();
             connection.setAutoCommit(false);

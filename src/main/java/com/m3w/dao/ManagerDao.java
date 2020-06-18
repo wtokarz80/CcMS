@@ -1,7 +1,6 @@
 package com.m3w.dao;
 
 import com.m3w.models.Mentor;
-import com.m3w.models.Student;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,8 +9,9 @@ import java.util.List;
 
 public class ManagerDao extends ConnectionToDB {
 
-    List<Mentor> mentors = new ArrayList<>();
     public List<Mentor> getMentorDetail() {
+
+        List<Mentor> mentors = new ArrayList<>();
 
         connect();
 
@@ -34,9 +34,9 @@ public class ManagerDao extends ConnectionToDB {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return mentors;
     }
+
     public void createMentor(String name, String surname, int phone, String email, String password, String userType) {
 
         connect();
@@ -52,6 +52,7 @@ public class ManagerDao extends ConnectionToDB {
             e.printStackTrace();
         }
     }
+
     public void updateMentorDataInt(String data, int futureData, String email) {
         connect();
         try {
@@ -63,6 +64,7 @@ public class ManagerDao extends ConnectionToDB {
             e.printStackTrace();
         }
     }
+
     public void updateMentorDataString(String data, String futureData, String email) {
         connect();
         try {
@@ -74,5 +76,4 @@ public class ManagerDao extends ConnectionToDB {
             e.printStackTrace();
         }
     }
-
 }

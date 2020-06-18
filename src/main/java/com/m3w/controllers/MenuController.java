@@ -6,8 +6,6 @@ import com.m3w.services.InputProvider;
 import com.m3w.view.DataPrinting;
 import com.m3w.view.MenuPrinting;
 
-
-
 public class MenuController {
     private final InputProvider inputProvider = new InputProvider();
     private final MenuPrinting menuPrinting = new MenuPrinting();
@@ -22,10 +20,12 @@ public class MenuController {
             case 1:
                 loginToSystem();
                 mainMenu();
+                break;
             case 0:
                 break;
             default:
                 mainMenu();
+                break;
         }
     }
 

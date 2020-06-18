@@ -28,30 +28,27 @@ public class StudentController {
     public void studentOptions() throws IOException {
         boolean isRunning  = true;
         while (isRunning) {
+            dataPrinting.printLogInfo(student);
             menuPrinting.printStudentMenu();
             int userChoice = inputProvider.getNumberFromUser("What do you want to do right now?\n");
             dataPrinting.clearScreen();
-            if(userChoice == 0) {
-                isRunning = false;
-            }
             switch (userChoice) {
                 case 1:
-                    System.out.println("\nAll assignments\n");
+                    dataPrinting.printString("\nAll assignments\n");
                     viewAllAssignments();
                     break;
                 case 2:
-                    System.out.println("Submit an assignment");
+                    dataPrinting.printString("Submit an assignment");
                     submitAssignment();
                     break;
                 case 3:
-                    System.out.println("View my grades");
+                    dataPrinting.printString("View my grades");
                     viewGrades();
                     break;
                 case 0:
-                    System.out.println("Back to previous menu");
+                    isRunning = false;
                     break;
                 default:
-                    studentOptions();
                     break;
             }
         }
@@ -60,13 +57,13 @@ public class StudentController {
     private void viewGrades() {
         List<StudentEvaluation> studentsEvaluations;
         studentsEvaluations = studentDao.viewStudentGrades(student.getId());
-        System.out.println(studentsEvaluations.toString());
+        dataPrinting.printString(studentsEvaluations.toString());
     }
 
     private void viewAllAssignments() {
         List<Assignment> assignments;
         assignments = studentDao.selectAllObjects();
-        System.out.println(assignments.toString());
+        dataPrinting.printString(assignments.toString());
     }
 
     private void submitAssignment() throws IOException {
@@ -78,5 +75,4 @@ public class StudentController {
         String submission = inputProvider.takeStringInput("Enter submission: ");
         studentDao.submitAssignment(studentId, assignmentId, submission, stringDate);
     }
-
 }
