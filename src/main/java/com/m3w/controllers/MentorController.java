@@ -154,19 +154,19 @@ public class MentorController {
             switch (userChoice) {
                 case 1:
                     String newName = input.takeStringInput("Provide new name for the student: ");
-                    mentorDao.updateStudentDataString("name", newName, email);
+                    mentorDao.updateUserDataString("name", newName, email);
                     break;
                 case 2:
                     String newSurname = input.takeStringInput("Provide new surname for the student: ");
-                    mentorDao.updateStudentDataString("surname", newSurname, email);
+                    mentorDao.updateUserDataString("surname", newSurname, email);
                     break;
                 case 3:
                     int newPhone = input.getNumberFromUser("Provide student's new phone number: ");
-                    mentorDao.updateStudentDataInt("phone", newPhone, email);
+                    mentorDao.updateUserDataInt("phone", newPhone, email);
                     break;
                 case 4:
                     String newEmail = input.takeStringInput("Provide student's new E-mail address:  ");
-                    mentorDao.updateStudentDataString("email", newEmail, email);
+                    mentorDao.updateUserDataString("email", newEmail, email);
                     break;
                 case 0:
                     isRunning = false;

@@ -39,7 +39,8 @@ public class ManagerDao extends ConnectionToDB implements IManagerDAO {
         return mentors;
     }
 
-    public void createMentor(String name, String surname, int phone, String email, String password, String userType) {
+    @Override
+    public void createUserDetails(String name, String surname, int phone, String email, String password, String userType) {
 
         connect();
 
@@ -55,7 +56,8 @@ public class ManagerDao extends ConnectionToDB implements IManagerDAO {
         }
     }
 
-    public void updateMentorDataInt(String data, int futureData, String email) {
+    @Override
+    public void updateUserDataInt(String data, int futureData, String email) {
         connect();
         try {
             connection.setAutoCommit(false);
@@ -67,7 +69,8 @@ public class ManagerDao extends ConnectionToDB implements IManagerDAO {
         }
     }
 
-    public void updateMentorDataString(String data, String futureData, String email) {
+    @Override
+    public void updateUserDataString(String data, String futureData, String email) {
         connect();
         try {
             connection.setAutoCommit(false);

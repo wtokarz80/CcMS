@@ -70,7 +70,7 @@ public class MentorDao extends ConnectionToDB implements IMentorDAO {
     }
 
     @Override
-    public void updateStudentDataInt(String data, int futureData, String email) {
+    public void updateUserDataInt(String data, int futureData, String email) {
         connect();
         try {
             connection.setAutoCommit(false);
@@ -83,7 +83,7 @@ public class MentorDao extends ConnectionToDB implements IMentorDAO {
     }
 
     @Override
-    public void updateStudentDataString(String data, String futureData, String email) {
+    public void updateUserDataString(String data, String futureData, String email) {
         connect();
         try {
             connection.setAutoCommit(false);
