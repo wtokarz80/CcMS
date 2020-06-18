@@ -1,5 +1,6 @@
 package com.m3w.dao;
 
+import com.m3w.interfaces.IMentorDAO;
 import com.m3w.models.Attendance;
 import com.m3w.models.Student;
 
@@ -8,9 +9,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MentorDao extends ConnectionToDB {
+public class MentorDao extends ConnectionToDB implements IMentorDAO {
 
-    public List<Student> getStudentsDetail() {
+    public List<Student> selectAllUsers() {
         List<Student> students = new ArrayList<>();
         connect();
 

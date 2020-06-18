@@ -1,5 +1,6 @@
 package com.m3w.dao;
 
+import com.m3w.interfaces.IStudentDAO;
 import com.m3w.interfaces.Listable;
 import com.m3w.interfaces.SubmitAssignment;
 import com.m3w.models.Assignment;
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentDao extends ConnectionToDB implements Listable<Assignment>, SubmitAssignment {
+public class StudentDao extends ConnectionToDB implements IStudentDAO {
 
     private Assignment assignment;
     private StudentEvaluation studentEvaluation;

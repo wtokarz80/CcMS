@@ -60,7 +60,7 @@ public class ManagerController {
 
     private void getListOfStudents() {
         List<Student> studentList;
-        studentList = mentorDao.getStudentsDetail();
+        studentList = mentorDao.selectAllUsers();
         for (Student student : studentList){
             dataPrinter.printUser(student);
         }
@@ -83,7 +83,7 @@ public class ManagerController {
     }
 
     private void getListOfMentors() {
-        List<Mentor> mentors = managerDao.getMentorDetail();
+        List<Mentor> mentors = managerDao.selectAllUsers();
         for (Mentor s: mentors){
             dataPrinter.printUser(s);
         }
