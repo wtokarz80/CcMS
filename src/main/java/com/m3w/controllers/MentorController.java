@@ -67,7 +67,7 @@ public class MentorController {
     }
 
     public void getListOfStudents() {
-        List<Student> students = mentorDao.selectAllUsers();
+        List<Student> students = mentorDao.selectAllObjects();
         for (Student s : students) {
             dataPrinter.printUser(s);
         }
@@ -101,7 +101,7 @@ public class MentorController {
         LocalDate date = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String stringDate = date.format(formatter);
-        List<Student> students = mentorDao.selectAllUsers();
+        List<Student> students = mentorDao.selectAllObjects();
         for (Student s : students) {
             System.out.println(" |" + s.getName() + " |" + s.getSurname() + " |" + s.getEmail());
             String isPresent = input.takeStringInput("Is this student present? (y/n) ").toLowerCase();

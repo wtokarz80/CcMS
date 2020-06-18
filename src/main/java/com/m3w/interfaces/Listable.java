@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface Listable<T> {
 
-    List<T> selectAllUsers();
+    List<T> selectAllObjects();
 
 }

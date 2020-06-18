@@ -62,7 +62,7 @@ public class StudentController {
 
     private void viewAllAssignments() {
         List<Assignment> assignments;
-        assignments = studentDao.selectAllUsers();
+        assignments = studentDao.selectAllObjects();
         dataPrinter.printString(assignments.toString());
     }
 

@@ -11,7 +11,8 @@ import java.util.List;
 
 public class MentorDao extends ConnectionToDB implements IMentorDAO {
 
-    public List<Student> selectAllUsers() {
+    @Override
+    public List<Student> selectAllObjects() {
         List<Student> students = new ArrayList<>();
         connect();
 

@@ -11,7 +11,7 @@ import java.util.List;
 public class ManagerDao extends ConnectionToDB implements IManagerDAO {
 
     @Override
-    public List<Mentor> selectAllUsers() {
+    public List<Mentor> selectAllObjects() {
 
         List<Mentor> mentors = new ArrayList<>();
 
