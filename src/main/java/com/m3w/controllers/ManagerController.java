@@ -78,7 +78,7 @@ public class ManagerController {
     public void removeMentor() throws IOException {
         getListOfMentors();
         String email = input.takeStringInput("Which mentor do You want to delete? (provide E-mail address): ");
-        mentorDao.deleteStudent(email);
+        mentorDao.removeUser(email);
 
     }
 

@@ -39,7 +39,8 @@ public class MentorDao extends ConnectionToDB implements IMentorDAO {
         return students;
     }
 
-    public void createStudentDetails(String name, String surname, int phone, String email, String password, String userType) {
+    @Override
+    public void createUserDetails(String name, String surname, int phone, String email, String password, String userType) {
         connect();
 
         try {
@@ -55,7 +56,8 @@ public class MentorDao extends ConnectionToDB implements IMentorDAO {
         }
     }
 
-    public void deleteStudent(String email){
+    @Override
+    public void removeUser(String email){
         connect();
         try{
             connection.setAutoCommit(false);

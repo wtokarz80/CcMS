@@ -134,13 +134,13 @@ public class MentorController {
         int newPhone = input.getNumberFromUser("Provide phone number of new student: ");
         String newEmail = input.takeStringInput("Provide e-mail address of new student: ");
         String newPassword = input.takeStringInput("Provide his password: ");
-        mentorDao.createStudentDetails(newName, newSurname, newPhone, newEmail, newPassword, "student");
+        mentorDao.createUserDetails(newName, newSurname, newPhone, newEmail, newPassword, "student");
     }
 
     public void removeStudent() throws IOException {
         getListOfStudents();
         String email = input.takeStringInput("Which student do You want to delete? (provide E-mail address): ");
-        mentorDao.deleteStudent(email);
+        mentorDao.removeUser(email);
 
     }
 
