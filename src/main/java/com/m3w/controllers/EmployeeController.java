@@ -1,6 +1,7 @@
 package com.m3w.controllers;
 
 import com.m3w.dao.EmployeeDAO;
+import com.m3w.interfaces.IEmployeeDAO;
 import com.m3w.models.Employee;
 import com.m3w.models.Student;
 import com.m3w.services.InputProvider;
@@ -14,7 +15,7 @@ public class EmployeeController {
     private InputProvider inputProvider = new InputProvider();
     private MenuPrinter menuPrinter = new MenuPrinter();
     private DataPrinter dataPrinter = new DataPrinter();
-    private EmployeeDAO employeeDAO = new EmployeeDAO();
+    private IEmployeeDAO employeeDAO = new EmployeeDAO();
     private Employee employee;
 
     public EmployeeController(Employee employee) {
