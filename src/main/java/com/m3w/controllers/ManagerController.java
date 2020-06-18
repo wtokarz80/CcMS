@@ -4,6 +4,7 @@ import com.m3w.dao.ManagerDao;
 import com.m3w.dao.MentorDao;
 import com.m3w.models.Manager;
 import com.m3w.models.Mentor;
+import com.m3w.models.Student;
 import com.m3w.services.InputProvider;
 import com.m3w.view.DataPrinting;
 import com.m3w.view.MenuPrinting;
@@ -21,7 +22,6 @@ public class ManagerController {
     private MentorDao mentorDao = new MentorDao();
     private DataPrinting dataPrinting = new DataPrinting();
     private final Manager manager;
-    private Object Mentor;
 
     public ManagerController(Manager manager) {
         this.manager = manager;
@@ -33,9 +33,6 @@ public class ManagerController {
             menu.printManagerMenu();
             int userChoice = input.getNumberFromUser("Enter option: ");
             dataPrinting.clearScreen();
-            if(userChoice == 0) {
-                isRun = false;
-            }
             switch (userChoice) {
                 case 1:
                     addMentor();
@@ -50,11 +47,11 @@ public class ManagerController {
                     getListOfMentors();
                     break;
                 case 5:
-                    MentorController mentorController = new MentorController((com.m3w.models.Mentor) Mentor);
-                    mentorController.getListOfStudents();
+                    getListOfStudents();
                     break;
                 case 0:
-                    System.out.println("Back to previous menu");
+                    isRun = false;
+                    dataPrinting.printString("Back to previous menu");
                     break;
                 default:
                     break;
@@ -62,14 +59,21 @@ public class ManagerController {
         }
     }
 
+    private void getListOfStudents() {
+        List<Student> studentList;
+        studentList = mentorDao.getStudentsDetail();
+        for (Student student : studentList){
+            dataPrinting.printUser(student);
+        }
+    }
 
-        private void addMentor() throws IOException {
+
+    private void addMentor() throws IOException {
             String newName = input.takeStringInput("Provide name of the new mentor: ");
             String newSurname = input.takeStringInput("Provide surname of the new mentor: ");
-            int newPhone = input.takeIntegerInput("Provide phone number of new mentor: ");
+            int newPhone = input.getNumberFromUser("Provide phone number of new mentor: ");
             String newEmail = input.takeStringInput("Provide e-mail address of new mentor: ");
             String newPassword = input.takeStringInput("Provide his password: ");
-
             managerDao.createMentor(newName, newSurname, newPhone, newEmail, newPassword, "mentor");
         }
     public void removeMentor() throws IOException {
@@ -82,7 +86,7 @@ public class ManagerController {
     private void getListOfMentors() {
         List<Mentor> mentors = managerDao.getMentorDetail();
         for (Mentor s: mentors){
-            System.out.println("[" + s.getId() +"]  "+ s.getName() +" "+ s.getSurname()  + "  |Phone number: " + s.getPhone() + " |E-mail: " + s.getEmail());
+            dataPrinting.printUser(s);
         }
     }
     private void updateMentorData() throws IOException {
@@ -91,7 +95,7 @@ public class ManagerController {
         menu.printUpdateMentor();
         boolean isRunning = true;
         while (isRunning){
-            int userChoice = input.takeIntegerInput("press '0' to exit: ");
+            int userChoice = input.getNumberFromUser("press '0' to exit: ");
             switch(userChoice){
                 case 1:
                     String newName = input.takeStringInput("Provide new name for the mentor: ");
@@ -102,7 +106,7 @@ public class ManagerController {
                     managerDao.updateMentorDataString("surname", newSurname, email);
                     break;
                 case 3:
-                    int newPhone = input.takeIntegerInput("Provide mentor's new phone number: ");
+                    int newPhone = input.getNumberFromUser("Provide mentor's new phone number: ");
                     managerDao.updateMentorDataInt("phone", newPhone, email);
                     break;
                 case 4:

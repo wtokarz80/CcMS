@@ -82,7 +82,7 @@ public class MentorController {
 
     private void gradeAssignment() throws IOException {
         int mentorID = mentor.getId();
-        int evaluationID = input.takeIntegerInput("Which evaluation do You want to grade? (via evaluation's ID) ");
+        int evaluationID = input.getNumberFromUser("Which evaluation do You want to grade? (via evaluation's ID) ");
 
         String pass = input.takeStringInput("Does student's assignment deserves passing? (y/n)");
         switch(pass) {
@@ -118,7 +118,7 @@ public class MentorController {
 
     public void viewAttendance() throws IOException {
         getListOfStudents();
-        int studentID = input.takeIntegerInput("Which student do You want see attendance? (enter id): ");
+        int studentID = input.getNumberFromUser("Which student do You want see attendance? (enter id): ");
         List<Attendance> attendances = mentorDao.viewListStudentAttendance(studentID);
         for (Attendance a: attendances){
             System.out.println(a.getAttendanceID() + " |" + a.getStudentName() + " " + a.getStudentSurname() + " |Present status: " + a.getIsPresent() + " |Date: " + a.getDate());
@@ -128,7 +128,7 @@ public class MentorController {
     private void addStudent() throws IOException {
             String newName = input.takeStringInput("Provide name of the new student: ");
             String newSurname = input.takeStringInput("Provide surname of the new student: ");
-            int newPhone = input.takeIntegerInput("Provide phone number of new student: ");
+            int newPhone = input.getNumberFromUser("Provide phone number of new student: ");
             String newEmail = input.takeStringInput("Provide e-mail address of new student: ");
             String newPassword = input.takeStringInput("Provide his password: ");
 
@@ -145,15 +145,10 @@ public class MentorController {
     private void updateStudentData() throws IOException {
         getListOfStudents();
         String email = input.takeStringInput("Which student details you want to change? (provide E-mail address): ");
-        System.out.println("Which data do You want to change? " +
-                "\n[1] Name" +
-                "\n[2] Surname" +
-                "\n[3] Phone number" +
-                "\n[4] E-mail address");
-
+        menu.printStudentMenu();
         boolean isRunning = true;
         while (isRunning){
-        int userChoice = input.takeIntegerInput("press '0' to exit: ");
+        int userChoice = input.getNumberFromUser("press '0' to exit: ");
         switch(userChoice){
             case 1:
                 String newName = input.takeStringInput("Provide new name for the student: ");
@@ -164,7 +159,7 @@ public class MentorController {
                 mentorDao.updateStudentDataString("surname", newSurname, email);
                 break;
             case 3:
-                int newPhone = input.takeIntegerInput("Provide student's new phone number: ");
+                int newPhone = input.getNumberFromUser("Provide student's new phone number: ");
                 mentorDao.updateStudentDataInt("phone", newPhone, email);
                 break;
             case 4:

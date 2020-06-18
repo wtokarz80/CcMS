@@ -7,8 +7,6 @@ import com.m3w.services.InputProvider;
 import com.m3w.view.DataPrinting;
 import com.m3w.view.MenuPrinting;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeController {
@@ -23,14 +21,15 @@ public class EmployeeController {
         this.employee = employee;
     }
 
-    public void employeeOptions() throws IOException {
+    public void employeeOptions() {
+        dataPrinting.printUserName(employee);
         menuPrinting.printEmployeeMenu();
         int userChoice = inputProvider.getNumberFromUser("Enter option: ");
         dataPrinting.clearScreen();
 
         switch (userChoice) {
             case 1:
-                System.out.println("\nShow list of students\n");
+                dataPrinting.printString("\nShow list of students\n");
                 showAllStudents();
                 employeeOptions();
                 break;
@@ -47,7 +46,7 @@ public class EmployeeController {
         List<Student> studentList;
         studentList = employeeDAO.getStudentDetail();
         for (Student student : studentList){
-            System.out.println("[" + student.getId() +"]  "+ student.getName() +" "+ student.getSurname()  + "  |Phone number: " + student.getPhone() + " |E-mail: " + student.getEmail());
+            dataPrinting.printUser(student);
         }
     }
 }

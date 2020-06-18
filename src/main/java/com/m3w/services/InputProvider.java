@@ -8,10 +8,10 @@ public class InputProvider {
 
     private final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-    public int takeIntegerInput(String messageForUser) throws IOException {
-        System.out.print(messageForUser);
-        return Integer.parseInt(reader.readLine());
-    }
+//    public int takeIntegerInput(String messageForUser) throws IOException {
+//        System.out.print(messageForUser);
+//        return Integer.parseInt(reader.readLine());
+//    }
 
     public String takeStringInput(String messageForUser) throws IOException {
         String input = "";
