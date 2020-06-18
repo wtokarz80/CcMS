@@ -69,6 +69,7 @@ public class MentorDao extends ConnectionToDB implements IMentorDAO {
         }
     }
 
+    @Override
     public void updateStudentDataInt(String data, int futureData, String email) {
         connect();
         try {
@@ -81,6 +82,7 @@ public class MentorDao extends ConnectionToDB implements IMentorDAO {
         }
     }
 
+    @Override
     public void updateStudentDataString(String data, String futureData, String email) {
         connect();
         try {
