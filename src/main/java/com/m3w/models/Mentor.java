@@ -1,6 +1,7 @@
 package com.m3w.models;
 
 import com.m3w.controllers.MentorController;
+import com.m3w.services.ToolsCreator;
 
 import java.io.IOException;
 
@@ -10,8 +11,8 @@ public class Mentor extends User{
     }
 
     @Override
-    public void displayMenuOptions() throws IOException {
-        MentorController mentorController = new MentorController(this);
+    public void displayMenuOptions(ToolsCreator toolsCreator) throws IOException {
+        MentorController mentorController = new MentorController(this, toolsCreator);
         mentorController.mentorMenu();
     }
 }

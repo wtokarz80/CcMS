@@ -1,6 +1,7 @@
 package com.m3w.models;
 
 import com.m3w.controllers.EmployeeController;
+import com.m3w.services.ToolsCreator;
 
 
 public class Employee extends User{
@@ -9,8 +10,8 @@ public class Employee extends User{
     }
 
     @Override
-    public void displayMenuOptions() {
-        EmployeeController employeeController = new EmployeeController(this);
+    public void displayMenuOptions(ToolsCreator toolsCreator) {
+        EmployeeController employeeController = new EmployeeController(this, toolsCreator);
         employeeController.employeeOptions();
     }
 }

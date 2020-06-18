@@ -6,6 +6,7 @@ import com.m3w.models.Attendance;
 import com.m3w.models.Mentor;
 import com.m3w.models.Student;
 import com.m3w.services.InputProvider;
+import com.m3w.services.ToolsCreator;
 import com.m3w.view.DataPrinter;
 import com.m3w.view.MenuPrinter;
 
@@ -16,28 +17,31 @@ import java.util.List;
 
 public class MentorController {
 
-    private final MenuPrinter menu = new MenuPrinter();
-    private final InputProvider input = new InputProvider();
+    private final MenuPrinter menuPrinter;
+    private final InputProvider inputProvider;
+    private final DataPrinter dataPrinter;
     private final Mentor mentor;
     private final IMentorDAO mentorDao = new MentorDAO();
-    private final DataPrinter dataPrinter = new DataPrinter();
-    private final String mentorMenu = menu.printMentorMenu();
 
-    public MentorController(Mentor mentor) {
+    public MentorController(Mentor mentor, ToolsCreator toolsCreator) {
         this.mentor = mentor;
+        this.menuPrinter = toolsCreator.getMenuPrinter();
+        this.inputProvider = toolsCreator.getInputProvider();
+        this.dataPrinter = toolsCreator.getDataPrinter();
     }
 
 
     public void mentorMenu() throws IOException {
-        menu.printSpecificWindow(mentorMenu, "                                                           ");
+        String mentorMenu = menuPrinter.printMentorMenu();
+        menuPrinter.printSpecificWindow(mentorMenu, "                                                           ");
         boolean isRun = true;
         while (isRun) {
             dataPrinter.printLogInfo(mentor);
-            int userChoice = input.getNumberFromUser("Enter option: ");
+            int userChoice = inputProvider.getNumberFromUser("Enter option: ");
             dataPrinter.clearScreen();
             switch (userChoice) {
                 case 1:
-                    getListOfStudents();
+                    getListOfStudents(mentorMenu);
                     break;
                 case 2:
                     addAssignment();
@@ -52,13 +56,13 @@ public class MentorController {
                     addStudent();
                     break;
                 case 6:
-                    removeStudent();
+                    removeStudent(mentorMenu);
                     break;
                 case 7:
-                    updateStudentData();
+                    updateStudentData(mentorMenu);
                     break;
                 case 8:
-                    viewAttendance();
+                    viewAttendance(mentorMenu);
                     break;
                 case 0:
                     isRun = false;
@@ -68,26 +72,26 @@ public class MentorController {
         }
     }
 
-    public void getListOfStudents() {
+    public void getListOfStudents(String mentorMenu) {
         List<Student> students = mentorDao.selectAllObjects();
         String listOfStudents = dataPrinter.printUsers(students);
-        menu.printSpecificWindow(mentorMenu, listOfStudents);
+        menuPrinter.printSpecificWindow(mentorMenu, listOfStudents);
 
     }
 
 
     private void addAssignment() throws IOException {
-        String newAssignment = input.takeStringInput("Provide new assignment's name: ");
-        String description = input.takeStringInput("Describe task for students: ");
+        String newAssignment = inputProvider.takeStringInput("Provide new assignment's name: ");
+        String description = inputProvider.takeStringInput("Describe task for students: ");
         mentorDao.createAssignment(newAssignment, description);
     }
 
 
     private void gradeAssignment() throws IOException {
         int mentorID = mentor.getId();
-        int evaluationID = input.getNumberFromUser("Which evaluation do You want to grade? (via evaluation's ID) ");
+        int evaluationID = inputProvider.getNumberFromUser("Which evaluation do You want to grade? (via evaluation's ID) ");
 
-        String pass = input.takeStringInput("Does student's assignment deserves passing? (y/n)").toLowerCase();
+        String pass = inputProvider.takeStringInput("Does student's assignment deserves passing? (y/n)").toLowerCase();
         switch (pass) {
             case "y":
                 mentorDao.evaluateStudent(evaluationID, mentorID, "Passed");
@@ -107,7 +111,7 @@ public class MentorController {
         List<Student> students = mentorDao.selectAllObjects();
         for (Student s : students) {
             System.out.println(" |" + s.getName() + " |" + s.getSurname() + " |" + s.getEmail());
-            String isPresent = input.takeStringInput("Is this student present? (y/n)").toLowerCase();
+            String isPresent = inputProvider.takeStringInput("Is this student present? (y/n)").toLowerCase();
             switch (isPresent) {
                 case "y":
                     mentorDao.fillAttendance(s.getId(), 1, stringDate);
@@ -122,53 +126,53 @@ public class MentorController {
 
     }
 
-    public void viewAttendance() {
-        getListOfStudents();
-        int studentID = input.getNumberFromUser("Which student do You want see attendance? (enter id): ");
+    public void viewAttendance(String mentorMenu) {
+        getListOfStudents(mentorMenu);
+        int studentID = inputProvider.getNumberFromUser("Which student do You want see attendance? (enter id): ");
 
         List<Attendance> attendances = mentorDao.viewById(studentID);
         String listOfAttendances = dataPrinter.printAllAttendance(attendances);
-        menu.printSpecificWindow(mentorMenu, listOfAttendances);
+        menuPrinter.printSpecificWindow(mentorMenu, listOfAttendances);
     }
 
     private void addStudent() throws IOException {
-        String newName = input.takeStringInput("Provide name of the new student: ");
-        String newSurname = input.takeStringInput("Provide surname of the new student: ");
-        int newPhone = input.getNumberFromUser("Provide phone number of new student: ");
-        String newEmail = input.takeStringInput("Provide e-mail address of new student: ");
-        String newPassword = input.takeStringInput("Provide his password: ");
+        String newName = inputProvider.takeStringInput("Provide name of the new student: ");
+        String newSurname = inputProvider.takeStringInput("Provide surname of the new student: ");
+        int newPhone = inputProvider.getNumberFromUser("Provide phone number of new student: ");
+        String newEmail = inputProvider.takeStringInput("Provide e-mail address of new student: ");
+        String newPassword = inputProvider.takeStringInput("Provide his password: ");
         mentorDao.createUserDetails(newName, newSurname, newPhone, newEmail, newPassword, "student");
     }
 
-    public void removeStudent() throws IOException {
-        getListOfStudents();
-        String email = input.takeStringInput("Which student do You want to delete? (provide E-mail address): ");
+    public void removeStudent(String mentorMenu) throws IOException {
+        getListOfStudents(mentorMenu);
+        String email = inputProvider.takeStringInput("Which student do You want to delete? (provide E-mail address): ");
         mentorDao.removeUser(email);
 
     }
 
-    private void updateStudentData() throws IOException {
-        getListOfStudents();
-        String email = input.takeStringInput("Which student details you want to change? (provide E-mail address): ");
-        menu.printSpecificWindow(mentorMenu, menu.printUpdateUser());
+    private void updateStudentData(String mentorMenu) throws IOException {
+        getListOfStudents(mentorMenu);
+        String email = inputProvider.takeStringInput("Which student details you want to change? (provide E-mail address): ");
+        menuPrinter.printSpecificWindow(mentorMenu, menuPrinter.printUpdateUser());
         boolean isRunning = true;
         while (isRunning) {
-            int userChoice = input.getNumberFromUser("Choose option: ");
+            int userChoice = inputProvider.getNumberFromUser("Choose option: ");
             switch (userChoice) {
                 case 1:
-                    String newName = input.takeStringInput("Provide new name for the student: ");
+                    String newName = inputProvider.takeStringInput("Provide new name for the student: ");
                     mentorDao.updateUserDataString("name", newName, email);
                     break;
                 case 2:
-                    String newSurname = input.takeStringInput("Provide new surname for the student: ");
+                    String newSurname = inputProvider.takeStringInput("Provide new surname for the student: ");
                     mentorDao.updateUserDataString("surname", newSurname, email);
                     break;
                 case 3:
-                    int newPhone = input.getNumberFromUser("Provide student's new phone number: ");
+                    int newPhone = inputProvider.getNumberFromUser("Provide student's new phone number: ");
                     mentorDao.updateUserDataInt("phone", newPhone, email);
                     break;
                 case 4:
-                    String newEmail = input.takeStringInput("Provide student's new E-mail address:  ");
+                    String newEmail = inputProvider.takeStringInput("Provide student's new E-mail address:  ");
                     mentorDao.updateUserDataString("email", newEmail, email);
                     break;
                 case 0:

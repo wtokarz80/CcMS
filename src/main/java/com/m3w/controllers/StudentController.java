@@ -6,6 +6,7 @@ import com.m3w.models.Assignment;
 import com.m3w.models.Student;
 import com.m3w.models.StudentEvaluation;
 import com.m3w.services.InputProvider;
+import com.m3w.services.ToolsCreator;
 import com.m3w.view.DataPrinter;
 import com.m3w.view.MenuPrinter;
 
@@ -16,14 +17,17 @@ import java.util.List;
 
 public class StudentController {
 
-    private final InputProvider inputProvider = new InputProvider();
-    private final MenuPrinter menuPrinter = new MenuPrinter();
-    private final DataPrinter dataPrinter = new DataPrinter();
+    private final InputProvider inputProvider;
+    private final MenuPrinter menuPrinter;
+    private final DataPrinter dataPrinter;
     private final IStudentDAO studentDao = new StudentDAO();
     private final Student student;
 
-    public StudentController(Student student) {
+    public StudentController(Student student, ToolsCreator toolsCreator) {
         this.student = student;
+        this.inputProvider = toolsCreator.getInputProvider();
+        this.menuPrinter = toolsCreator.getMenuPrinter();
+        this.dataPrinter = toolsCreator.getDataPrinter();
     }
 
     public void studentOptions() throws IOException {

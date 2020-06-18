@@ -1,6 +1,7 @@
 package com.m3w.models;
 
 import com.m3w.controllers.ManagerController;
+import com.m3w.services.ToolsCreator;
 
 
 public class Manager extends User{
@@ -9,8 +10,8 @@ public class Manager extends User{
     }
 
     @Override
-    public void displayMenuOptions() throws Exception {
-        ManagerController managerController = new ManagerController(this);
+    public void displayMenuOptions(ToolsCreator toolsCreator) throws Exception {
+        ManagerController managerController = new ManagerController(this, toolsCreator);
         managerController.managerMenu();
     }
 }
