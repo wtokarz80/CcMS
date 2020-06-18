@@ -74,4 +74,12 @@ public class MenuPrinting {
         };
         System.out.println(FlipTable.of(headers, data));
     }
+
+    public void printUpdateStudentData(){
+        System.out.println("Which data do You want to change? " +
+                "\n[1] Name" +
+                "\n[2] Surname" +
+                "\n[3] Phone number" +
+                "\n[4] E-mail address");
+    }
 }

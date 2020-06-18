@@ -8,10 +8,10 @@ public class InputProvider {
 
     private final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-    public int takeIntegerInput(String messageForUser) throws IOException {
-        System.out.print(messageForUser);
-        return Integer.parseInt(reader.readLine());
-    }
+//    public int takeIntegerInput(String messageForUser) throws IOException {
+//        System.out.print(messageForUser);
+//        return Integer.parseInt(reader.readLine());
+//    }
 
     public String takeStringInput(String messageForUser) throws IOException {
         String input = "";
@@ -46,10 +46,9 @@ public class InputProvider {
             } catch (IOException ex) {
                 System.err.println("could not acquire next line from system input: " + ex.getMessage());
             } catch (NumberFormatException ex) {
-                System.err.println("could not convert input string: " + ex.getMessage());
+//                System.err.println("could not convert input string: " + ex.getMessage());
+                System.err.println("Invalid input, please try again.");
             }
         }
     }
-
-
 }

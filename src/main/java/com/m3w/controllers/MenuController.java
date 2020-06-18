@@ -38,7 +38,6 @@ public class MenuController {
                 break;
             }
             String userPassword = inputProvider.takeStringInput("Enter password: ");
-            System.out.println(userPassword);
             user = loginDao.selectUser(userEmail, userPassword);
             if (user == null) {
                 dataPrinting.printString("\n\nThere is no user in database, try again or EXIT (type 'exit').\n\n");

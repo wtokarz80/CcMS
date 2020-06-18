@@ -74,7 +74,7 @@ public class StudentController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String stringDate = date.format(formatter);
         int studentId = student.getId();
-        int assignmentId = inputProvider.takeIntegerInput("Enter Id of assignment you want to submit: ");
+        int assignmentId = inputProvider.getNumberFromUser("Enter Id of assignment you want to submit: ");
         String submission = inputProvider.takeStringInput("Enter submission: ");
         studentDao.submitAssignment(studentId, assignmentId, submission, stringDate);
     }
