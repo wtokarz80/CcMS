@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import com.m3w.interfaces.*;
 
 
-public class LoginDao extends ConnectionToDB implements UserSelectable {
+public class LoginDao extends ConnectionToDB implements ILoginDAO {
 
     private final UserFactory userFactory = new UserFactory();
 
