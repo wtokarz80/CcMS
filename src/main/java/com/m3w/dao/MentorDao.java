@@ -95,6 +95,7 @@ public class MentorDao extends ConnectionToDB implements IMentorDAO {
         }
     }
 
+    @Override
     public void createAssignment(String newAssignment, String description) {
         connect();
         try {
@@ -108,6 +109,7 @@ public class MentorDao extends ConnectionToDB implements IMentorDAO {
         }
     }
 
+    @Override
     public void evaluateStudent(int evaluationID, int mentorID, String status){
         connect();
         try {
