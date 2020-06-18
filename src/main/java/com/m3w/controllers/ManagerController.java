@@ -21,16 +21,18 @@ public class ManagerController {
     private MentorDao mentorDao = new MentorDao();
     private DataPrinter dataPrinter = new DataPrinter();
     private final Manager manager;
+    private final String managerMenu = menu.printMentorMenu();
 
     public ManagerController(Manager manager) {
         this.manager = manager;
     }
 
     public void managerMenu() throws Exception {
+        menu.printSpecificWindow(menu.printManagerMenu(), "                  ");
         boolean isRun = true;
         while (isRun) {
             dataPrinter.printLogInfo(manager);
-            menu.printManagerMenu();
+
             int userChoice = input.getNumberFromUser("Enter option: ");
             dataPrinter.clearScreen();
             switch (userChoice) {
@@ -58,12 +60,10 @@ public class ManagerController {
         }
     }
 
-    private void getListOfStudents() {
-        List<Student> studentList;
-        studentList = mentorDao.getStudentsDetail();
-        for (Student student : studentList){
-            dataPrinter.printUser(student);
-        }
+    public void getListOfStudents() {
+        List<Student> students = mentorDao.getStudentsDetail();
+        String listOfStudents = dataPrinter.printUsers(students);
+        menu.printSpecificWindow(managerMenu, listOfStudents);
     }
 
 
@@ -75,6 +75,8 @@ public class ManagerController {
             String newPassword = input.takeStringInput("Provide his password: ");
             managerDao.createMentor(newName, newSurname, newPhone, newEmail, newPassword, "mentor");
         }
+
+
     public void removeMentor() throws IOException {
         getListOfMentors();
         String email = input.takeStringInput("Which mentor do You want to delete? (provide E-mail address): ");
@@ -91,10 +93,10 @@ public class ManagerController {
     private void updateMentorData() throws IOException {
         getListOfMentors();
         String email = input.takeStringInput("Which mentor do You want to change details? (provide E-mail address): ");
-        menu.printUpdateMentor();
+        menu.printSpecificWindow(managerMenu, menu.printUpdateUser());
         boolean isRunning = true;
         while (isRunning){
-            int userChoice = input.getNumberFromUser("press '0' to exit: ");
+            int userChoice = input.getNumberFromUser("Choose option:  ");
             switch(userChoice){
                 case 1:
                     String newName = input.takeStringInput("Provide new name for the mentor: ");

@@ -26,10 +26,10 @@ public class StudentController {
     }
 
     public void studentOptions() throws IOException {
+        dataPrinter.printLogInfo(student);
+        menuPrinter.printSpecificWindow(menuPrinter.printStudentMenu(), "                            ");
         boolean isRunning  = true;
         while (isRunning) {
-            dataPrinter.printLogInfo(student);
-            menuPrinter.printStudentMenu();
             int userChoice = inputProvider.getNumberFromUser("What do you want to do right now?\n");
             dataPrinter.clearScreen();
             switch (userChoice) {
@@ -55,18 +55,18 @@ public class StudentController {
     }
 
     private void viewGrades() {
-        List<StudentEvaluation> studentsEvaluations;
-        studentsEvaluations = studentDao.viewStudentGrades(student.getId());
-        dataPrinter.printString(studentsEvaluations.toString());
+        List<StudentEvaluation> studentsEvaluations = studentDao.viewStudentGrades(student.getId());
+        menuPrinter.printSpecificWindow(menuPrinter.printStudentMenu(), dataPrinter.viewGrades(studentsEvaluations));
     }
 
     private void viewAllAssignments() {
-        List<Assignment> assignments;
-        assignments = studentDao.selectAllUsers();
-        dataPrinter.printString(assignments.toString());
+        List<Assignment> assignments = studentDao.selectAllUsers();
+        menuPrinter.printSpecificWindow(menuPrinter.printStudentMenu(), dataPrinter.printAssigments(assignments));
+
     }
 
     private void submitAssignment() throws IOException {
+        viewAllAssignments();
         LocalDate date = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String stringDate = date.format(formatter);
@@ -74,5 +74,7 @@ public class StudentController {
         int assignmentId = inputProvider.getNumberFromUser("Enter Id of assignment you want to submit: ");
         String submission = inputProvider.takeStringInput("Enter submission: ");
         studentDao.submitAssignment(studentId, assignmentId, submission, stringDate);
+
     }
+
 }
