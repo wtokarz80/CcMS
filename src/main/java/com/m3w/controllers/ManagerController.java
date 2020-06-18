@@ -21,16 +21,18 @@ public class ManagerController {
     private MentorDao mentorDao = new MentorDao();
     private DataPrinter dataPrinter = new DataPrinter();
     private final Manager manager;
+    private final String managerMenu = menu.printMentorMenu();
 
     public ManagerController(Manager manager) {
         this.manager = manager;
     }
 
     public void managerMenu() throws Exception {
+        menu.printSpecificWindow(menu.printManagerMenu(), "                  ");
         boolean isRun = true;
         while (isRun) {
             dataPrinter.printLogInfo(manager);
-            menu.printManagerMenu();
+
             int userChoice = input.getNumberFromUser("Enter option: ");
             dataPrinter.clearScreen();
             switch (userChoice) {
@@ -58,16 +60,14 @@ public class ManagerController {
         }
     }
 
-    private void getListOfStudents() {
-        List<Student> studentList;
-        studentList = mentorDao.selectAllObjects();
-        for (Student student : studentList){
-            dataPrinter.printUser(student);
-        }
+
+    public void getListOfStudents() throws IOException {
+        List<Student> students = mentorDao.selectAllObjects();
+        String listOfStudents = dataPrinter.printUsers(students);
+        menu.printSpecificWindow(managerMenu, listOfStudents);
+
     }
-
-
-    private void addMentor() throws IOException {
+        private void addMentor () throws IOException {
             String newName = input.takeStringInput("Provide name of the new mentor: ");
             String newSurname = input.takeStringInput("Provide surname of the new mentor: ");
             int newPhone = input.getNumberFromUser("Provide phone number of new mentor: ");
@@ -75,50 +75,52 @@ public class ManagerController {
             String newPassword = input.takeStringInput("Provide his password: ");
             managerDao.createUserDetails(newName, newSurname, newPhone, newEmail, newPassword, "mentor");
         }
-    public void removeMentor() throws IOException {
-        getListOfMentors();
-        String email = input.takeStringInput("Which mentor do You want to delete? (provide E-mail address): ");
-        mentorDao.removeUser(email);
 
-    }
 
-    private void getListOfMentors() {
-        List<Mentor> mentors = managerDao.selectAllObjects();
-        for (Mentor s: mentors){
-            dataPrinter.printUser(s);
+        public void removeMentor () throws IOException {
+            getListOfMentors();
+            String email = input.takeStringInput("Which mentor do You want to delete? (provide E-mail address): ");
+            mentorDao.removeUser(email);
+
         }
-    }
-    private void updateMentorData() throws IOException {
-        getListOfMentors();
-        String email = input.takeStringInput("Which mentor do You want to change details? (provide E-mail address): ");
-        menu.printUpdateMentor();
-        boolean isRunning = true;
-        while (isRunning){
-            int userChoice = input.getNumberFromUser("press '0' to exit: ");
-            switch(userChoice){
-                case 1:
-                    String newName = input.takeStringInput("Provide new name for the mentor: ");
-                    managerDao.updateUserDataString("name", newName, email);
-                    break;
-                case 2:
-                    String newSurname = input.takeStringInput("Provide new surname for the mentor: ");
-                    managerDao.updateUserDataString("surname", newSurname, email);
-                    break;
-                case 3:
-                    int newPhone = input.getNumberFromUser("Provide mentor's new phone number: ");
-                    managerDao.updateUserDataInt("phone", newPhone, email);
-                    break;
-                case 4:
-                    String newEmail = input.takeStringInput("Provide mentor's new E-mail address:  ");
-                    managerDao.updateUserDataString("email", newEmail, email);
-                    break;
-                case 0:
-                    isRunning = false;
-                default:
-                    break;
+
+        private void getListOfMentors () {
+            List<Mentor> mentors = managerDao.selectAllObjects();
+            for (Mentor s : mentors) {
+                dataPrinter.printUser(s);
+            }
+        }
+        private void updateMentorData () throws IOException {
+            getListOfMentors();
+            String email = input.takeStringInput("Which mentor do You want to change details? (provide E-mail address): ");
+            menu.printSpecificWindow(managerMenu, menu.printUpdateUser());
+            boolean isRunning = true;
+            while (isRunning) {
+                int userChoice = input.getNumberFromUser("Choose option:  ");
+                switch (userChoice) {
+                    case 1:
+                        String newName = input.takeStringInput("Provide new name for the mentor: ");
+                        managerDao.updateUserDataString("name", newName, email);
+                        break;
+                    case 2:
+                        String newSurname = input.takeStringInput("Provide new surname for the mentor: ");
+                        managerDao.updateUserDataString("surname", newSurname, email);
+                        break;
+                    case 3:
+                        int newPhone = input.getNumberFromUser("Provide mentor's new phone number: ");
+                        managerDao.updateUserDataInt("phone", newPhone, email);
+                        break;
+                    case 4:
+                        String newEmail = input.takeStringInput("Provide mentor's new E-mail address:  ");
+                        managerDao.updateUserDataString("email", newEmail, email);
+                        break;
+                    case 0:
+                        isRunning = false;
+                    default:
+                        break;
+                }
+
             }
 
         }
-
     }
-}

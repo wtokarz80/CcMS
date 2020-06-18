@@ -14,7 +14,7 @@ public class MenuPrinter {
     }
 
 
-    public void printStudentMenu() {
+    public String printStudentMenu() {
         String[] headers = { "Number", "Option" };
         String[][] data = {
                 { "1", "View all assignments" },
@@ -22,10 +22,10 @@ public class MenuPrinter {
                 { "3", "View my grades" },
                 { "0", "Back to previous menu" },
         };
-        System.out.println(FlipTable.of(headers, data));
+        return FlipTable.of(headers, data);
     }
 
-    public void printMentorMenu() {
+    public String printMentorMenu() {
         String[] headers = { "Number", "Option" };
         String[][] data = {
                 { "1", "See a list of students" },
@@ -38,20 +38,20 @@ public class MenuPrinter {
                 { "8", "View student's attendance" },
                 { "0", "Back to previous menu" },
         };
-        System.out.println(FlipTable.of(headers, data));
 
+        return FlipTable.of(headers, data);
     }
 
-    public void printEmployeeMenu() {
+    public String printEmployeeMenu() {
         String[] headers = { "Number", "Option" };
         String[][] data = {
                 { "1", "See a list of students" },
                 { "0", "Back to previous menu" },
         };
-        System.out.println(FlipTable.of(headers, data));
+        return FlipTable.of(headers, data);
     }
 
-    public void printManagerMenu() {
+    public String printManagerMenu() {
         String[] headers = { "Number", "Option" };
         String[][] data = {
                 { "1", "Add a mentor" },
@@ -61,10 +61,10 @@ public class MenuPrinter {
                 { "5", "See a list of students" },
                 { "0", "Back to previous menu" },
         };
-        System.out.println(FlipTable.of(headers, data));
+        return FlipTable.of(headers, data);
     }
 
-    public void printUpdateMentor(){
+    public String printUpdateUser(){
         String[] headers = { "Number", "Option" };
         String[][] data = {
                 { "1", "Name" },
@@ -72,14 +72,13 @@ public class MenuPrinter {
                 { "3", "Phone number" },
                 { "4", "E-mail address" },
         };
-        System.out.println(FlipTable.of(headers, data));
+        return FlipTable.of(headers, data);
     }
 
-    public void printUpdateStudentData(){
-        System.out.println("Which data do You want to change? " +
-                "\n[1] Name" +
-                "\n[2] Surname" +
-                "\n[3] Phone number" +
-                "\n[4] E-mail address");
+
+    public void printSpecificWindow(String menu, String specificOutput){
+        String[] headers = { "Menu Window", "Program Window" };
+        String[][] data = { { menu, specificOutput } };
+        System.out.println(FlipTable.of(headers, data));
     }
 }
