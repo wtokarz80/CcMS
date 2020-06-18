@@ -4,16 +4,16 @@ import com.m3w.dao.EmployeeDAO;
 import com.m3w.models.Employee;
 import com.m3w.models.Student;
 import com.m3w.services.InputProvider;
-import com.m3w.view.DataPrinting;
-import com.m3w.view.MenuPrinting;
+import com.m3w.view.DataPrinter;
+import com.m3w.view.MenuPrinter;
 
 import java.util.List;
 
 public class EmployeeController {
 
     private InputProvider inputProvider = new InputProvider();
-    private MenuPrinting menuPrinting = new MenuPrinting();
-    private DataPrinting dataPrinting = new DataPrinting();
+    private MenuPrinter menuPrinter = new MenuPrinter();
+    private DataPrinter dataPrinter = new DataPrinter();
     private EmployeeDAO employeeDAO = new EmployeeDAO();
     private Employee employee;
 
@@ -22,14 +22,14 @@ public class EmployeeController {
     }
 
     public void employeeOptions() {
-        dataPrinting.printLogInfo(employee);
-        menuPrinting.printEmployeeMenu();
+        dataPrinter.printLogInfo(employee);
+        menuPrinter.printEmployeeMenu();
         int userChoice = inputProvider.getNumberFromUser("Enter option: ");
-        dataPrinting.clearScreen();
+        dataPrinter.clearScreen();
 
         switch (userChoice) {
             case 1:
-                dataPrinting.printString("\nShow list of students\n");
+                dataPrinter.printString("\nShow list of students\n");
                 showAllStudents();
                 employeeOptions();
                 break;
@@ -44,9 +44,9 @@ public class EmployeeController {
 
     private void showAllStudents() {
         List<Student> studentList;
-        studentList = employeeDAO.getStudentDetail();
+        studentList = employeeDAO.selectAllUsers();
         for (Student student : studentList){
-            dataPrinting.printUser(student);
+            dataPrinter.printUser(student);
         }
     }
 }

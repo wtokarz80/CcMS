@@ -4,7 +4,7 @@ import com.m3w.models.Attendance;
 import com.m3w.models.Student;
 import com.m3w.models.User;
 
-public class DataPrinting {
+public class DataPrinter {
 
     public void clearScreen(){
         System.out.print("\033[H\033[2J");

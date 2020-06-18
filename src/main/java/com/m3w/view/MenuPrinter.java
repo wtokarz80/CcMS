@@ -2,7 +2,7 @@ package com.m3w.view;
 
 import com.jakewharton.fliptables.FlipTable;
 
-public class MenuPrinting {
+public class MenuPrinter {
 
     public void printMenu() {
         String[] headers = { "Number", "Option" };

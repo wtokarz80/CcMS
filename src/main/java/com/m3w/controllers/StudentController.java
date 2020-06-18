@@ -5,8 +5,8 @@ import com.m3w.models.Assignment;
 import com.m3w.models.Student;
 import com.m3w.models.StudentEvaluation;
 import com.m3w.services.InputProvider;
-import com.m3w.view.DataPrinting;
-import com.m3w.view.MenuPrinting;
+import com.m3w.view.DataPrinter;
+import com.m3w.view.MenuPrinter;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -16,8 +16,8 @@ import java.util.List;
 public class StudentController {
 
     private final InputProvider inputProvider = new InputProvider();
-    private final MenuPrinting menuPrinting = new MenuPrinting();
-    private final DataPrinting dataPrinting = new DataPrinting();
+    private final MenuPrinter menuPrinter = new MenuPrinter();
+    private final DataPrinter dataPrinter = new DataPrinter();
     private final StudentDao studentDao = new StudentDao();
     private final Student student;
 
@@ -28,21 +28,21 @@ public class StudentController {
     public void studentOptions() throws IOException {
         boolean isRunning  = true;
         while (isRunning) {
-            dataPrinting.printLogInfo(student);
-            menuPrinting.printStudentMenu();
+            dataPrinter.printLogInfo(student);
+            menuPrinter.printStudentMenu();
             int userChoice = inputProvider.getNumberFromUser("What do you want to do right now?\n");
-            dataPrinting.clearScreen();
+            dataPrinter.clearScreen();
             switch (userChoice) {
                 case 1:
-                    dataPrinting.printString("\nAll assignments\n");
+                    dataPrinter.printString("\nAll assignments\n");
                     viewAllAssignments();
                     break;
                 case 2:
-                    dataPrinting.printString("Submit an assignment");
+                    dataPrinter.printString("Submit an assignment");
                     submitAssignment();
                     break;
                 case 3:
-                    dataPrinting.printString("View my grades");
+                    dataPrinter.printString("View my grades");
                     viewGrades();
                     break;
                 case 0:
@@ -57,13 +57,13 @@ public class StudentController {
     private void viewGrades() {
         List<StudentEvaluation> studentsEvaluations;
         studentsEvaluations = studentDao.viewStudentGrades(student.getId());
-        dataPrinting.printString(studentsEvaluations.toString());
+        dataPrinter.printString(studentsEvaluations.toString());
     }
 
     private void viewAllAssignments() {
         List<Assignment> assignments;
-        assignments = studentDao.selectAllObjects();
-        dataPrinting.printString(assignments.toString());
+        assignments = studentDao.selectAllUsers();
+        dataPrinter.printString(assignments.toString());
     }
 
     private void submitAssignment() throws IOException {

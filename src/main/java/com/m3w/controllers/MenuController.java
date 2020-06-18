@@ -3,19 +3,19 @@ package com.m3w.controllers;
 import com.m3w.dao.LoginDao;
 import com.m3w.models.*;
 import com.m3w.services.InputProvider;
-import com.m3w.view.DataPrinting;
-import com.m3w.view.MenuPrinting;
+import com.m3w.view.DataPrinter;
+import com.m3w.view.MenuPrinter;
 
 public class MenuController {
     private final InputProvider inputProvider = new InputProvider();
-    private final MenuPrinting menuPrinting = new MenuPrinting();
-    private final DataPrinting dataPrinting = new DataPrinting();
+    private final MenuPrinter menuPrinter = new MenuPrinter();
+    private final DataPrinter dataPrinter = new DataPrinter();
     private User user;
 
     public void mainMenu() throws Exception {
-        menuPrinting.printMenu();
+        menuPrinter.printMenu();
         int userOption = inputProvider.getNumberFromUser("Enter option: ");
-        dataPrinting.clearScreen();
+        dataPrinter.clearScreen();
         switch (userOption){
             case 1:
                 loginToSystem();
@@ -40,7 +40,7 @@ public class MenuController {
             String userPassword = inputProvider.takeStringInput("Enter password: ");
             user = loginDao.selectUser(userEmail, userPassword);
             if (user == null) {
-                dataPrinting.printString("\n\nThere is no user in database, try again or EXIT (type 'exit').\n\n");
+                dataPrinter.printString("\n\nThere is no user in database, try again or EXIT (type 'exit').\n\n");
             } else {
                 user.displayMenuOptions();
                 validUser = true;

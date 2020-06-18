@@ -3,14 +3,13 @@ package com.m3w.dao;
 import com.m3w.models.User;
 import com.m3w.models.UserFactory;
 
-import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.m3w.interfaces.*;
 
 
-public class LoginDao extends ConnectionToDB implements SelectUserInterface {
+public class LoginDao extends ConnectionToDB implements Selectable {
 
     private final UserFactory userFactory = new UserFactory();
 

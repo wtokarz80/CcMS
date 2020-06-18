@@ -5,8 +5,8 @@ import com.m3w.models.Attendance;
 import com.m3w.models.Mentor;
 import com.m3w.models.Student;
 import com.m3w.services.InputProvider;
-import com.m3w.view.DataPrinting;
-import com.m3w.view.MenuPrinting;
+import com.m3w.view.DataPrinter;
+import com.m3w.view.MenuPrinter;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -15,11 +15,11 @@ import java.util.List;
 
 public class MentorController {
 
-    private final MenuPrinting menu = new MenuPrinting();
+    private final MenuPrinter menu = new MenuPrinter();
     private final InputProvider input = new InputProvider();
     private final Mentor mentor;
     private final MentorDao mentorDao = new MentorDao();
-    private final DataPrinting dataPrinting = new DataPrinting();
+    private final DataPrinter dataPrinter = new DataPrinter();
 
     public MentorController(Mentor mentor) {
         this.mentor = mentor;
@@ -29,10 +29,10 @@ public class MentorController {
     public void mentorMenu() throws IOException {
         boolean isRun = true;
         while (isRun) {
-            dataPrinting.printLogInfo(mentor);
+            dataPrinter.printLogInfo(mentor);
             menu.printMentorMenu();
             int userChoice = input.getNumberFromUser("Enter option: ");
-            dataPrinting.clearScreen();
+            dataPrinter.clearScreen();
             switch (userChoice) {
                 case 1:
                     getListOfStudents();
@@ -69,7 +69,7 @@ public class MentorController {
     public void getListOfStudents() {
         List<Student> students = mentorDao.getStudentsDetail();
         for (Student s : students) {
-            dataPrinting.printUser(s);
+            dataPrinter.printUser(s);
         }
     }
 
@@ -124,7 +124,7 @@ public class MentorController {
         int studentID = input.getNumberFromUser("Which student do You want see attendance? (enter id): ");
         List<Attendance> attendances = mentorDao.viewListStudentAttendance(studentID);
         for (Attendance a : attendances) {
-            dataPrinting.printAttendance(a);
+            dataPrinter.printAttendance(a);
         }
     }
 
