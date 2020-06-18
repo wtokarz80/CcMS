@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MentorDao extends ConnectionToDB implements IMentorDAO {
+public class MentorDAO extends ConnectionToDB implements IMentorDAO {
 
     @Override
     public List<Student> selectAllObjects() {

@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentDao extends ConnectionToDB implements IStudentDAO {
+public class StudentDAO extends ConnectionToDB implements IStudentDAO {
 
     private Assignment assignment;
     private StudentEvaluation studentEvaluation;

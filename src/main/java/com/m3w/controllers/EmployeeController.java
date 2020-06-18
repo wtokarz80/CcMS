@@ -8,7 +8,6 @@ import com.m3w.services.InputProvider;
 import com.m3w.view.DataPrinter;
 import com.m3w.view.MenuPrinter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeController {

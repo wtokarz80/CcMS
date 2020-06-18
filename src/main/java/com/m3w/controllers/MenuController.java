@@ -1,6 +1,6 @@
 package com.m3w.controllers;
 
-import com.m3w.dao.LoginDao;
+import com.m3w.dao.LoginDAO;
 import com.m3w.models.*;
 import com.m3w.services.InputProvider;
 import com.m3w.view.DataPrinter;
@@ -30,7 +30,7 @@ public class MenuController {
     }
 
     private void loginToSystem() throws Exception {
-        LoginDao loginDao = new LoginDao();
+        LoginDAO loginDao = new LoginDAO();
         boolean validUser = false;
         while (!validUser){
             String userEmail = inputProvider.takeStringInput("Enter e-mail: ");

@@ -1,8 +1,7 @@
 package com.m3w.controllers;
 
-import com.m3w.dao.MentorDao;
-import com.m3w.dao.StudentDao;
-import com.m3w.models.Assignment;
+import com.m3w.dao.MentorDAO;
+import com.m3w.interfaces.IMentorDAO;
 import com.m3w.models.Attendance;
 import com.m3w.models.Mentor;
 import com.m3w.models.Student;
@@ -20,7 +19,7 @@ public class MentorController {
     private final MenuPrinter menu = new MenuPrinter();
     private final InputProvider input = new InputProvider();
     private final Mentor mentor;
-    private final MentorDao mentorDao = new MentorDao();
+    private final IMentorDAO mentorDao = new MentorDAO();
     private final DataPrinter dataPrinter = new DataPrinter();
     private final String mentorMenu = menu.printMentorMenu();
 
@@ -70,7 +69,6 @@ public class MentorController {
     }
 
     public void getListOfStudents() {
-
         List<Student> students = mentorDao.selectAllObjects();
         String listOfStudents = dataPrinter.printUsers(students);
         menu.printSpecificWindow(mentorMenu, listOfStudents);

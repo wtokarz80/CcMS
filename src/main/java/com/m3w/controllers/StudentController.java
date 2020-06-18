@@ -1,6 +1,7 @@
 package com.m3w.controllers;
 
-import com.m3w.dao.StudentDao;
+import com.m3w.dao.StudentDAO;
+import com.m3w.interfaces.IStudentDAO;
 import com.m3w.models.Assignment;
 import com.m3w.models.Student;
 import com.m3w.models.StudentEvaluation;
@@ -18,7 +19,7 @@ public class StudentController {
     private final InputProvider inputProvider = new InputProvider();
     private final MenuPrinter menuPrinter = new MenuPrinter();
     private final DataPrinter dataPrinter = new DataPrinter();
-    private final StudentDao studentDao = new StudentDao();
+    private final IStudentDAO studentDao = new StudentDAO();
     private final Student student;
 
     public StudentController(Student student) {

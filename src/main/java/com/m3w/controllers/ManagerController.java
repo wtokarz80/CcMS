@@ -1,7 +1,9 @@
 package com.m3w.controllers;
 
-import com.m3w.dao.ManagerDao;
-import com.m3w.dao.MentorDao;
+import com.m3w.dao.ManagerDAO;
+import com.m3w.dao.MentorDAO;
+import com.m3w.interfaces.IManagerDAO;
+import com.m3w.interfaces.IMentorDAO;
 import com.m3w.models.Manager;
 import com.m3w.models.Mentor;
 import com.m3w.models.Student;
@@ -17,8 +19,8 @@ public class ManagerController {
 
     private MenuPrinter menu = new MenuPrinter();
     private InputProvider input = new InputProvider();
-    private ManagerDao managerDao = new ManagerDao();
-    private MentorDao mentorDao = new MentorDao();
+    private IManagerDAO managerDao = new ManagerDAO();
+    private IMentorDAO mentorDao = new MentorDAO();
     private DataPrinter dataPrinter = new DataPrinter();
     private final Manager manager;
     private final String managerMenu = menu.printMentorMenu();
@@ -61,7 +63,7 @@ public class ManagerController {
     }
 
 
-    public void getListOfStudents() throws IOException {
+    public void getListOfStudents() {
         List<Student> students = mentorDao.selectAllObjects();
         String listOfStudents = dataPrinter.printUsers(students);
         menu.printSpecificWindow(managerMenu, listOfStudents);

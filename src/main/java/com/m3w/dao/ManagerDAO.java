@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ManagerDao extends ConnectionToDB implements IManagerDAO {
+public class ManagerDAO extends ConnectionToDB implements IManagerDAO {
 
     @Override
     public List<Mentor> selectAllObjects() {
