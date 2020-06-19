@@ -20,7 +20,7 @@ public class EmployeeDAO extends ConnectionToDB{
                 String surname = results.getString("surname");
                 int phone = results.getInt("phone");
                 String email = results.getString("email");
-                String password = results.getString("password");
+                char password = results.getString("password");
                 String userType = results.getString("user_type");
 
                 Student student = new Student(userDetailsID, name, surname, phone, email, password, userType);

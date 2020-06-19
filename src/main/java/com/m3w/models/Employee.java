@@ -5,7 +5,7 @@ import com.m3w.controllers.EmployeeController;
 import java.io.IOException;
 
 public class Employee extends User{
-    public Employee(int id, String name, String surname, int phone, String email, String password, String userType) {
+    public Employee(int id, String name, String surname, int phone, String email, char password, String userType) {
         super(id, name, surname, phone, email, password, userType);
     }
 

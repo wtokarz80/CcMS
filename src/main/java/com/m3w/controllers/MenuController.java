@@ -6,9 +6,11 @@ import com.m3w.services.InputProvider;
 import com.m3w.view.DataPrinting;
 import com.m3w.view.MenuPrinting;
 
+import java.io.Console;
 
 
 public class MenuController {
+    Console console = System.console();
     private final InputProvider inputProvider = new InputProvider();
     private final MenuPrinting menuPrinting = new MenuPrinting();
     private final DataPrinting dataPrinting = new DataPrinting();
@@ -37,7 +39,7 @@ public class MenuController {
             if (userEmail.equalsIgnoreCase("exit")){
                 break;
             }
-            String userPassword = inputProvider.takeStringInput("Enter password: ");
+            char userPassword = inputProvider.takeCharInput(console.readPassword("Password: "));
             System.out.println(userPassword);
             user = loginDao.selectUser(userEmail, userPassword);
             if (user == null) {

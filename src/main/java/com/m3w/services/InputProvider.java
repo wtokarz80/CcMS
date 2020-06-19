@@ -25,6 +25,13 @@ public class InputProvider {
         }
         return input;
     }
+    public char takeCharInput(char[] messageForUser) throws IOException {
+        boolean validInput = false;
+        while(!validInput) {
+            System.out.print(messageForUser);
+        }
+        
+    }
 
     private String readNextLine(BufferedReader in) throws IOException{
         return in.readLine();

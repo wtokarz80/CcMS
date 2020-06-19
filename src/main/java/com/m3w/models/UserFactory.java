@@ -2,7 +2,7 @@ package com.m3w.models;
 
 public class UserFactory {
 
-    public User createUser(int id, String name, String surname, int phone, String email, String password, String userType) {
+    public User createUser(int id, String name, String surname, int phone, String email, char password, String userType) {
 
         UserType enumUserType = UserType.valueOf(userType.toUpperCase());
 
