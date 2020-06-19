@@ -16,7 +16,7 @@ public class LoginDao extends ConnectionToDB implements SelectUserInterface {
     private final UserFactory userFactory = new UserFactory();
 
     @Override
-    public User selectUser(String userEmail, char userPassword) throws IOException {
+    public User selectUser(String userEmail, String userPassword) throws IOException {
         try{
             connect();
             connection.setAutoCommit(false);
@@ -27,7 +27,7 @@ public class LoginDao extends ConnectionToDB implements SelectUserInterface {
                 String surname = rs.getString("surname");
                 int phone = rs.getInt("phone");
                 String email = rs.getString("email");
-                char password = rs.getString("password");
+                String password = rs.getString("password");
                 String userType = rs.getString("user_type");
 
                 if(email != null & password != null){

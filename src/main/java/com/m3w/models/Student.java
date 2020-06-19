@@ -6,11 +6,16 @@ import java.io.IOException;
 
 public class Student extends User{
 
-    public Student(int id, String name, String surname, int phone, String email, char password, String userType) {
-        super(id, name, surname, phone, email, password, userType);
-    }
+    // public Student(int id, String name, String surname, int phone, String email, String password, String userType) {
+    //     super(id, name, surname, phone, email, password, userType);
+    // }
 
-    @Override
+    public Student(int userDetailsID, String name, String surname, int phone, String email, String password,
+			String userType) {
+                super(userDetailsID, name, surname, phone, email, password, userType);
+	}
+
+	@Override
     public void displayMenuOptions() throws IOException {
         StudentController studentController = new StudentController(this);
         studentController.studentOptions();

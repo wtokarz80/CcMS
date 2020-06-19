@@ -32,6 +32,7 @@ public class MenuController {
     }
 
     private void loginToSystem() throws Exception {
+        String userPasswordString;
         LoginDao loginDao = new LoginDao();
         boolean validUser = false;
         while (!validUser){
@@ -39,9 +40,10 @@ public class MenuController {
             if (userEmail.equalsIgnoreCase("exit")){
                 break;
             }
-            char userPassword = inputProvider.takeCharInput(console.readPassword("Password: "));
-            System.out.println(userPassword);
-            user = loginDao.selectUser(userEmail, userPassword);
+            char[] userPassword = inputProvider.takeCharInput(console.readPassword("Password: "));
+            userPasswordString = String.valueOf(userPassword);
+            //System.out.println(userPassword);
+            user = loginDao.selectUser(userEmail, userPasswordString);
             if (user == null) {
                 dataPrinting.printString("\n\nThere is no user in database, try again or EXIT (type 'exit').\n\n");
             } else {

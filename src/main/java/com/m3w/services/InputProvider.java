@@ -25,11 +25,17 @@ public class InputProvider {
         }
         return input;
     }
-    public char takeCharInput(char[] messageForUser) throws IOException {
+    public char[] takeCharInput(char[] messageForUser) throws IOException {
+        String input = "";
         boolean validInput = false;
-        while(!validInput) {
+        // while(!validInput) {
             System.out.print(messageForUser);
-        }
+            input = reader.readLine();
+            // if (input.replaceAll("\\s+", "").length() > 0) {
+            //     validInput = true;
+            // }
+        // }
+		return input.toCharArray();
         
     }
 

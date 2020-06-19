@@ -5,12 +5,12 @@ public abstract class User {
     private final int id;
     private final int phone;
     private final String email;
-    private final char password;
+    private final String password;
     private final String name;
     private final String surname;
     private final String userType;
 
-    public User(int id, String name, String surname, int phone, String email, char password, String userType) {
+    public User(int id, String name, String surname, int phone, String email, String password, String userType) {
         this.id = id;
         this.phone = phone;
         this.email = email;
@@ -31,7 +31,7 @@ public abstract class User {
     public String getEmail() {
         return email;
     }
-    public char getPassword() {
+    public String getPassword() {
         return password;
     }
     public String getSurname() {
